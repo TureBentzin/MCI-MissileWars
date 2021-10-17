@@ -1,0 +1,4 @@
+The distribution, the modification, or the unauthorized access to this software is illegal.
+No one except for persons with an "@mcimpact.de" Email is allowed to read or own this code.
+Only Developers, trusted in this Git-Repo are allowed to modify this code.
+Any Feature included in this project needs to be documented and assigned to a verified Developer of MCI.
