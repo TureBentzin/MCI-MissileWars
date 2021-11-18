@@ -20,6 +20,23 @@ public class MissileWarsGame extends Game {
         this.gameStatus = gameStatus;
     }
 
+    @Nullable
+    private Team[] teams;
+    @Nullable
+    public Team[] getTeams() {
+        return teams;
+    }
+    public void setTeams(@Nullable Team[] teams) {
+        this.teams = teams;
+    }
+
+    public Teamer teamer = new Teamer(2);
+    public Teamer getTeamer() {
+        return teamer;
+    }
+    public void setTeamer(Teamer teamer) {
+        this.teamer = teamer;
+    }
 
     @Override
     public  void start() {
