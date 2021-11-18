@@ -21,7 +21,7 @@ public final class MissileWars extends JavaPlugin {
           args[i] = keysAndArgs[i];
         }
 
-        Bukkit.broadcast(Core.getTranslatableComponent(keysAndArgs[0], ));
+        Bukkit.broadcast(Core.getTranslatableComponent(keysAndArgs[0], args));
     }
 
     @Override
