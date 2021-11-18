@@ -58,4 +58,11 @@ public class MissileWarsGame extends Game {
 
         setRunning(false);
     }
+
+
+    public static MissileWarsGame getInstance() {
+        return instance;
+    }
+
+    public static MissileWarsGame instance = new MissileWarsGame();
 }
