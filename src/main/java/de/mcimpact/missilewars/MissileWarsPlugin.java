@@ -1,6 +1,7 @@
 package de.mcimpact.missilewars;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
+import de.mcimpact.missilewars.game.MissileWarsGame;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,6 +13,8 @@ public final class MissileWarsPlugin extends JavaPlugin {
     private static final Logger MISSILEWARS_LOGGER = Bukkit.getLogger();
 
     private static MultiverseCore multiverse = null;
+
+    public static MissileWarsGame GAME = MissileWarsGame.getInstance();
 
     @Override
     public void onEnable() {
