@@ -1,6 +1,10 @@
 package de.mcimpact.missilewars.game;
 
 import de.mcimpact.core.game.Game;
+import de.mcimpact.game.team.Team;
+import de.mcimpact.game.team.Teamer;
+
+import javax.annotation.Nullable;
 
 public class MissileWarsGame extends Game {
 
@@ -39,7 +43,7 @@ public class MissileWarsGame extends Game {
     }
 
     @Override
-    public  void start() {
+    public void start() {
         setGameStatus(GameStatus.LOBBY);
 
         internalStart("servername");
