@@ -1,6 +1,6 @@
 name: Missilewars
 version: '${project.version}'
-main: de.mcimpact.missilewars.MissileWarsPlugin
+main: de.mcimpact.missilewars.MissileWars
 api-version: 1.16
 prefix: MissileWars
 authors: [ tdr@mcimpact.de, Bommels05 ]
