@@ -14,6 +14,11 @@ public class Translations {
         Core.registerTranslation(KEY + "message.movement.playerjoin.failed", "<fatal#prefix><fatal#color>Your join to MissileWars failed!");
         Core.registerTranslation(KEY + "message.movement.playerjoin.aborted", "<error#prefix><error#color>Your join to MissileWars was aborted!");
         Core.registerTranslation(KEY + "message.movement.playerjoin.alreadyrunning", "<system#prefix><system#color>This game is already running.");
+        Core.registerTranslation(KEY + "message.teaming.joined", "<system#prefix><system#color>Your joined team: {0}");
+
+
+
+
     }
 
 
