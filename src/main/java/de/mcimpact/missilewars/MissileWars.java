@@ -10,10 +10,14 @@ import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
 public final class MissileWars extends JavaPlugin {
+
+
+
 
     @NotNull
     private World lobby = Bukkit.getWorld("world");
@@ -22,9 +26,19 @@ public final class MissileWars extends JavaPlugin {
         return lobby;
     }
 
-    private static final Logger MISSILEWARS_LOGGER = Bukkit.getLogger();
+    private static Logger MISSILEWARS_LOGGER = Bukkit.getPluginManager().getPlugin("MissileWars").getLogger();
     private static MultiverseCore multiverse = null;
     public static MissileWarsGame GAME = MissileWarsGame.getInstance();
+
+    public static Logger getMissilewarsLogger() {
+        return MISSILEWARS_LOGGER;
+    }
+    public static Logger getMWL() {
+        return MISSILEWARS_LOGGER;
+    }
+    public static MultiverseCore getMultiverse() {
+        return multiverse;
+    }
 
     public static void broadcast(String key, String... args){
         Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key,args)));
@@ -36,6 +50,9 @@ public final class MissileWars extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+
+
+
         MISSILEWARS_LOGGER.warning("Running MissileWars v." + getDescription().getVersion());
         MISSILEWARS_LOGGER.info("registering Translations");
         Translations.run();
@@ -43,7 +60,7 @@ public final class MissileWars extends JavaPlugin {
         MISSILEWARS_LOGGER.info("stating listening to events!");
         registerListeners();
         MISSILEWARS_LOGGER.info("all events are registered now!");
-
+        MISSILEWARS_LOGGER.info("detected lobby world: "+ getLobby().getName());
     }
 
     @Override

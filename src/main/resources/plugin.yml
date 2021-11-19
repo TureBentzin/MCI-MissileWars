@@ -1,4 +1,4 @@
-name: Missilewars
+name: MissileWars
 version: '${project.version}'
 main: de.mcimpact.missilewars.MissileWars
 api-version: 1.16
