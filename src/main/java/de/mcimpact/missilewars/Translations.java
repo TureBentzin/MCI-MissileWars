@@ -15,4 +15,13 @@ public class Translations {
         Core.registerTranslation(KEY + "message.movement.playerjoin.aborted", "<error#prefix><error#color>Your join to MissileWars was aborted!");
         Core.registerTranslation(KEY + "message.movement.playerjoin.alreadyrunning", "<system#prefix><system#color>This game is already running.");
     }
+
+
+    public static Object[] toObjectArray(String[] array) {
+        Object[] finalArray = new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            finalArray[i] = array[i];
+        }
+        return finalArray;
+    }
 }
