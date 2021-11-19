@@ -2,6 +2,8 @@ package de.mcimpact.missilewars;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import de.mcimpact.core.Core;
+import de.mcimpact.core.cloud.CloudCore;
+import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
 import de.mcimpact.missilewars.listeners.JoinEvent;
 import de.mcimpact.missilewars.listeners.QuitEvent;
@@ -9,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.LoggerFactory;
 
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -26,7 +29,7 @@ public final class MissileWars extends JavaPlugin {
         return lobby;
     }
 
-    private static Logger MISSILEWARS_LOGGER = Bukkit.getPluginManager().getPlugin("MissileWars").getLogger();
+    private static Logger MISSILEWARS_LOGGER = Logger.getLogger("missilewars-nullman");
     private static MultiverseCore multiverse = null;
     public static MissileWarsGame GAME = MissileWarsGame.getInstance();
 
@@ -50,7 +53,7 @@ public final class MissileWars extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-
+        MISSILEWARS_LOGGER = getLogger();
 
 
         MISSILEWARS_LOGGER.warning("Running MissileWars v." + getDescription().getVersion());
@@ -61,6 +64,12 @@ public final class MissileWars extends JavaPlugin {
         registerListeners();
         MISSILEWARS_LOGGER.info("all events are registered now!");
         MISSILEWARS_LOGGER.info("detected lobby world: "+ getLobby().getName());
+
+
+
+
+        MISSILEWARS_LOGGER.info("The Game is now open!");
+        GAME.setGameStatus(GameStatus.LOBBY);
     }
 
     @Override
