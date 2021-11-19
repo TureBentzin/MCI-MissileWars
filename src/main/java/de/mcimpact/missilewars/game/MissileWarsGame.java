@@ -3,10 +3,22 @@ package de.mcimpact.missilewars.game;
 import de.mcimpact.core.game.Game;
 import de.mcimpact.game.team.Team;
 import de.mcimpact.game.team.Teamer;
+import de.mcimpact.missilewars.game.world.MissileWarsLevel;
 
 import javax.annotation.Nullable;
 
 public class MissileWarsGame extends Game {
+
+
+    @Nullable
+    private MissileWarsLevel missileWarsLevel;
+    @Nullable
+    public MissileWarsLevel getMissileWarsLevel() {
+        return missileWarsLevel;
+    }
+    public void setMissileWarsLevel(@Nullable MissileWarsLevel missileWarsLevel) {
+        this.missileWarsLevel = missileWarsLevel;
+    }
 
     private boolean running;
     public boolean isRunning() {
