@@ -22,6 +22,13 @@ public class Translations {
         Core.registerTranslation(KEY + "message.game.aborted", "<fatal#prefix><fatal#color>Your<fatal#accent> MissileWars <fatal#color>game failed!");
 
         Core.registerTranslation(KEY + "message.command.test.selector", "<system#prefix><system#color>You can´t open the <system#accent>selector");
+        Core.registerTranslation(KEY + "message.selector.test.handle.something", "<system#prefix><system#color>You have clicked <system#accent> something");
+        Core.registerTranslation(KEY + "message.selector.test.handle", "<system#prefix><system#color>You have clicked <system#accent> {0}");
+        Core.registerTranslation(KEY + "message.selector.test.1", "<system#accent> Missilewars");
+        Core.registerTranslation(KEY + "message.selector.test.2", "<system#accent> Lobby");
+        Core.registerTranslation(KEY + "message.selector.test.3", "<system#accent> Playground");
+        Core.registerTranslation(KEY + "message.selector.test.4", "<system#accent> Debugserver");
+        Core.registerTranslation(KEY + "message.selector.test.5", "<system#accent> NoKotlin!");
 
 
 
