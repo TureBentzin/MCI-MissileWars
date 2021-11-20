@@ -5,6 +5,7 @@ import de.mcimpact.game.team.Team;
 import de.mcimpact.game.team.Teamer;
 import de.mcimpact.missilewars.game.world.MissileWarsLevel;
 
+
 import javax.annotation.Nullable;
 
 public class MissileWarsGame extends Game {
