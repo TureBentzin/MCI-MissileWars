@@ -15,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.initialization.qual.NotOnlyInitialized;
 import org.checkerframework.checker.initialization.qual.UnknownInitialization;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -22,6 +23,14 @@ import java.util.logging.Logger;
 
 public final class MissileWars extends JavaPlugin {
 
+
+    @Nullable
+    private static MissileWars missileWars;
+
+    @Nullable
+    public static MissileWars getMissileWars() {
+        return missileWars;
+    }
 
     public static MissileWarsGame GAME = MissileWarsGame.getInstance();
     private static Logger MISSILEWARS_LOGGER = Logger.getLogger("missilewars-nullman");
@@ -59,6 +68,9 @@ public final class MissileWars extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        missileWars = this;
+
         // Plugin startup logic
         MISSILEWARS_LOGGER = getLogger();
         lobby = Bukkit.getWorld("world");
@@ -104,6 +116,7 @@ public final class MissileWars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new WeatherChange(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
         Bukkit.getPluginManager().registerEvents(new FlightAttempt(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
     }
     public void registerBukkitCommands(){
         getCommand("debugteam").setExecutor(new DebugteamCommand());
