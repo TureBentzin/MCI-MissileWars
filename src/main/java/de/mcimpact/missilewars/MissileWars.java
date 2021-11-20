@@ -2,6 +2,7 @@ package de.mcimpact.missilewars;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import de.mcimpact.core.Core;
+import de.mcimpact.missilewars.commands.MissileWarsCommand;
 import de.mcimpact.missilewars.game.MissileWarsGame;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,6 +30,7 @@ public final class MissileWars extends JavaPlugin {
         // Plugin startup logic
         MISSILEWARS_LOGGER.warning("Running MissileWars v." + getDescription().getVersion());
         multiverse = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
+        Core.registerCommand(new MissileWarsCommand(), this);
 
 
 
