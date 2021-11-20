@@ -7,6 +7,7 @@ import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
 import de.mcimpact.missilewars.listeners.JoinEvent;
 import de.mcimpact.missilewars.listeners.QuitEvent;
+import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -27,7 +28,7 @@ public final class MissileWars extends JavaPlugin {
     private static MultiverseCore multiverse = null;
 
     @UnknownInitialization
-    private World lobby;
+    private static World lobby;
 
     public static Logger getMissilewarsLogger() {
         return MISSILEWARS_LOGGER;
@@ -52,8 +53,7 @@ public final class MissileWars extends JavaPlugin {
         Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key)));
     }
 
-    @NotNull
-    public World getLobby() {
+    public static World getLobby() {
         return lobby;
     }
 
@@ -79,6 +79,7 @@ public final class MissileWars extends JavaPlugin {
 
         MISSILEWARS_LOGGER.info("The Game is now open!");
         GAME.setGameStatus(GameStatus.LOBBY);
+        LobbyPhase.onLobbyPhase(getLobby());
     }
 
     @Override
