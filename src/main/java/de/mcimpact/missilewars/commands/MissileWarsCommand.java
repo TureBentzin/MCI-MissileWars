@@ -16,9 +16,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
-//missilewars status ENUM
-//missilewars status
-// /missilewars status running
 public class MissileWarsCommand extends Command<CommandSender> {
     @NotNull
     @Override
