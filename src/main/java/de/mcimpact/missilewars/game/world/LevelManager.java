@@ -5,7 +5,8 @@ import java.util.Map;
 
 public class LevelManager {
 
-    private Map<String, MissileWarsLevel> missileWarsLevelMap = new HashMap<>();
+    private final Map<String, MissileWarsLevel> missileWarsLevelMap = new HashMap<>();
+
     public Map<String, MissileWarsLevel> getMissileWarsLevelMap() {
         return missileWarsLevelMap;
     }

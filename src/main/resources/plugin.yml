@@ -1,10 +1,13 @@
-name: Missilewars
+name: MissileWars
 version: '${project.version}'
-main: de.mcimpact.missilewars.MissileWarsPlugin
+main: de.mcimpact.missilewars.MissileWars
 api-version: 1.16
 prefix: MissileWars
 authors: [ tdr@mcimpact.de, Bommels05 ]
 description: MissileWars Plugin for mcimpcat.de
 website: https://mcimpact.de
+commands:
+  debugteam:
+    usage: /<command>
 softdepend:
   - 'Multiverse-Core'
