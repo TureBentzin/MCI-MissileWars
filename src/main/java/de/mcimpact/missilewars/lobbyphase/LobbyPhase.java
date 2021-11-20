@@ -27,6 +27,7 @@ public class LobbyPhase {
 
     public static void onLobbyPhase(World lobby) {
         lobby.setAutoSave(false);
+        lobby.setStorm(false);
         lobby.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
         lobby.setTime(0);
         lobby.setPVP(false);
