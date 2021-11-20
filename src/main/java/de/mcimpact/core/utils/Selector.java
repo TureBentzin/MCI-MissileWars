@@ -16,15 +16,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class Selector<R, E extends Selector.SelectorEntry> {
+public class Selector {
     boolean opened = false;
     List<SelectorEntry> entries;
     String name;
     ItemStack background;
+    boolean closeinv;
 
-    public Selector(@NotNull String name, @Nullable ItemStack background) {
+    public Selector(@NotNull String name, @Nullable ItemStack background, boolean closeInvOnClick) {
         this.name = name;
         this.background = background;
+        closeinv = closeInvOnClick;
     }
 
     public void open(NetPlayer netPlayer){
@@ -71,7 +73,37 @@ public abstract class Selector<R, E extends Selector.SelectorEntry> {
         for (SelectorEntry entry : entries) {
 
             navigationPane.addItem(new GuiItem(entry.getItem(), event -> {
-                //todo execute
+                if (closeinv) {
+                    player.closeInventory();
+                }
+                handle(entry);
+                if (getNumber(entry) == 1) {
+                    handle1(entry);
+                }
+                if (getNumber(entry) == 2) {
+                    handle2(entry);
+                }
+                if (getNumber(entry) == 3) {
+                    handle3(entry);
+                }
+                if (getNumber(entry) == 4) {
+                    handle4(entry);
+                }
+                if (getNumber(entry) == 5) {
+                    handle5(entry);
+                }
+                if (getNumber(entry) == 6) {
+                    handle6(entry);
+                }
+                if (getNumber(entry) == 7) {
+                    handle7(entry);
+                }
+                if (getNumber(entry) == 8) {
+                    handle8(entry);
+                }
+                if (getNumber(entry) == 9) {
+                    handle9(entry);
+                }
             }));
         }
 
@@ -80,7 +112,59 @@ public abstract class Selector<R, E extends Selector.SelectorEntry> {
         gui.show(player);
     }
 
-    protected abstract void handle(E entry);
+    protected void handle(SelectorEntry entry) {
+
+    }
+
+    protected void handle1(SelectorEntry entry) {
+
+    }
+
+    protected void handle2(SelectorEntry entry) {
+
+    }
+
+    protected void handle3(SelectorEntry entry) {
+
+    }
+
+    protected void handle4(SelectorEntry entry) {
+
+    }
+
+    protected void handle5(SelectorEntry entry) {
+
+    }
+
+    protected void handle6(SelectorEntry entry) {
+
+    }
+
+    protected void handle7(SelectorEntry entry) {
+
+    }
+
+    protected void handle8(SelectorEntry entry) {
+
+    }
+
+    protected void handle9(SelectorEntry entry) {
+
+    }
+
+    public int getNumber(SelectorEntry entry) {
+        if (entries == null) {
+            throw new NullPointerException("No SelectorEntries");
+        }
+        int number = 1;
+        for (SelectorEntry listentry : entries) {
+            if (listentry == entry) {
+                return number;
+            }
+            number++;
+        }
+        return -1;
+    }
 
     public void setEntries(List<SelectorEntry> entries) {
         if (opened) {
@@ -98,10 +182,6 @@ public abstract class Selector<R, E extends Selector.SelectorEntry> {
 
         public SelectorEntry(ItemStack item) {
             this.item = item;
-        }
-
-        public void onClick() {
-            
         }
 
         public ItemStack getItem() {
