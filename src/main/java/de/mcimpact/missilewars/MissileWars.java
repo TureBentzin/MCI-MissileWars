@@ -9,6 +9,7 @@ import de.mcimpact.missilewars.listeners.JoinEvent;
 import de.mcimpact.missilewars.listeners.QuitEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.initialization.qual.NotOnlyInitialized;
 import org.checkerframework.checker.initialization.qual.UnknownInitialization;
@@ -83,6 +84,11 @@ public final class MissileWars extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        MISSILEWARS_LOGGER.info("The Game is closing...");
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            onlinePlayer.kick(Core.translate(Core.getTranslatableComponent("missilewars.message.game.aborted")));
+        }
+        GAME.setGameStatus(GameStatus.GAME_END);
     }
 
 
