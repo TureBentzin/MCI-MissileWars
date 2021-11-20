@@ -11,7 +11,7 @@ public class WeatherChange implements Listener {
 
     @EventHandler
     public void onChange(WeatherChangeEvent event){
-        if(event.toWeatherState() && Weathercontrol.allow_storm)
+        if(event.toWeatherState() && !Weathercontrol.allow_storm)
         event.setCancelled(true);
     }
 }
