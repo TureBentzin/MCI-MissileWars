@@ -65,6 +65,9 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>mcimpact</id>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -73,6 +76,11 @@
             <artifactId>paper-api</artifactId>
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.mcimpact.core</groupId>
+            <artifactId>paper</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>
