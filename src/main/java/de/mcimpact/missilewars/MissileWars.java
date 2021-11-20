@@ -6,10 +6,7 @@ import de.mcimpact.missilewars.commands.MissileWarsCommand;
 import de.mcimpact.missilewars.commands.bukkit.DebugteamCommand;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
-import de.mcimpact.missilewars.listeners.EntityDamage;
-import de.mcimpact.missilewars.listeners.JoinEvent;
-import de.mcimpact.missilewars.listeners.QuitEvent;
-import de.mcimpact.missilewars.listeners.WeatherChange;
+import de.mcimpact.missilewars.listeners.*;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -106,6 +103,7 @@ public final class MissileWars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new QuitEvent(), this);
         Bukkit.getPluginManager().registerEvents(new WeatherChange(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
+        Bukkit.getPluginManager().registerEvents(new FlightAttempt(), this);
     }
     public void registerBukkitCommands(){
         getCommand("debugteam").setExecutor(new DebugteamCommand());
