@@ -44,7 +44,7 @@ public final class MissileWars extends JavaPlugin {
     }
 
     public static void broadcast(String key, String... args){
-        Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key,args)));
+        Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key, Translations.toObjectArray(args))));
     }
     public static void broadcast(String key){
         Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key)));
