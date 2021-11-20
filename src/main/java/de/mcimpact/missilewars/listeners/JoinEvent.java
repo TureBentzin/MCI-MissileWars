@@ -29,12 +29,12 @@ public class JoinEvent implements Listener {
 
         if (player == null) throw new PlayerResolvingException(e.getPlayer().getUniqueId());
 
-        LobbyPhase.onSpawn(player);
-
 
 
         if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY) {
 
+            LobbyPhase.onSpawn(player);
+            
             if (player.isAdminMode()) {
 
                 player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.movement.playerjoin.failed")));
