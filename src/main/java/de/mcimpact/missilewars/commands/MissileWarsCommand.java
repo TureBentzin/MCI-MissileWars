@@ -5,14 +5,10 @@ import de.mcimpact.core.commands.Command;
 import de.mcimpact.core.commands.CommandSender;
 import de.mcimpact.core.commands.ConstrainedArgument;
 import de.mcimpact.core.players.NetPlayer;
-import de.mcimpact.core.utils.TestInv;
+import de.mcimpact.core.utils.TestSelector;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
 import io.github.dseelp.kommon.command.*;
-import kotlin.Unit;
-import kotlin.coroutines.Continuation;
-import kotlin.jvm.functions.Function1;
-import kotlin.jvm.functions.Function2;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -48,7 +44,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
             @Override
             public void accept(CommandContext<CommandSender> context) {
                 if (context.getSender() instanceof NetPlayer) {
-                    new TestInv().open((NetPlayer) context.getSender());
+                    new TestSelector().open((NetPlayer) context.getSender());
                 }
                 else {
                     context.getSender().sendMessage(Core.getTranslatableComponent("message.command.test.selector"));
