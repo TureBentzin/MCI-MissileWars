@@ -6,6 +6,10 @@ import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.errors.PlayerResolvingException;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
+import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
+import net.kyori.adventure.text.Component;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -18,11 +22,16 @@ public class JoinEvent implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) throws PlayerResolvingException {
 
-        MissileWars.broadcast("missilewars.message.debug", "event: " + e.getEventName());
+        Player bukkitPlayer = e.getPlayer();
+     //   MissileWars.broadcast("missilewars.message.debug", "event: " + e.getEventName());
 
         NetPlayer player = Core.getPlayerUtils().getPlayer(e.getPlayer().getUniqueId());
 
         if (player == null) throw new PlayerResolvingException(e.getPlayer().getUniqueId());
+
+        LobbyPhase.onSpawn(player);
+
+
 
         if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY) {
 
@@ -38,10 +47,10 @@ public class JoinEvent implements Listener {
 
             MissileWars.broadcast("missilewars.message.movement.playerjoin", player.getName());
 
-            player.sendMessage(Core.getTranslatableComponent("missilewars.message.teaming.joined", game.teamer.getTeam(player).getColor().getTextColor()
-                    + game.teamer.getTeam(player).getColor().name()));
+            player.sendMessage(Core.getTranslatableComponent("missilewars.message.teaming.joined",
+                    Component.text(game.teamer.getTeam(player).getColor().name()).color(game.teamer.getTeam(player).getColor().getTextColor().getAdventure())));
 
-            MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
+          //  MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
 
 
         } else if (game.getGameStatus() == GameStatus.PAUSED) {

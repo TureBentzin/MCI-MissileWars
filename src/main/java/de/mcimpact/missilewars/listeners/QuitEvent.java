@@ -17,7 +17,7 @@ public class QuitEvent implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent e) throws PlayerResolvingException {
-        MissileWars.broadcast("missilewars.message.debug", "event: " + e.getEventName());
+        //MissileWars.broadcast("missilewars.message.debug", "event: " + e.getEventName());
 
         NetPlayer player = Core.getPlayerUtils().getPlayer(e.getPlayer().getUniqueId());
 
