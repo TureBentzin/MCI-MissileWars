@@ -21,6 +21,8 @@ public class Translations {
 
         Core.registerTranslation(KEY + "message.game.aborted", "<fatal#prefix><fatal#color>Your<fatal#accent> MissileWars <fatal#color>game failed!");
 
+        Core.registerTranslation(KEY + "message.command.test.selector", "<system#prefix><system#color>You can´t open the <system#accent>selector");
+
 
 
     }
