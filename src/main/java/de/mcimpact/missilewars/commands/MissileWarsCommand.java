@@ -44,7 +44,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
             @Override
             public void accept(CommandContext<CommandSender> context) {
                 if (context.getSender() instanceof NetPlayer) {
-                    new TestSelector().open((NetPlayer) context.getSender());
+                    new TestSelector().start((NetPlayer) context.getSender());
                 }
                 else {
                     context.getSender().sendMessage(Core.getTranslatableComponent("message.command.test.selector"));
