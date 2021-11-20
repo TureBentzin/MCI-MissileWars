@@ -7,10 +7,6 @@ import de.mcimpact.core.commands.ConstrainedArgument;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
 import io.github.dseelp.kommon.command.*;
-import kotlin.Unit;
-import kotlin.coroutines.Continuation;
-import kotlin.jvm.functions.Function1;
-import kotlin.jvm.functions.Function2;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -35,21 +31,17 @@ public class MissileWarsCommand extends Command<CommandSender> {
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> statusenum = JavaUtils.argument(new ConstrainedArgument<CommandSender>("statusenum", context -> {
             return Arrays.stream(GameStatus.values()).map(GameStatus::toString).toArray(String[]::new);
         }));
-        status.getBuilder().execute(new Consumer<CommandContext<CommandSender>>() {
-            @Override
-            public void accept(CommandContext<CommandSender> context) {
-                System.out.println("Argumente!");
-                context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.status", MissileWars.GAME.getGameStatus().toString()));
-            }
+
+        status.getBuilder().execute(context -> {
+            System.out.println("Argumente!");
+            context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.status", MissileWars.GAME.getGameStatus().toString()));
         });
-        statusenum.execute(new Consumer<CommandContext<CommandSender>>() {
-            @Override
-            public void accept(CommandContext<CommandSender> context) {
-                System.out.println("Set!");
-                System.out.println(context.get("statusenum", String.class));
-                MissileWars.GAME.setGameStatus(GameStatus.valueOf(context.get("statusenum", String.class)));
-                context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.statusset", MissileWars.GAME.getGameStatus().toString()));
-            }
+
+        statusenum.execute(context -> {
+            System.out.println("Set!");
+            System.out.println(context.get("statusenum", String.class));
+            MissileWars.GAME.setGameStatus(GameStatus.valueOf(context.get("statusenum", String.class)));
+            context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.statusset", MissileWars.GAME.getGameStatus().toString()));
         });
         status.then(statusenum.build());
         base.then(status);
