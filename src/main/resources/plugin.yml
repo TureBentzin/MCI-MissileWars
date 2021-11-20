@@ -6,5 +6,8 @@ prefix: MissileWars
 authors: [ tdr@mcimpact.de, Bommels05 ]
 description: MissileWars Plugin for mcimpcat.de
 website: https://mcimpact.de
+commands:
+  debugteam:
+    usage: /<command>
 softdepend:
   - 'Multiverse-Core'
