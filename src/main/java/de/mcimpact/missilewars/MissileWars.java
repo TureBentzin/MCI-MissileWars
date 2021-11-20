@@ -2,6 +2,7 @@ package de.mcimpact.missilewars;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import de.mcimpact.core.Core;
+import de.mcimpact.missilewars.commands.MissileWarsCommand;
 import de.mcimpact.missilewars.commands.bukkit.DebugteamCommand;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
@@ -71,9 +72,14 @@ public final class MissileWars extends JavaPlugin {
         registerListeners();
         MISSILEWARS_LOGGER.info("all events are registered now!");
 
-        MISSILEWARS_LOGGER.info("stating commandregisteration : Bukkit");
+        MISSILEWARS_LOGGER.info("starting commandregisteration : Bukkit");
         registerBukkitCommands();
         MISSILEWARS_LOGGER.info("finished commandregisteration : Bukkit");
+      
+        MISSILEWARS_LOGGER.info("starting commandregisteration : Core");
+        registerCommands();
+        MISSILEWARS_LOGGER.info("finished commandregisteration : Core");
+      
         MISSILEWARS_LOGGER.info("detected lobby world: " + getLobby().getName());
 
 
@@ -99,6 +105,9 @@ public final class MissileWars extends JavaPlugin {
     }
     public void registerBukkitCommands(){
         getCommand("debugteam").setExecutor(new DebugteamCommand());
+    }
+    public void registerCommands(){
+        Core.registerCommand(new MissileWarsCommand(), this);
     }
 
 

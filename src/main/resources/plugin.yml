@@ -3,9 +3,11 @@ version: '${project.version}'
 main: de.mcimpact.missilewars.MissileWars
 api-version: 1.16
 prefix: MissileWars
-authors: [ tdr@mcimpact.de, Bommels05 ]
+authors: [ tdr@mcimpact.de, Bommels05@mcimpact.de ]
 description: MissileWars Plugin for mcimpcat.de
 website: https://mcimpact.de
+depend:
+  - 'MCI-Core'
 commands:
   debugteam:
     usage: /<command>
