@@ -4,33 +4,43 @@ import de.mcimpact.core.Core;
 import de.mcimpact.core.paper.LocalPlayer;
 import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
+import de.mcimpact.missilewars.game.GameStatus;
+import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
+import de.mcimpact.missilewars.util.Timeout;
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.util.Vector;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
 
 public class FlightAttempt implements Listener {
+
+    public static Set<UUID> uuidSet = new HashSet<UUID>();
 
     @EventHandler
     @SuppressWarnings("deprecated")
     public void onFlightAttempt(PlayerToggleFlightEvent event) {
-        MissileWars.broadcast("missilewars.message.debug", "flight attempt: " + event.getPlayer().getCustomName());
-        if (!event.getPlayer().isFlying() && event.getPlayer().getGameMode() != GameMode.CREATIVE) {
-            if(Utils.isOnGround(Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId()))) {
-                MissileWars.broadcast("missilewars.message.debug", "double jump: " + event.getPlayer().getCustomName());
+        if(MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
+
+        if (event.getPlayer().getGameMode() != GameMode.CREATIVE && uuidSet.contains(event.getPlayer().getUniqueId())) {
+                MissileWars.broadcast("missilewars.message.debug", "double jump: " + event.getPlayer().getName());
                 Vector vector = event.getPlayer().getVelocity();
 
-                vector.add(new Vector(0, 0.5, 0));
+                vector.add(new Vector(vector.getX() *2.3, 0.7, vector.getZ() *2.3));
 
-                event.getPlayer().setVelocity(event.getPlayer().getVelocity().add(vector));
+                event.getPlayer().setVelocity(vector);
 
-            }
-            event.getPlayer().setFlying(false);
-            event.setCancelled(true);
+                event.getPlayer().setAllowFlight(false);
+                uuidSet.remove(event.getPlayer().getUniqueId());
         }
 
+        event.getPlayer().setFlying(false);
+        event.setCancelled(true);
     }
 
 }
