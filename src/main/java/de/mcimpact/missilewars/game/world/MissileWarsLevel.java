@@ -10,12 +10,12 @@ public class MissileWarsLevel {
         return data;
     }
 
-    public World getWorld() {
-        return world;
-    }
-
     public void setData(MissileWarsLevelData data) {
         this.data = data;
+    }
+
+    public World getWorld() {
+        return world;
     }
 
     public void setWorld(World world) {

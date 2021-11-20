@@ -6,12 +6,14 @@
 
     <groupId>de.mcimpact</groupId>
     <artifactId>missilewars</artifactId>
-    <version>0.1.1-ALPHA</version>
+    <version>0.1.3-ALPHA</version>
     <packaging>jar</packaging>
 
     <name>Missilewars</name>
 
     <description>MissileWars Plugin for mcimpcat.de</description>
+
+
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

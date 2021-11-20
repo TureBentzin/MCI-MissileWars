@@ -1,4 +1,4 @@
-name: Missilewars
+name: MissileWars
 version: '${project.version}'
 main: de.mcimpact.missilewars.MissileWars
 api-version: 1.16
@@ -8,5 +8,8 @@ description: MissileWars Plugin for mcimpcat.de
 website: https://mcimpact.de
 depend:
   - 'MCI-Core'
+commands:
+  debugteam:
+    usage: /<command>
 softdepend:
   - 'Multiverse-Core'
