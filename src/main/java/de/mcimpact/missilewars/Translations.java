@@ -19,8 +19,6 @@ public class Translations {
         Core.registerTranslation(KEY + "message.teaming.joined", "<system#prefix><system#color>You joined team: {0}");
 
 
-
-
     }
 
 

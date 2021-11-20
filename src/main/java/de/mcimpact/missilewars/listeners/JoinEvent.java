@@ -22,16 +22,16 @@ public class JoinEvent implements Listener {
 
         NetPlayer player = Core.getPlayerUtils().getPlayer(e.getPlayer().getUniqueId());
 
-        if(player == null) throw new PlayerResolvingException(e.getPlayer().getUniqueId());
+        if (player == null) throw new PlayerResolvingException(e.getPlayer().getUniqueId());
 
-        if(MissileWars.GAME.getGameStatus() == GameStatus.LOBBY) {
+        if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY) {
 
-            if(player.isAdminMode()){
+            if (player.isAdminMode()) {
 
                 player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.movement.playerjoin.failed")));
                 player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.movement.playerjoin.aborted")));
 
-             return;
+                return;
             }
             game.teamer.add(player);
             MissileWars.broadcast("missilewars.message.movement.playerjoin", player.getName());
@@ -42,17 +42,17 @@ public class JoinEvent implements Listener {
             MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
 
 
-        }else if(game.getGameStatus() == GameStatus.PAUSED) {
+        } else if (game.getGameStatus() == GameStatus.PAUSED) {
             player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.movement.playerjoin.failed")));
             player.connectToFallback();
-        }else
+        } else
 
             player.sendMessage((Core.getTranslatableComponent("missilewars.message.movement.playerjoin.alreadyrunning")));
 
-        }
-
-
     }
+
+
+}
 
 
 

@@ -4,20 +4,20 @@ package de.mcimpact.missilewars.errors;
 import java.util.UUID;
 
 
-public class PlayerResolvingException extends Exception{
+public class PlayerResolvingException extends Exception {
 
     private UUID uuid;
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public PlayerResolvingException(UUID uuid) {
+        setUuid(uuid);
     }
 
     public UUID getUuid() {
         return uuid;
     }
 
-    public PlayerResolvingException(UUID uuid) {
-        setUuid(uuid);
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     @Override

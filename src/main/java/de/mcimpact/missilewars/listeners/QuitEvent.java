@@ -8,8 +8,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.net.http.WebSocket;
-
 public class QuitEvent implements Listener {
 
 
@@ -19,6 +17,6 @@ public class QuitEvent implements Listener {
 
         NetPlayer player = Core.getPlayerUtils().getPlayer(e.getPlayer().getUniqueId());
 
-        if(player == null) throw new PlayerResolvingException(e.getPlayer().getUniqueId());
+        if (player == null) throw new PlayerResolvingException(e.getPlayer().getUniqueId());
     }
 }
