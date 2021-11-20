@@ -17,12 +17,14 @@ public class Translations {
         Core.registerTranslation(KEY + "message.movement.playerjoin.aborted", "<error#prefix><error#color>Your join to MissileWars was aborted!");
         Core.registerTranslation(KEY + "message.movement.playerjoin.alreadyrunning", "<system#prefix><system#color>This game is already running.");
         Core.registerTranslation(KEY + "message.teaming.joined", "<system#prefix><system#color>You joined team: {0}");
+        Core.registerTranslation(KEY + "message.movement.playerquit", "<system#preifx><system#color>{0} <system#color>left the game!");
+
 
 
     }
 
 
-    public static Object[] toObjectArray(String[] array) {
+    public static Object[] toObjectArray(Object[] array) {
         Object[] finalArray = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             finalArray[i] = array[i];
