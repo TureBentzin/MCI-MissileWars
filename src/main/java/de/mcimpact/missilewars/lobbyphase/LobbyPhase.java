@@ -23,6 +23,8 @@ public class LobbyPhase {
         bukkitPlayer.getInventory().clear();
         bukkitPlayer.setGameMode(GameMode.ADVENTURE);
         bukkitPlayer.teleport(spawnLocation);
+
+        bukkitPlayer.setAllowFlight(true);
     }
 
     public static void onLobbyPhase(World lobby) {
