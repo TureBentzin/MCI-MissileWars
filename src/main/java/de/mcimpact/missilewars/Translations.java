@@ -19,6 +19,9 @@ public class Translations {
         Core.registerTranslation(KEY + "message.teaming.joined", "<system#prefix><system#color>You joined team: {0}");
         Core.registerTranslation(KEY + "message.movement.playerquit", "<system#preifx><system#color>{0} <system#color>left the game!");
 
+        Core.registerTranslation(KEY + "message.cmd.start", "<system#preifx><error#accent>{0} <system#color>has started the game!");
+
+
         Core.registerTranslation(KEY + "message.game.aborted", "<fatal#prefix><fatal#color>Your<fatal#accent> MissileWars <fatal#color>game failed!");
 
 
