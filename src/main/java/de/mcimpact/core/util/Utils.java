@@ -7,8 +7,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
 import java.io.File;
-import java.io.FilenameFilter;
-import java.nio.BufferUnderflowException;
 
 public class Utils {
 
