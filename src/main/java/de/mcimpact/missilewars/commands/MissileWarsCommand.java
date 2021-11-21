@@ -24,10 +24,6 @@ public class MissileWarsCommand extends Command<CommandSender> {
     private final NamedCommandNode<CommandSender> declaration;
 
     public MissileWarsCommand() {
-        Core.registerTranslation("missilewars.message.command.test.status", "The Missilewars Gamestatus is {0}");
-        Core.registerTranslation("missilewars.message.command.test.statusset", "The Missilewars Gamestatus is now {0}");
-        Core.registerTranslation("missilewars.message.command.test.statusset", "The Missilewars Gamestatus is now {0}");
-
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> base = JavaUtils.literal("missilewars");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> status = JavaUtils.literal("status");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> selector = JavaUtils.literal("selector");
@@ -37,7 +33,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         status.getBuilder().execute(new Consumer<CommandContext<CommandSender>>() {
             @Override
             public void accept(CommandContext<CommandSender> context) {
-                context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.status", MissileWars.GAME.getGameStatus().toString()));
+                context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.cmd.test.status", MissileWars.GAME.getGameStatus().toString()));
             }
         });
         selector.getBuilder().execute(new Consumer<CommandContext<CommandSender>>() {
@@ -47,7 +43,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
                     new TestSelector().start((NetPlayer) context.getSender());
                 }
                 else {
-                    context.getSender().sendMessage(Core.getTranslatableComponent("message.command.test.selector"));
+                    context.getSender().sendMessage(Core.getTranslatableComponent("message.cmd.test.selector"));
                 }
             }
         });
@@ -55,7 +51,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
             @Override
             public void accept(CommandContext<CommandSender> context) {
                 MissileWars.GAME.setGameStatus(GameStatus.valueOf(context.get("statusenum", String.class)));
-                context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.statusset", MissileWars.GAME.getGameStatus().toString()));
+                context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.cmd.test.statusset", MissileWars.GAME.getGameStatus().toString()));
             }
         });
         status.then(statusenum.build());
