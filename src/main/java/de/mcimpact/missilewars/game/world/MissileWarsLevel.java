@@ -3,6 +3,7 @@ package de.mcimpact.missilewars.game.world;
 import org.bukkit.World;
 
 import java.io.File;
+import java.util.StringJoiner;
 
 public class MissileWarsLevel {
 
@@ -32,5 +33,13 @@ public class MissileWarsLevel {
 
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", MissileWarsLevel.class.getSimpleName() + "[", "]")
+                .add("world=" + world.getName())
+                .add("data=" + data)
+                .toString();
     }
 }

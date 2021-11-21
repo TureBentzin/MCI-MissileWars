@@ -1,6 +1,7 @@
 package de.mcimpact.missilewars.game.world;
 
 import java.io.Serializable;
+import java.util.StringJoiner;
 
 public class MissileWarsLevelData implements Serializable {
 
@@ -37,5 +38,15 @@ public class MissileWarsLevelData implements Serializable {
 
     public String getLevelname() {
         return levelname;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", MissileWarsLevelData.class.getSimpleName() + "[", "]")
+                .add("levelname='" + levelname + "'")
+                .add("spawnLocationPair=" + spawnLocationPair)
+                .add("portalCheckLocations=" + portalCheckLocations)
+                .add("size=" + size)
+                .toString();
     }
 }
