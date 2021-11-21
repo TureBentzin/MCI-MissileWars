@@ -1,9 +1,13 @@
 package de.mcimpact.missilewars.game;
 
+import de.mcimpact.core.Core;
 import de.mcimpact.core.game.Game;
 import de.mcimpact.game.team.Team;
 import de.mcimpact.game.team.Teamer;
+import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.world.MissileWarsLevel;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 
@@ -67,21 +71,22 @@ public class MissileWarsGame extends Game {
 
     @Override
     public void start() {
-        setGameStatus(GameStatus.LOBBY);
 
-        internalStart("servername");
+        
     }
 
     @Override
     protected <T> void internalStart(T startArgument) {
 
-        setRunning(true);
     }
 
     @Override
     public void stop() {
-
-
+         MissileWars.getMWL().info("The Game is closing...");
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            onlinePlayer.kick(Core.translate(Core.getTranslatableComponent("missilewars.message.game.aborted")));
+        }
+        setGameStatus(GameStatus.GAME_END);
         setRunning(false);
     }
 }
