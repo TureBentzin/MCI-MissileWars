@@ -1,6 +1,7 @@
 package de.mcimpact.missilewars.game.world;
 
 import de.mcimpact.core.util.Utils;
+import de.mcimpact.missilewars.game.world.definition.LevelMetaManager;
 import org.bukkit.Bukkit;
 
 import java.io.File;
@@ -37,11 +38,22 @@ public class LevelManager {
         File[] potentialLevels = Utils.stringArrayToFolders(folder.getPath(), Utils.getSubdirectories(folder.getPath()));
 
         for (File potentialLevel : potentialLevels) {
-            for (File file : potentialLevel.listFiles()) {
-                if (file.getName() == "thisIsAWorld.tdrstudios") {
-                    getMissileWarsLevelMap().put(potentialLevel.getName(), new MissileWarsLevel());
+
+                if(LevelMetaManager.isLevel(potentialLevel)) {
+                    LevelMetaManager metaManager = new LevelMetaManager(potentialLevel);
+
+                    System.out.println("Found Level: " + potentialLevel);
+
+                   // getMissileWarsLevelMap().put(potentialLevel.getName(),
+                     //       new MissileWarsLevel(Bukkit.getWorld(potentialLevel.getName()),
+                       //             metaManager.toMissileWarsLevelData()));
                 }
-            }
+
         }
     }
+
+    public static LevelManager getInstance() {
+        return manager;
+    }
+    private static LevelManager manager = new LevelManager();
 }
