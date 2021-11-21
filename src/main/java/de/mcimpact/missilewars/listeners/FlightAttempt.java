@@ -1,12 +1,7 @@
 package de.mcimpact.missilewars.listeners;
 
-import de.mcimpact.core.Core;
-import de.mcimpact.core.paper.LocalPlayer;
-import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
-import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
-import de.mcimpact.missilewars.util.Timeout;
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,19 +20,19 @@ public class FlightAttempt implements Listener {
     @EventHandler
     @SuppressWarnings("deprecated")
     public void onFlightAttempt(PlayerToggleFlightEvent event) {
-        if(MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
+        if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
 
-        if (event.getPlayer().getGameMode() != GameMode.CREATIVE && uuidSet.contains(event.getPlayer().getUniqueId())) {
+            if (event.getPlayer().getGameMode() != GameMode.CREATIVE && uuidSet.contains(event.getPlayer().getUniqueId())) {
                 MissileWars.broadcast("missilewars.message.debug", "double jump: " + event.getPlayer().getName());
                 Vector vector = event.getPlayer().getVelocity();
 
-                vector.add(new Vector(vector.getX() *2.3, 0.7, vector.getZ() *2.3));
+                vector.add(new Vector(vector.getX() * 2.3, 0.7, vector.getZ() * 2.3));
 
                 event.getPlayer().setVelocity(vector);
 
                 event.getPlayer().setAllowFlight(false);
                 uuidSet.remove(event.getPlayer().getUniqueId());
-        }
+            }
 
         event.getPlayer().setFlying(false);
         event.setCancelled(true);

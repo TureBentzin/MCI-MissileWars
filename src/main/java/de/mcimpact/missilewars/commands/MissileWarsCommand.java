@@ -6,19 +6,15 @@ import de.mcimpact.core.commands.CommandSender;
 import de.mcimpact.core.commands.ConstrainedArgument;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
-import io.github.dseelp.kommon.command.*;
+import io.github.dseelp.kommon.command.ArgumentCommandNode;
+import io.github.dseelp.kommon.command.JavaCommandBuilder;
+import io.github.dseelp.kommon.command.JavaUtils;
+import io.github.dseelp.kommon.command.NamedCommandNode;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 public class MissileWarsCommand extends Command<CommandSender> {
-    @NotNull
-    @Override
-    public NamedCommandNode<CommandSender> getDeclaration() {
-        return declaration;
-    }
-
     private final NamedCommandNode<CommandSender> declaration;
 
     public MissileWarsCommand() {
@@ -48,6 +44,11 @@ public class MissileWarsCommand extends Command<CommandSender> {
         declaration = base.build();
     }
 
+    @NotNull
+    @Override
+    public NamedCommandNode<CommandSender> getDeclaration() {
+        return declaration;
+    }
 
 
 }
