@@ -21,6 +21,8 @@ public class JoinEvent implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) throws PlayerResolvingException {
 
+        e.joinMessage(Component.text(""));
+
         Player bukkitPlayer = e.getPlayer();
         //   MissileWars.broadcast("missilewars.message.debug", "event: " + e.getEventName());
 
@@ -46,7 +48,7 @@ public class JoinEvent implements Listener {
             MissileWars.broadcast("missilewars.message.movement.playerjoin", player.getName());
 
             player.sendMessage(Core.getTranslatableComponent("missilewars.message.teaming.joined",
-                    Component.text(game.teamer.getTeam(player).getColor().name()).color(game.teamer.getTeam(player).getColor().getTextColor().getAdventure())));
+                    Component.text(game.teamer.getTeam(player).getColor().name()).color(game.teamer.getTeam(player).getColor().getTextColor().adventure)));
 
             //  MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
 

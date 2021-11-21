@@ -5,6 +5,7 @@ import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.errors.PlayerResolvingException;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
+import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -17,6 +18,8 @@ public class QuitEvent implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e) throws PlayerResolvingException {
         //MissileWars.broadcast("missilewars.message.debug", "event: " + e.getEventName());
+
+        e.quitMessage(Component.text(""));
 
         NetPlayer player = Core.getPlayerUtils().getPlayer(e.getPlayer().getUniqueId());
 
