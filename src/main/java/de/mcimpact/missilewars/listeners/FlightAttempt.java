@@ -2,6 +2,7 @@ package de.mcimpact.missilewars.listeners;
 
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
+import net.kyori.adventure.sound.Sound;
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,7 +31,7 @@ public class FlightAttempt implements Listener {
                     vector.add(new Vector(vector.getX() * 2.3, 0.7, vector.getZ() * 2.3));
 
                     event.getPlayer().setVelocity(vector);
-
+                    event.getPlayer().playSound(Sound.sound(org.bukkit.Sound.ENTITY_FIREWORK_ROCKET_SHOOT.getKey(), Sound.Source.AMBIENT, 30, 0));
                     event.getPlayer().setAllowFlight(false);
                     uuidSet.remove(event.getPlayer().getUniqueId());
                 }
