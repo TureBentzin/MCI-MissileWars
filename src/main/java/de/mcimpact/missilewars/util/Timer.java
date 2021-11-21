@@ -2,7 +2,7 @@ package de.mcimpact.missilewars.util;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-public abstract class Timer extends BukkitRunnable {
+public abstract class Timer implements Runnable {
 
     public Timer(int seconds) {
         value = seconds;
@@ -17,9 +17,14 @@ public abstract class Timer extends BukkitRunnable {
         running = false;
     }
 
-    public void stop() {
+    public void complete() {
         running = false;
         finish();
+    }
+
+    public void abort(){
+        running = false;
+        abort(value);
     }
 
     public void setValue(int value) {
@@ -34,7 +39,7 @@ public abstract class Timer extends BukkitRunnable {
     private boolean running;
     private int value = 0;
 
-    
+
     /**
      * When an object implementing interface {@code Runnable} is used
      * to create a thread, starting the thread causes the object's
@@ -64,5 +69,6 @@ public abstract class Timer extends BukkitRunnable {
     }
 
     public abstract void update(int value);
-    public void finish() {};
+    protected void finish() {};
+    protected void abort(int finalvalue){}
 }
