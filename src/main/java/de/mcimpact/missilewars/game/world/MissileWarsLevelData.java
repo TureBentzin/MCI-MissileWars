@@ -14,19 +14,19 @@ public class MissileWarsLevelData implements Serializable {
         this.size = size;
     }
 
-    private String levelname;
+    private final String levelname;
 
     /**
      * spawnLocation of team 1 and 2
      */
-    private LocationPair spawnLocationPair;
+    private final LocationPair spawnLocationPair;
 
     /**
      * Where is portal is checked for each team
      */
-    private LocationPair portalCheckLocations;
+    private final LocationPair portalCheckLocations;
 
-    private int size = 1;
+    private final int size;
 
 
     public int getSize() {
