@@ -7,10 +7,8 @@ import com.github.stefvanschie.inventoryframework.pane.Pane;
 import de.mcimpact.core.paper.LocalPlayer;
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.errors.SelectorOpenedException;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
