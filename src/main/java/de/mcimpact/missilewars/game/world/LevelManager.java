@@ -44,9 +44,11 @@ public class LevelManager {
 
                     System.out.println("Found Level: " + potentialLevel);
 
-                   // getMissileWarsLevelMap().put(potentialLevel.getName(),
-                     //       new MissileWarsLevel(Bukkit.getWorld(potentialLevel.getName()),
-                       //             metaManager.toMissileWarsLevelData()));
+                   getMissileWarsLevelMap().put(potentialLevel.getName(),
+                            new MissileWarsLevel(Bukkit.getWorld(potentialLevel.getName()),
+                                    metaManager.toMissileWarsLevelData()));
+
+                    System.out.println("Mapped Level: " + getMissileWarsLevelMap().get(potentialLevel.getName()));
                 }
 
         }
