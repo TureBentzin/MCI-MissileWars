@@ -43,7 +43,7 @@ public class JoinEvent implements Listener {
                 return;
             }
 
-            game.teamer.add(player);
+            game.addPlayer(player);
 
             MissileWars.broadcast("missilewars.message.movement.playerjoin", player.getName());
 

@@ -28,7 +28,7 @@ public class QuitEvent implements Listener {
         //Take Action
 
         if (game.getGameStatus() == GameStatus.LOBBY) {
-            game.teamer.remove(player);
+            game.removePlayer(player);
             player.sendMessage(Core.getTranslatableComponent("missilewars.message.movement.playerquit", player.getName()));
         }
 
