@@ -3,10 +3,12 @@ package de.mcimpact.missilewars.commands;
 import de.mcimpact.core.Core;
 import de.mcimpact.core.commands.Command;
 import de.mcimpact.core.commands.CommandSender;
+import de.mcimpact.core.commands.ConsoleSender;
 import de.mcimpact.core.commands.ConstrainedArgument;
 import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
+import de.mcimpact.missilewars.game.world.LevelManager;
 import io.github.dseelp.kommon.command.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,13 +26,15 @@ public class MissileWarsCommand extends Command<CommandSender> {
 
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> indexFolder = JavaUtils.literal("indexFolder");
 
+        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> scanLevel = JavaUtils.literal("scanLevels");
+
         System.out.println(Arrays.toString(Arrays.stream(GameStatus.values()).map(GameStatus::toString).toArray()));
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> statusenum = JavaUtils.argument(
-                new ConstrainedArgument<CommandSender>("statusenum",
+                new ConstrainedArgument<>("statusenum",
                         context -> Arrays.stream(GameStatus.values()).map(GameStatus::toString).toArray(String[]::new)));
 
         indexFolder.execute(consoleSenderCommandContext -> {
-            CommandContext<CommandSender> context = consoleSenderCommandContext;
+            CommandContext<? extends CommandSender> context =  consoleSenderCommandContext;
 
             context.getSender().sendMessage(Arrays.toString(Utils.stringArrayToFolders(Utils.ROOT.getPath(), Utils.getSubdirectories(Utils.ROOT.getPath()))));
 
@@ -39,6 +43,10 @@ public class MissileWarsCommand extends Command<CommandSender> {
         status.getBuilder().execute(context -> {
             System.out.println("Argumente!");
             context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.status", MissileWars.GAME.getGameStatus().toString()));
+        });
+
+        scanLevel.execute(commandContext -> {
+
         });
 
         statusenum.execute(context -> {
