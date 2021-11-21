@@ -3,7 +3,6 @@ package de.mcimpact.missilewars.util;
 import de.mcimpact.missilewars.MissileWars;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.Set;
 
@@ -11,18 +10,17 @@ import java.util.Set;
 public class Timeout<E> {
 
     int timeoutTicks = 0;
+    private Set<E> eSet;
 
     public Timeout(int ticks) {
         timeoutTicks = ticks;
     }
 
-    private Set<E> eSet;
-
     public boolean isFree(E e) {
         return eSet.contains(e);
     }
 
-    public void timeout(E e){
+    public void timeout(E e) {
         eSet.add(e);
         TimeoutRunable timeoutRunable = new TimeoutRunable(e);
         Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), timeoutRunable);
@@ -30,7 +28,8 @@ public class Timeout<E> {
 
     private class TimeoutRunable extends BukkitRunnable {
 
-        private  E e;
+        private final E e;
+
         private TimeoutRunable(E e) {
             this.e = e;
         }

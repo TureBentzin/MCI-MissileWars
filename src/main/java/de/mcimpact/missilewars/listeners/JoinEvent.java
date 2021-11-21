@@ -8,7 +8,6 @@ import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import net.kyori.adventure.text.Component;
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,18 +22,17 @@ public class JoinEvent implements Listener {
     public void onJoin(PlayerJoinEvent e) throws PlayerResolvingException {
 
         Player bukkitPlayer = e.getPlayer();
-     //   MissileWars.broadcast("missilewars.message.debug", "event: " + e.getEventName());
+        //   MissileWars.broadcast("missilewars.message.debug", "event: " + e.getEventName());
 
         NetPlayer player = Core.getPlayerUtils().getPlayer(e.getPlayer().getUniqueId());
 
         if (player == null) throw new PlayerResolvingException(e.getPlayer().getUniqueId());
 
 
-
         if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY) {
 
             LobbyPhase.onSpawn(player);
-            
+
             if (player.isAdminMode()) {
 
                 player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.movement.playerjoin.failed")));
@@ -50,7 +48,7 @@ public class JoinEvent implements Listener {
             player.sendMessage(Core.getTranslatableComponent("missilewars.message.teaming.joined",
                     Component.text(game.teamer.getTeam(player).getColor().name()).color(game.teamer.getTeam(player).getColor().getTextColor().getAdventure())));
 
-          //  MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
+            //  MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
 
 
         } else if (game.getGameStatus() == GameStatus.PAUSED) {

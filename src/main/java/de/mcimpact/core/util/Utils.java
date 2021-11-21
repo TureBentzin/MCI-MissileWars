@@ -6,8 +6,6 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
-import java.util.UUID;
-
 public class Utils {
 
     public static boolean isOnGround(NetPlayer netPlayer) {

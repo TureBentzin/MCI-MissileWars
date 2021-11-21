@@ -22,7 +22,6 @@ public class Translations {
         Core.registerTranslation(KEY + "message.game.aborted", "<fatal#prefix><fatal#color>Your<fatal#accent> MissileWars <fatal#color>game failed!");
 
 
-
     }
 
 

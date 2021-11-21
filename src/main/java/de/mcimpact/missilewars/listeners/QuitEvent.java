@@ -2,7 +2,6 @@ package de.mcimpact.missilewars.listeners;
 
 import de.mcimpact.core.Core;
 import de.mcimpact.core.players.NetPlayer;
-import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.errors.PlayerResolvingException;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
@@ -25,7 +24,7 @@ public class QuitEvent implements Listener {
 
         //Take Action
 
-        if(game.getGameStatus() == GameStatus.LOBBY) {
+        if (game.getGameStatus() == GameStatus.LOBBY) {
             game.teamer.remove(player);
             player.sendMessage(Core.getTranslatableComponent("missilewars.message.movement.playerquit", player.getName()));
         }
