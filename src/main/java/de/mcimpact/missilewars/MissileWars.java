@@ -91,7 +91,7 @@ public final class MissileWars extends JavaPlugin {
 
 
         MISSILEWARS_LOGGER.info("The Game is now open!");
-        GAME.setGameStatus(GameStatus.LOBBY);
+        GAME.setGameStatus(GameStatus.LOBBY); //Define the GameStatus
         LobbyPhase.onLobbyPhase(getLobby());
     }
 
