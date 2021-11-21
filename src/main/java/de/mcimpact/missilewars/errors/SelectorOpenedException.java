@@ -6,7 +6,7 @@ public class SelectorOpenedException extends Exception{
 
     @Override
     public String getMessage() {
-        return "cant change SelectorEntries after opened";
+        return "Can´t change selectorentries after opened!";
     }
 
 
