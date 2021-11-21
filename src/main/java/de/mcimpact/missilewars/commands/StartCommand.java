@@ -17,7 +17,7 @@ public class StartCommand extends Command<NetPlayer> {
 
     public StartCommand() {
         JavaCommandBuilder<NetPlayer, NamedCommandNode<NetPlayer>> javaCommandBuilder = JavaUtils.literal("start");
-        javaCommandBuilder.checkAccess(PermissionPredicate.create("missilewars.cmd.start"));
+       // javaCommandBuilder.checkAccess(PermissionPredicate.create("missilewars.cmd.start"));
         javaCommandBuilder.execute(netPlayerCommandContext -> {
             if(MissileWars.GAME.getGameStatus() == GameStatus.GAME) {
                 netPlayerCommandContext.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.cmd.start.alreadystarted"));
@@ -35,6 +35,6 @@ public class StartCommand extends Command<NetPlayer> {
     @NotNull
     @Override
     public NamedCommandNode<NetPlayer> getDeclaration() {
-        return null;
+        return commandNode;
     }
 }
