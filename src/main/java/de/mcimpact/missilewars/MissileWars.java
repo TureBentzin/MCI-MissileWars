@@ -11,7 +11,6 @@ import de.mcimpact.missilewars.listeners.*;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.initialization.qual.UnknownInitialization;
 import org.jetbrains.annotations.Nullable;
@@ -120,8 +119,6 @@ public final class MissileWars extends JavaPlugin {
         Core.registerCommand(new MissileWarsCommand(), this);
         Core.registerCommand(new StartCommand(), this);
     }
-
-
 
 
 }

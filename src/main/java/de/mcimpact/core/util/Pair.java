@@ -7,13 +7,13 @@ import java.util.StringJoiner;
 
 
 /**
- * @author tdr@mcimpact.de
  * @param <E>
+ * @author tdr@mcimpact.de
  */
 public class Pair<E> implements Serializable {
 
-    private E fist;
-    private E second;
+    private final E fist;
+    private final E second;
 
 
     public Pair(E first, E second) {

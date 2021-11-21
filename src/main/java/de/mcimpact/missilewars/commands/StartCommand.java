@@ -4,16 +4,14 @@ import de.mcimpact.core.commands.Command;
 import de.mcimpact.core.commands.PermissionPredicate;
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.MissileWars;
-import de.mcimpact.missilewars.game.world.MissileWarsLevel;
-import io.github.dseelp.kommon.command.CommandContext;
 import io.github.dseelp.kommon.command.JavaCommandBuilder;
 import io.github.dseelp.kommon.command.JavaUtils;
 import io.github.dseelp.kommon.command.NamedCommandNode;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Consumer;
-
 public class StartCommand extends Command<NetPlayer> {
+
+    private final NamedCommandNode<NetPlayer> commandNode;
 
     public StartCommand() {
         JavaCommandBuilder<NetPlayer, NamedCommandNode<NetPlayer>> javaCommandBuilder = JavaUtils.literal("start");
@@ -27,9 +25,6 @@ public class StartCommand extends Command<NetPlayer> {
         commandNode = javaCommandBuilder.build();
 
     }
-
-    private final NamedCommandNode<NetPlayer> commandNode;
-
 
     @NotNull
     @Override

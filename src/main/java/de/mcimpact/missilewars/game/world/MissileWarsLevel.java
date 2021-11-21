@@ -6,10 +6,11 @@ import java.io.File;
 
 public class MissileWarsLevel {
     private World world;
-
-    public File worldFolder() {return world.getWorldFolder();}
-
     private MissileWarsLevelData data;
+
+    public File worldFolder() {
+        return world.getWorldFolder();
+    }
 
     public MissileWarsLevelData getData() {
         return data;

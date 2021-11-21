@@ -22,18 +22,18 @@ public class FlightAttempt implements Listener {
     public void onFlightAttempt(PlayerToggleFlightEvent event) {
         if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
 
-            if(event.getPlayer().getLocation().getY() < 220)
-            if (event.getPlayer().getGameMode() != GameMode.CREATIVE && uuidSet.contains(event.getPlayer().getUniqueId()) && event.getPlayer().hasPermission("missilewars.lobby.doublejump")) {
-                //MissileWars.broadcast("missilewars.message.debug", "double jump: " + event.getPlayer().getName());
-                Vector vector = event.getPlayer().getVelocity();
+            if (event.getPlayer().getLocation().getY() < 220)
+                if (event.getPlayer().getGameMode() != GameMode.CREATIVE && uuidSet.contains(event.getPlayer().getUniqueId()) && event.getPlayer().hasPermission("missilewars.lobby.doublejump")) {
+                    //MissileWars.broadcast("missilewars.message.debug", "double jump: " + event.getPlayer().getName());
+                    Vector vector = event.getPlayer().getVelocity();
 
-                vector.add(new Vector(vector.getX() * 2.3, 0.7, vector.getZ() * 2.3));
+                    vector.add(new Vector(vector.getX() * 2.3, 0.7, vector.getZ() * 2.3));
 
-                event.getPlayer().setVelocity(vector);
+                    event.getPlayer().setVelocity(vector);
 
-                event.getPlayer().setAllowFlight(false);
-                uuidSet.remove(event.getPlayer().getUniqueId());
-            }
+                    event.getPlayer().setAllowFlight(false);
+                    uuidSet.remove(event.getPlayer().getUniqueId());
+                }
 
         event.getPlayer().setFlying(false);
         event.setCancelled(true);

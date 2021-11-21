@@ -18,13 +18,13 @@ public class LocationPair extends Pair<Location> {
         return new Pair<>(getFist().getBlock(), getSecond().getBlock());
     }
 
-   public Pair<Vector> getToVector() {
+    public Pair<Vector> getToVector() {
         return new Pair<>(getFist().toVector(), getSecond().toVector());
-   }
+    }
 
-   public boolean isLoaded(){
+    public boolean isLoaded() {
         return getFist().isChunkLoaded() && getSecond().isChunkLoaded();
-   }
+    }
 
 
 }

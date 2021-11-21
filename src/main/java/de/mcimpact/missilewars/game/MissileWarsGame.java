@@ -72,7 +72,7 @@ public class MissileWarsGame extends Game {
     @Override
     public void start() {
 
-        
+
     }
 
     @Override
@@ -82,7 +82,7 @@ public class MissileWarsGame extends Game {
 
     @Override
     public void stop() {
-         MissileWars.getMWL().info("The Game is closing...");
+        MissileWars.getMWL().info("The Game is closing...");
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
             onlinePlayer.kick(Core.translate(Core.getTranslatableComponent("missilewars.message.game.aborted")));
         }
