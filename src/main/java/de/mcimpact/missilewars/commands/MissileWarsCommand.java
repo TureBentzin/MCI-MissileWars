@@ -23,10 +23,9 @@ public class MissileWarsCommand extends Command<CommandSender> {
 
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> base = JavaUtils.literal("missilewars");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> status = JavaUtils.literal("status");
-
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> indexFolder = JavaUtils.literal("indexFolder");
-
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> scanLevel = JavaUtils.literal("scanLevels");
+        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> levelMap = JavaUtils.literal("levelMap");
 
         System.out.println(Arrays.toString(Arrays.stream(GameStatus.values()).map(GameStatus::toString).toArray()));
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> statusenum = JavaUtils.argument(
@@ -46,7 +45,8 @@ public class MissileWarsCommand extends Command<CommandSender> {
         });
 
         scanLevel.execute(commandContext -> {
-
+            commandContext.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.debug", "Scanning for Levels -> Look console!"));
+            MissileWars.getLevelManager().scanForLevels();
         });
 
         statusenum.execute(context -> {
@@ -56,9 +56,16 @@ public class MissileWarsCommand extends Command<CommandSender> {
             context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.statusset", MissileWars.GAME.getGameStatus().toString()));
         });
 
+        levelMap.execute(commandContext -> {
+           commandContext.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.cmd.missilewars.levelmap", LevelManager.getInstance().getMissileWarsLevelMap().toString()));
+        });
+
         status.then(statusenum.build());
         base.then(status);
         base.then(indexFolder.build());
+        base.then(scanLevel);
+        base.then(levelMap);
+
         declaration = base.build();
     }
 
