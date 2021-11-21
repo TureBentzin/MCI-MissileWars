@@ -22,8 +22,9 @@ public class FlightAttempt implements Listener {
     public void onFlightAttempt(PlayerToggleFlightEvent event) {
         if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
 
+            if(event.getPlayer().getLocation().getY() < 220)
             if (event.getPlayer().getGameMode() != GameMode.CREATIVE && uuidSet.contains(event.getPlayer().getUniqueId())) {
-                MissileWars.broadcast("missilewars.message.debug", "double jump: " + event.getPlayer().getName());
+                //MissileWars.broadcast("missilewars.message.debug", "double jump: " + event.getPlayer().getName());
                 Vector vector = event.getPlayer().getVelocity();
 
                 vector.add(new Vector(vector.getX() * 2.3, 0.7, vector.getZ() * 2.3));
