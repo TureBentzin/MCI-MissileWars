@@ -3,6 +3,7 @@ package de.mcimpact.missilewars;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import de.mcimpact.core.Core;
 import de.mcimpact.missilewars.commands.MissileWarsCommand;
+import de.mcimpact.missilewars.commands.StartCommand;
 import de.mcimpact.missilewars.commands.bukkit.DebugteamCommand;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
@@ -117,7 +118,10 @@ public final class MissileWars extends JavaPlugin {
 
     public void registerCommands() {
         Core.registerCommand(new MissileWarsCommand(), this);
+        Core.registerCommand(new StartCommand(), this);
     }
+
+
 
 
 }
