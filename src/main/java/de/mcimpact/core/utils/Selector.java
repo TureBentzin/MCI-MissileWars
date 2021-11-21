@@ -52,60 +52,91 @@ public class Selector {
         }
 
         OutlinePane navigationPane = null;
+        OutlinePane navigationPane2 = null;
         if (entries.size() == 1) {
             navigationPane = new OutlinePane(4, 0, 1, 1);
+            navigationPane.addItem(createGuiItem(entries.get(0), player));
         }
-        if (entries.size() == 3 || entries.size() == 2) {
+        if (entries.size() == 2) {
+            navigationPane = new OutlinePane(3, 0, 1, 1);
+            navigationPane.addItem(createGuiItem(entries.get(0), player));
+            navigationPane2 = new OutlinePane(5, 0, 1, 1);
+            navigationPane2.addItem(createGuiItem(entries.get(1), player));
+        }
+        if (entries.size() == 3) {
             navigationPane = new OutlinePane(3, 0, 3, 1);
+            navigationPane.addItem(createGuiItem(entries.get(0), player));
+            navigationPane.addItem(createGuiItem(entries.get(1), player));
+            navigationPane.addItem(createGuiItem(entries.get(2), player));
         }
-        if (entries.size() == 5 || entries.size() == 4) {
+        if (entries.size() == 4) {
+            navigationPane = new OutlinePane(2, 0, 2, 1);
+            navigationPane.addItem(createGuiItem(entries.get(0), player));
+            navigationPane.addItem(createGuiItem(entries.get(1), player));
+            navigationPane2 = new OutlinePane(5, 0, 2, 1);
+            navigationPane2.addItem(createGuiItem(entries.get(2), player));
+            navigationPane2.addItem(createGuiItem(entries.get(3), player));
+
+        }
+        if (entries.size() == 5) {
             navigationPane = new OutlinePane(2, 0, 5, 1);
+            navigationPane.addItem(createGuiItem(entries.get(0), player));
+            navigationPane.addItem(createGuiItem(entries.get(1), player));
+            navigationPane.addItem(createGuiItem(entries.get(2), player));
+            navigationPane.addItem(createGuiItem(entries.get(3), player));
+            navigationPane.addItem(createGuiItem(entries.get(4), player));
         }
-        if (entries.size() == 7 || entries.size() == 6) {
+        if (entries.size() == 6) {
+            navigationPane = new OutlinePane(1, 0, 3, 1);
+            navigationPane.addItem(createGuiItem(entries.get(0), player));
+            navigationPane.addItem(createGuiItem(entries.get(1), player));
+            navigationPane.addItem(createGuiItem(entries.get(2), player));
+            navigationPane2 = new OutlinePane(5, 0, 3, 1);
+            navigationPane2.addItem(createGuiItem(entries.get(3), player));
+            navigationPane2.addItem(createGuiItem(entries.get(4), player));
+            navigationPane2.addItem(createGuiItem(entries.get(5), player));
+
+        }
+        if (entries.size() == 7) {
             navigationPane = new OutlinePane(1, 0, 7, 1);
+            navigationPane.addItem(createGuiItem(entries.get(0), player));
+            navigationPane.addItem(createGuiItem(entries.get(1), player));
+            navigationPane.addItem(createGuiItem(entries.get(2), player));
+            navigationPane.addItem(createGuiItem(entries.get(3), player));
+            navigationPane.addItem(createGuiItem(entries.get(4), player));
+            navigationPane.addItem(createGuiItem(entries.get(5), player));
+            navigationPane.addItem(createGuiItem(entries.get(6), player));
         }
-        if (entries.size() == 9 || entries.size() == 8) {
+        if (entries.size() == 8) {
+            navigationPane = new OutlinePane(0, 0, 4, 1);
+            navigationPane.addItem(createGuiItem(entries.get(0), player));
+            navigationPane.addItem(createGuiItem(entries.get(1), player));
+            navigationPane.addItem(createGuiItem(entries.get(2), player));
+            navigationPane.addItem(createGuiItem(entries.get(3), player));
+            navigationPane2 = new OutlinePane(5, 0, 4, 1);
+            navigationPane2.addItem(createGuiItem(entries.get(4), player));
+            navigationPane2.addItem(createGuiItem(entries.get(5), player));
+            navigationPane2.addItem(createGuiItem(entries.get(6), player));
+            navigationPane2.addItem(createGuiItem(entries.get(7), player));
+        }
+        if (entries.size() == 9) {
             navigationPane = new OutlinePane(0, 0, 9, 1);
-        }
-
-        for (SelectorEntry entry : entries) {
-
-            navigationPane.addItem(new GuiItem(entry.getItem(), event -> {
-                if (closeinv) {
-                    player.closeInventory();
-                }
-                handle(entry);
-                if (getNumber(entry) == 1) {
-                    handle1(entry);
-                }
-                if (getNumber(entry) == 2) {
-                    handle2(entry);
-                }
-                if (getNumber(entry) == 3) {
-                    handle3(entry);
-                }
-                if (getNumber(entry) == 4) {
-                    handle4(entry);
-                }
-                if (getNumber(entry) == 5) {
-                    handle5(entry);
-                }
-                if (getNumber(entry) == 6) {
-                    handle6(entry);
-                }
-                if (getNumber(entry) == 7) {
-                    handle7(entry);
-                }
-                if (getNumber(entry) == 8) {
-                    handle8(entry);
-                }
-                if (getNumber(entry) == 9) {
-                    handle9(entry);
-                }
-            }));
+            navigationPane.addItem(createGuiItem(entries.get(0), player));
+            navigationPane.addItem(createGuiItem(entries.get(1), player));
+            navigationPane.addItem(createGuiItem(entries.get(2), player));
+            navigationPane.addItem(createGuiItem(entries.get(3), player));
+            navigationPane.addItem(createGuiItem(entries.get(4), player));
+            navigationPane.addItem(createGuiItem(entries.get(5), player));
+            navigationPane.addItem(createGuiItem(entries.get(6), player));
+            navigationPane.addItem(createGuiItem(entries.get(7), player));
+            navigationPane.addItem(createGuiItem(entries.get(8), player));
         }
 
         gui.addPane(navigationPane);
+
+        if (navigationPane2 != null) {
+            gui.addPane(navigationPane2);
+        }
 
         gui.show(player);
     }
@@ -148,6 +179,42 @@ public class Selector {
 
     protected void handle9(SelectorEntry entry) {
 
+    }
+
+    private GuiItem createGuiItem(SelectorEntry entry, Player player) {
+        return new GuiItem(entry.getItem(), event -> {
+            if (closeinv) {
+                player.closeInventory();
+            }
+            handle(entry);
+            if (getNumber(entry) == 1) {
+                handle1(entry);
+            }
+            if (getNumber(entry) == 2) {
+                handle2(entry);
+            }
+            if (getNumber(entry) == 3) {
+                handle3(entry);
+            }
+            if (getNumber(entry) == 4) {
+                handle4(entry);
+            }
+            if (getNumber(entry) == 5) {
+                handle5(entry);
+            }
+            if (getNumber(entry) == 6) {
+                handle6(entry);
+            }
+            if (getNumber(entry) == 7) {
+                handle7(entry);
+            }
+            if (getNumber(entry) == 8) {
+                handle8(entry);
+            }
+            if (getNumber(entry) == 9) {
+                handle9(entry);
+            }
+        });
     }
 
     public int getNumber(SelectorEntry entry) {
