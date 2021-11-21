@@ -2,8 +2,13 @@ package de.mcimpact.missilewars.game.world;
 
 import org.bukkit.World;
 
+import java.io.File;
+
 public class MissileWarsLevel {
     private World world;
+
+    public File worldFolder() {return world.getWorldFolder();}
+
     private MissileWarsLevelData data;
 
     public MissileWarsLevelData getData() {
