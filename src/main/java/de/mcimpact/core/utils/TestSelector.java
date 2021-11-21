@@ -54,11 +54,11 @@ public class TestSelector extends Selector {
 
     public List<SelectorEntry> makeEntrys() {
         List<SelectorEntry> entries = new ArrayList<>();
-        entries.add(new SelectorEntry(InventoryUtils.setName(new ItemStack(Material.TNT), Core.getMessageManager().getTranslatableComponent("missilewars.message.selector.test.1"))));
-        entries.add(new SelectorEntry(InventoryUtils.setName(new ItemStack(Material.NETHER_STAR), Core.getMessageManager().getTranslatableComponent("missilewars.message.selector.test.2"))));
-        entries.add(new SelectorEntry(InventoryUtils.setName(new ItemStack(Material.DRAGON_HEAD), Core.getMessageManager().getTranslatableComponent("missilewars.message.selector.test.3"))));
-        entries.add(new SelectorEntry(InventoryUtils.setName(new ItemStack(Material.OBSERVER), Core.getMessageManager().getTranslatableComponent("missilewars.message.selector.test.4"))));
-        entries.add(new SelectorEntry(InventoryUtils.setName(new ItemStack(Material.WARPED_FUNGUS), Core.getMessageManager().getTranslatableComponent("missilewars.message.selector.test.5"))));
+        entries.add(new SelectorEntry(InventoryUtils.setName(new ItemStack(Material.TNT), Core.getMessageManager().getTranslatableComponent("missilewars.inventory.selector.test.1"))));
+        entries.add(new SelectorEntry(InventoryUtils.setName(new ItemStack(Material.NETHER_STAR), Core.getMessageManager().getTranslatableComponent("missilewars.inventory.selector.test.2"))));
+        entries.add(new SelectorEntry(InventoryUtils.setName(new ItemStack(Material.DRAGON_HEAD), Core.getMessageManager().getTranslatableComponent("missilewars.inventory.selector.test.3"))));
+        entries.add(new SelectorEntry(InventoryUtils.setName(new ItemStack(Material.OBSERVER), Core.getMessageManager().getTranslatableComponent("missilewars.inventory.selector.test.4"))));
+        entries.add(new SelectorEntry(InventoryUtils.setName(new ItemStack(Material.WARPED_FUNGUS), Core.getMessageManager().getTranslatableComponent("missilewars.inventory.selector.test.5"))));
         return entries;
     }
 
