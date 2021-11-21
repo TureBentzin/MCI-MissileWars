@@ -48,15 +48,15 @@ public class LevelMetaManager {
     }
 
     public LocationPair getLocationPair(String key) {
-        return new LocationPair(getLocation(key + ".0"), getLocation(key + ".0"));
+        return new LocationPair(getLocation(key + ".0"), getLocation(key + ".1"));
     }
 
     public Location getLocation(String key) {
         double x,y,z;
 
         x = config.getDouble(key+ ".X");
-        y = config.getDouble(key + "Y");
-        z = config.getDouble(key + "Z");
+        y = config.getDouble(key + ".Y");
+        z = config.getDouble(key + ".Z");
 
         return new Location(getWorld(), x, y, z);
     }
