@@ -3,7 +3,6 @@ package de.mcimpact.missilewars.commands;
 import de.mcimpact.core.Core;
 import de.mcimpact.core.commands.Command;
 import de.mcimpact.core.commands.CommandSender;
-import de.mcimpact.core.commands.ConsoleSender;
 import de.mcimpact.core.commands.ConstrainedArgument;
 import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
