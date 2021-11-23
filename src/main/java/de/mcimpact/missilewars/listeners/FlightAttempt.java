@@ -38,7 +38,7 @@ public class FlightAttempt implements Listener {
             event.getPlayer().setFlying(false);
             event.setCancelled(true);
         }
-        
+
 
 
 
