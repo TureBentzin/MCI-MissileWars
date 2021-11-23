@@ -21,7 +21,7 @@ public class FlightAttempt implements Listener {
     @EventHandler
     @SuppressWarnings("deprecated")
     public void onFlightAttempt(PlayerToggleFlightEvent event) {
-        if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
+        if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY) {
 
             if (event.getPlayer().getLocation().getY() < 220)
                 if (event.getPlayer().getGameMode() != GameMode.CREATIVE && uuidSet.contains(event.getPlayer().getUniqueId()) && event.getPlayer().hasPermission("missilewars.lobby.doublejump")) {
@@ -35,9 +35,13 @@ public class FlightAttempt implements Listener {
                     event.getPlayer().setAllowFlight(false);
                     uuidSet.remove(event.getPlayer().getUniqueId());
                 }
+            event.getPlayer().setFlying(false);
+            event.setCancelled(true);
+        }
+        
 
-        event.getPlayer().setFlying(false);
-        event.setCancelled(true);
+
+
     }
 
 }
