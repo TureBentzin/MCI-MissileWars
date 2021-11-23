@@ -31,14 +31,14 @@ public class Translations {
         Core.registerTranslation("missilewars.message.cmd.test.status", "The Missilewars Gamestatus is {0}");
         Core.registerTranslation("missilewars.message.cmd.test.statusset", "The Missilewars Gamestatus is now {0}");
 
-        Core.registerTranslation(KEY + "inventory.cmd.test.selector", "<system#prefix><system#color>You can´t open the <system#accent>selector");
-        Core.registerTranslation(KEY + "inventory.selector.test.handle.something", "<system#prefix><system#color>You have clicked<system#accent> something");
-        Core.registerTranslation(KEY + "inventory.selector.test.handle", "<system#prefix><system#color>You have clicked<system#accent> {0}");
-        Core.registerTranslation(KEY + "inventory.selector.test.1", "<system#accent>Missilewars");
-        Core.registerTranslation(KEY + "inventory.selector.test.2", "<system#accent>Lobby");
-        Core.registerTranslation(KEY + "inventory.selector.test.3", "<system#accent>Playground");
-        Core.registerTranslation(KEY + "inventory.selector.test.4", "<system#accent>Debugserver");
-        Core.registerTranslation(KEY + "inventory.selector.test.5", "<system#accent>NoKotlin!");
+        Core.registerTranslation(KEY + "message.cmd.test.selector", "<system#prefix><system#color>You can´t open the <system#accent>selector");
+        Core.registerTranslation(KEY + "message.selector.test.handle.something", "<system#prefix><system#color>You have clicked<system#accent> something");
+        Core.registerTranslation(KEY + "message.selector.test.handle", "<system#prefix><system#color>You have clicked<system#accent> {0}");
+        Core.registerTranslation(KEY + "item.selector.test.1", "<system#accent>Missilewars");
+        Core.registerTranslation(KEY + "item.selector.test.2", "<system#accent>Lobby");
+        Core.registerTranslation(KEY + "item.selector.test.3", "<system#accent>Playground");
+        Core.registerTranslation(KEY + "item.selector.test.4", "<system#accent>Debugserver");
+        Core.registerTranslation(KEY + "item.selector.test.5", "<system#accent> :comNoKotlin: !");
 
         Core.registerTranslation(KEY + "message.start", "<system#preifx><system#color>The game is <system#accent>starting<system#color>!");
         Core.registerTranslation(KEY + "message.start.level", "<system#preifx><system#color>You are going to play on<system#accent>{0}<system#color>!");
