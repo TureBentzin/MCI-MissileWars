@@ -13,15 +13,15 @@ public class Translations {
         Core.registerTranslation(KEY + "message.movement.adminmodejoin", "<system#prefix><system#color>You tried to join a game with AdminMode.");
 
         Core.registerTranslation(KEY + "message.movement.playerjoin.failed", "<fatal#prefix><fatal#color>Your join to MissileWars failed!");
-        Core.registerTranslation(KEY + "message.movement.playerjoin.info", "<system#preifx><system#color>You joind a <system#accent>MissileWars <system#color>game!");
+        Core.registerTranslation(KEY + "message.movement.playerjoin.info", "<system#prefix><system#color>You joind a <system#accent>MissileWars <system#color>game!");
         Core.registerTranslation(KEY + "message.movement.playerjoin.aborted", "<error#prefix><error#color>Your join to MissileWars was aborted!");
         Core.registerTranslation(KEY + "message.movement.playerjoin.alreadyrunning", "<system#prefix><system#color>This game is already running.");
         Core.registerTranslation(KEY + "message.teaming.joined", "<system#prefix><system#color>You joined team: {0}");
-        Core.registerTranslation(KEY + "message.movement.playerquit", "<system#preifx><system#color>{0} <system#color>left the game!");
+        Core.registerTranslation(KEY + "message.movement.playerquit", "<system#prefix><system#color>{0} <system#color>left the game!");
 
-        Core.registerTranslation(KEY + "message.cmd.start", "<system#preifx><error#accent>{0} <system#color>has started the game!");
+        Core.registerTranslation(KEY + "message.cmd.start", "<system#prefix><error#accent>{0} <system#color>has started the game!");
 
-        Core.registerTranslation(KEY + "message.cmd.start.alreadystarted", "<error#preifx><error#color>The game is already running!");
+        Core.registerTranslation(KEY + "message.cmd.start.alreadystarted", "<error#prefix><error#color>The game is already running!");
 
         Core.registerTranslation(KEY + "message.cmd.missilewars.levelmap", "<system#prefix><system#color>Current Map: <system#accent>{0}");
 
@@ -43,7 +43,7 @@ public class Translations {
         Core.registerTranslation(KEY + "item.selector.test.5", "<system#accent> :comNoKotlin: !");
 
         Core.registerTranslation(KEY + "message.start", "<system#prefix><system#color>The game is <system#accent>starting<system#color>!");
-        Core.registerTranslation(KEY + "message.start.level", "<system#prefix><system#color>You are going to play on<system#accent>{0}<system#color>!");
+        Core.registerTranslation(KEY + "message.start.level", "<system#prefix><system#color>You are going to play on <system#accent>{0}<system#color>!");
 
 
 

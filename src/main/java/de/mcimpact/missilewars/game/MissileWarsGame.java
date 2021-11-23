@@ -106,8 +106,8 @@ public class MissileWarsGame extends Game implements Listener {
         players--;
     }
 
-    public void forPlayers(Consumer<? extends Player> consumer) {
-
+    public void forPlayers(Consumer<? super Player> consumer) {
+        onlinePlayers.forEach(consumer);
     }
 
     public Set<Player> onlinePlayers = new HashSet<>();
@@ -119,8 +119,9 @@ public class MissileWarsGame extends Game implements Listener {
         NetPlayer player = Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId());
         if(onlinePlayers.contains(event.getPlayer())) {
             onlinePlayers.remove(event.getPlayer());
+            teamer.getTeam(event.getPlayer().getUniqueId()).removeMember(player);
+
             MissileWars.broadcast("missilewars.message.movement.disconnect",
-                    event.getPlayer().getName(),
                     Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
         }
     }
@@ -132,8 +133,9 @@ public class MissileWarsGame extends Game implements Listener {
         if(!onlinePlayers.contains(event.getPlayer())) {
             onlinePlayers.add(event.getPlayer());
             getMissileWarsLevel().sendIndividualPlayer(event.getPlayer());
-
+            teamer.getTeam(event.getPlayer().getUniqueId()).addMember(event.getPlayer().getUniqueId());
             GamePhase.phasePlayer(event.getPlayer());
+
 
             MissileWars.broadcast("missilewars.message.movement.rejoined",
                     event.getPlayer().getName(),
