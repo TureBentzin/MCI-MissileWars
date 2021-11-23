@@ -7,13 +7,23 @@ import de.mcimpact.game.team.Team;
 import de.mcimpact.game.team.Teamer;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.world.MissileWarsLevel;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.ApiStatus;
 
 import javax.annotation.Nullable;
+import java.net.http.WebSocket;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+import java.util.function.Consumer;
 
-public class MissileWarsGame extends Game {
+public class MissileWarsGame extends Game implements Listener {
 
 
     public static MissileWarsGame instance = new MissileWarsGame();
@@ -93,6 +103,39 @@ public class MissileWarsGame extends Game {
     public void removePlayer(NetPlayer netPlayer) {
         getTeamer().remove(netPlayer);
         players--;
+    }
+
+    public void forPlayers(Consumer<? extends Player> consumer) {
+
+    }
+
+    public Set<Player> onlinePlayers = new HashSet<>();
+
+    @EventHandler
+    public void playerQuit(PlayerQuitEvent event) {
+        if(gameStatus != GameStatus.GAME)
+            return;
+        NetPlayer player = Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId());
+        if(onlinePlayers.contains(event.getPlayer())) {
+            onlinePlayers.remove(event.getPlayer());
+            MissileWars.broadcast("missilewars.message.movement.disconnect",
+                    event.getPlayer().getName(),
+                    Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
+        }
+    }
+    @EventHandler
+    public void playerJoin(PlayerJoinEvent event) {
+        if(gameStatus != GameStatus.GAME)
+            return;
+        NetPlayer player = Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId());
+        if(!onlinePlayers.contains(event.getPlayer())) {
+            onlinePlayers.add(event.getPlayer());
+            MissileWars.broadcast("missilewars.message.movement.rejoined",
+                    event.getPlayer().getName(),
+                    Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
+        }else {
+            player.sendMessage("temp: you should be a spectator!");
+        }
     }
 
 
