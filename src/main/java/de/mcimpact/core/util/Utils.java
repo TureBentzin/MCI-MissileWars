@@ -3,6 +3,7 @@ package de.mcimpact.core.util;
 import de.mcimpact.core.players.NetPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
@@ -33,5 +34,10 @@ public class Utils {
             files[i] = new File(path + "/" + folders[i]);
         }
         return files;
+    }
+
+    public static String getCoordsFromBlock(Block block) {
+        return block.getLocation().getBlockX() + "," + block.getLocation().getBlockY() + ","
+                + block.getLocation().getBlockZ();
     }
 }
