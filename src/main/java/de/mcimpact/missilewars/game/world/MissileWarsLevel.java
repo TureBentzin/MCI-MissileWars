@@ -4,6 +4,7 @@ import de.mcimpact.missilewars.MissileWars;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.util.StringJoiner;
@@ -48,6 +49,23 @@ public class MissileWarsLevel {
         MissileWars.GAME.getTeams()[0].getUuids().forEach(uuid -> Bukkit.getPlayer(uuid).teleport(completeLocation(ELocation.FIRST, LocationType.SPAWN)));
         MissileWars.GAME.getTeams()[1].getUuids().forEach(uuid -> Bukkit.getPlayer(uuid).teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN)));
 
+    }
+
+    /**
+     *
+     * @param player that will be a
+     */
+    public void sendIndividualPlayer(Player player) {
+       if( MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[0]) {
+           player.sendMessage("DEBUG: You are in Team 0");
+           player.teleport(completeLocation(ELocation.FIRST, LocationType.SPAWN));
+       }else if(MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[1]){
+
+           player.sendMessage("DEBUG: You are in Team 1");
+           player.teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN));
+       }else {
+           player.sendMessage("DEBUG: You are not part of a Team?!");
+       }
     }
 
     protected Location completeLocation(ELocation elocation, LocationType locationType) {
