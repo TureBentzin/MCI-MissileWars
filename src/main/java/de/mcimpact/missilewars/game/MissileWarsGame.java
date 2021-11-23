@@ -144,6 +144,7 @@ public class MissileWarsGame extends Game implements Listener {
 
         teamer.finalize();
         setTeams(teamer.getTeams());
+        teamer.getPlayers().forEach((uuid, teamColor) -> onlinePlayers.add(Bukkit.getPlayer(uuid)));
         MissileWars.broadcast("missilewars.message.start");
         MissileWarsLevel level = MissileWars.getLevelManager().selectRandomLevel();
         MissileWars.broadcast("missilewars.message.start.level", level.getData().getLevelname());
