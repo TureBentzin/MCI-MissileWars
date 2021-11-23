@@ -115,6 +115,8 @@ public final class MissileWars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
         Bukkit.getPluginManager().registerEvents(new FlightAttempt(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
+        Bukkit.getPluginManager().registerEvents(new TNTExplosion(),this);
+
     }
 
     public void registerBukkitCommands() {
