@@ -141,7 +141,7 @@ public class Selector {
         gui.show(player);
     }
 
-    protected void handle(SelectorEntry entry) {
+    protected void handle(SelectorEntry entry, int entryindex) {
 
     }
 
@@ -186,33 +186,41 @@ public class Selector {
             if (closeinv) {
                 player.closeInventory();
             }
-            handle(entry);
             if (getNumber(entry) == 1) {
                 handle1(entry);
+                handle(entry, 1);
             }
             if (getNumber(entry) == 2) {
                 handle2(entry);
+                handle(entry,2);
             }
             if (getNumber(entry) == 3) {
                 handle3(entry);
+                handle(entry, 3);
             }
             if (getNumber(entry) == 4) {
                 handle4(entry);
+                handle(entry, 4);
             }
             if (getNumber(entry) == 5) {
                 handle5(entry);
+                handle(entry, 5);
             }
             if (getNumber(entry) == 6) {
                 handle6(entry);
+                handle(entry, 6);
             }
             if (getNumber(entry) == 7) {
                 handle7(entry);
+                handle(entry, 7);
             }
             if (getNumber(entry) == 8) {
                 handle8(entry);
+                handle(entry, 8);
             }
             if (getNumber(entry) == 9) {
                 handle9(entry);
+                handle(entry, 9);
             }
         });
     }

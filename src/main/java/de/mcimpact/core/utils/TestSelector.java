@@ -23,7 +23,7 @@ public class TestSelector extends Selector {
     }
 
     @Override
-    protected void handle(SelectorEntry entry) {
+    protected void handle(SelectorEntry entry, int entryindex) {
         player.sendMessage(Core.getMessageManager().getTranslatableComponent("missilewars.message.selector.test.handle.something"));
     }
 
