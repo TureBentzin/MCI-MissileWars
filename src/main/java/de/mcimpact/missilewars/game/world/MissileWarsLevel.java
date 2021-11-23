@@ -82,10 +82,10 @@ public class MissileWarsLevel {
             }
         }
         Vector firstVector = location.toVector();
-        firstVector.subtract(secondLocation.toVector());
+        Vector vector = secondLocation.toVector().subtract(firstVector);
 
 
-        return firstVector;
+        return vector;
     }
 
     @Override
