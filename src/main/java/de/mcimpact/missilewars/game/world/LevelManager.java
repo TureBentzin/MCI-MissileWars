@@ -5,9 +5,8 @@ import de.mcimpact.missilewars.game.world.definition.LevelMetaManager;
 import org.bukkit.Bukkit;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
+import java.util.function.BiConsumer;
 
 public class LevelManager {
 
@@ -52,6 +51,17 @@ public class LevelManager {
                 }
 
         }
+    }
+
+    public Collection<MissileWarsLevel> getLevels() {
+        Collection<MissileWarsLevel> collection = new HashSet<>();
+
+        getMissileWarsLevelMap().forEach((s, missileWarsLevel) -> {
+            collection.add(missileWarsLevel);
+        });
+
+        return collection;
+
     }
 
     public static LevelManager getInstance() {

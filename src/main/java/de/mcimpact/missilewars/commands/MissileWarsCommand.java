@@ -9,6 +9,7 @@ import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.world.LevelManager;
+import de.mcimpact.missilewars.game.world.MissileWarsLevel;
 import io.github.dseelp.kommon.command.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,6 +27,25 @@ public class MissileWarsCommand extends Command<CommandSender> {
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> indexFolder = JavaUtils.literal("indexFolder");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> scanLevel = JavaUtils.literal("scanLevels");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> levelMap = JavaUtils.literal("levelMap");
+        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> map = JavaUtils.literal("map");
+
+
+        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> mapContext =
+                JavaUtils.argument(new ConstrainedArgument<>("mapcontext", commandSenderCommandContext -> {
+                    String[] strings = new String[MissileWars.getLevelManager().getLevels().size()];
+                    MissileWarsLevel[] levels = new MissileWarsLevel[MissileWars.getLevelManager().getMissileWarsLevelMap().size()];
+
+                    MissileWars.getLevelManager().getLevels().toArray(levels);
+
+                    for (int i = 0; i < levels.length; i++) {
+                        strings[i] = levels[i].getData().getLevelname();
+                    }
+
+                    return strings;
+                })
+
+                );
+
 
         System.out.println(Arrays.toString(Arrays.stream(GameStatus.values()).map(GameStatus::toString).toArray()));
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> statusenum = JavaUtils.argument(
@@ -43,6 +63,10 @@ public class MissileWarsCommand extends Command<CommandSender> {
             System.out.println("Argumente!");
             context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.status", MissileWars.GAME.getGameStatus().toString()));
         });
+
+       map.getBuilder().execute(context -> {
+
+           });
 
         scanLevel.execute(commandContext -> {
             commandContext.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.debug", "Scanning for Levels -> Look console!"));

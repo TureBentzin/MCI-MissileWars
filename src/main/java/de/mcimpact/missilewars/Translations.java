@@ -23,6 +23,7 @@ public class Translations {
         Core.registerTranslation(KEY + "message.cmd.start.alreadystarted", "<error#preifx><error#color>The game is already running!");
 
         Core.registerTranslation(KEY + "message.cmd.missilewars.levelmap", "<system#prefix><system#color>Current Map: <system#accent>{0}");
+        Core.registerTranslation(KEY + "message.cmd.missilewars.map", "<system#preifx>The current map is: <system#accent>{0}");
 
         Core.registerTranslation(KEY + "message.game.aborted", "<fatal#prefix><fatal#color>Your<fatal#accent> MissileWars <fatal#color>game failed!");
 
