@@ -42,9 +42,14 @@ public class MissileWarsLevel {
     }
 
     public void sendPlayers() {
-        MissileWars.GAME.teamer.getPlayers().forEach((uuid, teamColor) -> {
-          //TODO:  Bukkit.getPlayer(uuid).teleport(completeLocation());
+      /*  MissileWars.GAME.teamer.getPlayers().forEach((uuid, teamColor) -> {
+          Bukkit.getPlayer(uuid).teleport(completeLocation());
         });
+       */
+
+        MissileWars.GAME.getTeams()[0].getUuids().forEach( uuid -> Bukkit.getPlayer(uuid).teleport(completeLocation(ELocation.FIRST, LocationType.SPAWN)));
+        MissileWars.GAME.getTeams()[01].getUuids().forEach( uuid -> Bukkit.getPlayer(uuid).teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN)));
+
     }
 
     protected Location completeLocation(ELocation elocation, LocationType locationType) {
