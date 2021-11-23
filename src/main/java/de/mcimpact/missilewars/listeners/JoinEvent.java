@@ -8,7 +8,6 @@ import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import net.kyori.adventure.text.Component;
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,19 +21,20 @@ public class JoinEvent implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) throws PlayerResolvingException {
 
+        e.joinMessage(Component.text(""));
+
         Player bukkitPlayer = e.getPlayer();
-     //   MissileWars.broadcast("missilewars.message.debug", "event: " + e.getEventName());
+        //   MissileWars.broadcast("missilewars.message.debug", "event: " + e.getEventName());
 
         NetPlayer player = Core.getPlayerUtils().getPlayer(e.getPlayer().getUniqueId());
 
         if (player == null) throw new PlayerResolvingException(e.getPlayer().getUniqueId());
 
 
-
         if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY) {
 
             LobbyPhase.onSpawn(player);
-            
+
             if (player.isAdminMode()) {
 
                 player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.movement.playerjoin.failed")));
@@ -43,14 +43,14 @@ public class JoinEvent implements Listener {
                 return;
             }
 
-            game.teamer.add(player);
+            game.addPlayer(player);
 
             MissileWars.broadcast("missilewars.message.movement.playerjoin", player.getName());
 
             player.sendMessage(Core.getTranslatableComponent("missilewars.message.teaming.joined",
                     Component.text(game.teamer.getTeam(player).getColor().name()).color(game.teamer.getTeam(player).getColor().getTextColor().adventure)));
 
-          //  MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
+            //  MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
 
 
         } else if (game.getGameStatus() == GameStatus.PAUSED) {

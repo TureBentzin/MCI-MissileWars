@@ -1,9 +1,15 @@
 package de.mcimpact.missilewars.game;
 
+import de.mcimpact.core.Core;
 import de.mcimpact.core.game.Game;
+import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.game.team.Team;
 import de.mcimpact.game.team.Teamer;
+import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.world.MissileWarsLevel;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.ApiStatus;
 
 import javax.annotation.Nullable;
 
@@ -11,7 +17,15 @@ public class MissileWarsGame extends Game {
 
 
     public static MissileWarsGame instance = new MissileWarsGame();
+    /**
+     * DONT USE:
+     * teamer.add();
+     * teamer.remove();
+     *
+     * @see MissileWarsGame
+     */
     public Teamer teamer = new Teamer(2);
+    private int players = 0;
     @Nullable
     private MissileWarsLevel missileWarsLevel;
     private boolean running;
@@ -21,6 +35,10 @@ public class MissileWarsGame extends Game {
 
     public static MissileWarsGame getInstance() {
         return instance;
+    }
+
+    public int getPlayers() {
+        return players;
     }
 
     @Nullable
@@ -57,31 +75,53 @@ public class MissileWarsGame extends Game {
         this.teams = teams;
     }
 
-    public Teamer getTeamer() {
+    private Teamer getTeamer() {
         return teamer;
     }
 
-    public void setTeamer(Teamer teamer) {
+    @Deprecated
+    @ApiStatus.ScheduledForRemoval(inVersion = "1.0")
+    private void setTeamer(Teamer teamer) {
         this.teamer = teamer;
     }
 
+    public void addPlayer(NetPlayer netPlayer) {
+        getTeamer().add(netPlayer);
+        players++;
+    }
+
+    public void removePlayer(NetPlayer netPlayer) {
+        getTeamer().remove(netPlayer);
+        players--;
+    }
+
+
     @Override
     public void start() {
-        setGameStatus(GameStatus.LOBBY);
 
-        internalStart("servername");
+        teamer.finalize();
+        setTeams(teamer.getTeams());
+        MissileWars.broadcast("missilewars.message.start");
+        MissileWarsLevel level = MissileWars.getLevelManager().selectRandomLevel();
+        MissileWars.broadcast("missilewars.message.start.level", level.getData().getLevelname());
+        getMissileWarsLevel().sendPlayers();
+        MissileWars.GAME.setGameStatus(GameStatus.GAME);
+
+
     }
 
     @Override
     protected <T> void internalStart(T startArgument) {
 
-        setRunning(true);
     }
 
     @Override
     public void stop() {
-
-
+        MissileWars.getMWL().info("The Game is closing...");
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            onlinePlayer.kick(Core.translate(Core.getTranslatableComponent("missilewars.message.game.aborted")));
+        }
+        setGameStatus(GameStatus.GAME_END);
         setRunning(false);
     }
 }

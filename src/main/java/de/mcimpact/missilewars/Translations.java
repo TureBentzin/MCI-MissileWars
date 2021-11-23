@@ -8,7 +8,7 @@ public class Translations {
 
     public static void run() {
 
-        Core.registerTranslation(KEY + "message.movment.playerjoin", "<system#prefix><system#accent>{0} <system#color>joined the game!");
+        Core.registerTranslation(KEY + "message.movement.playerjoin", "<system#prefix><error#accent>{0} <system#color>joined the game!");
         Core.registerTranslation(KEY + "message.debug", "<system#prefix> [DEBUG] <system#color>{0}");
         Core.registerTranslation(KEY + "message.movement.adminmodejoin", "<system#prefix><system#color>You tried to join a game with AdminMode.");
 
@@ -19,7 +19,14 @@ public class Translations {
         Core.registerTranslation(KEY + "message.teaming.joined", "<system#prefix><system#color>You joined team: {0}");
         Core.registerTranslation(KEY + "message.movement.playerquit", "<system#preifx><system#color>{0} <system#color>left the game!");
 
+        Core.registerTranslation(KEY + "message.cmd.start", "<system#preifx><error#accent>{0} <system#color>has started the game!");
+
+        Core.registerTranslation(KEY + "message.cmd.start.alreadystarted", "<error#preifx><error#color>The game is already running!");
+
+        Core.registerTranslation(KEY + "message.cmd.missilewars.levelmap", "<system#prefix><system#color>Current Map: <system#accent>{0}");
+
         Core.registerTranslation(KEY + "message.game.aborted", "<fatal#prefix><fatal#color>Your<fatal#accent> MissileWars <fatal#color>game failed!");
+
 
         Core.registerTranslation("missilewars.message.cmd.test.status", "The Missilewars Gamestatus is {0}");
         Core.registerTranslation("missilewars.message.cmd.test.statusset", "The Missilewars Gamestatus is now {0}");
@@ -32,6 +39,9 @@ public class Translations {
         Core.registerTranslation(KEY + "inventory.selector.test.3", "<system#accent>Playground");
         Core.registerTranslation(KEY + "inventory.selector.test.4", "<system#accent>Debugserver");
         Core.registerTranslation(KEY + "inventory.selector.test.5", "<system#accent>NoKotlin!");
+
+        Core.registerTranslation(KEY + "message.start", "<system#preifx><system#color>The game is <system#accent>starting<system#color>!");
+        Core.registerTranslation(KEY + "message.start.level", "<system#preifx><system#color>You are going to play on<system#accent>{0}<system#color>!");
 
 
 
