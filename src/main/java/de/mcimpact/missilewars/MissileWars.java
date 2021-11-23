@@ -2,6 +2,7 @@ package de.mcimpact.missilewars;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import de.mcimpact.core.Core;
+import de.mcimpact.core.internal.Untested;
 import de.mcimpact.missilewars.commands.MissileWarsCommand;
 import de.mcimpact.missilewars.commands.StartCommand;
 import de.mcimpact.missilewars.commands.bukkit.DebugteamCommand;
@@ -50,6 +51,11 @@ public final class MissileWars extends JavaPlugin {
 
     public static MultiverseCore getMultiverse() {
         return multiverse;
+    }
+
+    @Untested
+    public static void broadcast(String key, Object... objects) {
+        Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key, objects)));
     }
 
     public static void broadcast(String key, String... args) {
@@ -116,6 +122,8 @@ public final class MissileWars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new FlightAttempt(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
         Bukkit.getPluginManager().registerEvents(new TNTExplosion(), this);
+
+        Bukkit.getPluginManager().registerEvents(MissileWars.GAME, this); //register internal GameEvents
 
     }
 
