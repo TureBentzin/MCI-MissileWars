@@ -1,9 +1,15 @@
 package de.mcimpact.missilewars.game.world;
 
+import de.mcimpact.missilewars.MissileWars;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.util.StringJoiner;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class MissileWarsLevel {
 
@@ -35,11 +41,46 @@ public class MissileWarsLevel {
         this.world = world;
     }
 
+    public void sendPlayers() {
+        MissileWars.GAME.teamer.getPlayers().forEach((uuid, teamColor) -> {
+          //TODO:  Bukkit.getPlayer(uuid).teleport(completeLocation());
+        });
+    }
+
+    protected Location completeLocation(ELocation elocation, LocationType locationType) {
+        return elocation.function.apply(locationType.function.apply(data));
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", MissileWarsLevel.class.getSimpleName() + "[", "]")
                 .add("world=" + world.getName())
                 .add("data=" + data)
                 .toString();
+    }
+
+    private enum ELocation {
+
+        FIRST(LocationPair::getFist),
+        SECOND(LocationPair::getSecond);
+
+        Function<LocationPair, Location> function;
+
+        ELocation(Function<LocationPair, Location> locationFunction) {
+            this.function = locationFunction;
+        }
+
+
+    }
+    private enum LocationType {
+
+        SPAWN(MissileWarsLevelData::getSpawnLocationPair),
+        PORTAL(MissileWarsLevelData::getSpawnLocationPair);
+
+        public final Function<MissileWarsLevelData, LocationPair> function;
+
+       LocationType(Function<MissileWarsLevelData, LocationPair> function) {
+            this.function = function;
+        }
     }
 }
