@@ -105,9 +105,12 @@ public class MissileWarsGame extends Game {
     @Override
     public void start() {
 
+        teamer.finalize();
+        setTeams(teamer.getTeams());
         MissileWars.broadcast("missilewars.message.start");
-        MissileWarsLevel level = MissileWars.getLevelManager().getRandomLevel();
+        MissileWarsLevel level = MissileWars.getLevelManager().selectRandomLevel();
         MissileWars.broadcast("missilewars.message.start.level", level.getData().getLevelname());
+        getMissileWarsLevel().sendPlayers();
 
 
     }
