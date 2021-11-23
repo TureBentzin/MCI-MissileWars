@@ -1,8 +1,11 @@
 package de.mcimpact.missilewars.game.world;
 
 import de.mcimpact.core.util.Utils;
+import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.world.definition.LevelMetaManager;
 import org.bukkit.Bukkit;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.util.HashMap;
@@ -10,6 +13,13 @@ import java.util.Map;
 import java.util.Random;
 
 public class LevelManager {
+
+    private MissileWarsLevel missileWarsLevel;
+
+    @Nullable
+    public MissileWarsLevel getMissileWarsLevel() {
+        return missileWarsLevel;
+    }
 
     private final Map<String, MissileWarsLevel> missileWarsLevelMap = new HashMap<>();
 
@@ -52,6 +62,14 @@ public class LevelManager {
                 }
 
         }
+    }
+
+
+
+    public MissileWarsLevel selectRandomLevel() {
+        MissileWars.getMWL().info("Level was selected! -> " + missileWarsLevel.getData().getLevelname());
+        this.missileWarsLevel = getRandomLevel();
+        return missileWarsLevel;
     }
 
     public static LevelManager getInstance() {
