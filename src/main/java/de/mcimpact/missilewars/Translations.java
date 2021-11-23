@@ -27,8 +27,8 @@ public class Translations {
 
         Core.registerTranslation(KEY + "message.game.aborted", "<fatal#prefix><fatal#color>Your<fatal#accent> MissileWars <fatal#color>game failed!");
 
-        Core.registerTranslation(KEY + "message.message.start", "<system#preifx><system#color>The game is <system#accent>starting<system#color>!");
-        Core.registerTranslation(KEY + "message.message.start.level", "<system#preifx><system#color>You are going to play on<system#accent>{0}<system#color>!");
+        Core.registerTranslation(KEY + "message.start", "<system#preifx><system#color>The game is <system#accent>starting<system#color>!");
+        Core.registerTranslation(KEY + "message.start.level", "<system#preifx><system#color>You are going to play on<system#accent>{0}<system#color>!");
 
 
     }
