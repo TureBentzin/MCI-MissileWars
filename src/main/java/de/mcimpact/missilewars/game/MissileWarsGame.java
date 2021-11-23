@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
 
 import javax.annotation.Nullable;
+import javax.imageio.stream.MemoryCacheImageInputStream;
 
 public class MissileWarsGame extends Game {
 
@@ -103,6 +104,10 @@ public class MissileWarsGame extends Game {
 
     @Override
     public void start() {
+
+        MissileWars.broadcast("missilewars.message.start");
+        MissileWarsLevel level = MissileWars.getLevelManager().getRandomLevel();
+        MissileWars.broadcast("missilewars.message.start.level", level.getData().getLevelname());
 
 
     }
