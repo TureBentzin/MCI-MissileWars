@@ -132,6 +132,9 @@ public class MissileWarsGame extends Game implements Listener {
         if(!onlinePlayers.contains(event.getPlayer())) {
             onlinePlayers.add(event.getPlayer());
             getMissileWarsLevel().sendIndividualPlayer(event.getPlayer());
+
+            GamePhase.phasePlayer(event.getPlayer());
+
             MissileWars.broadcast("missilewars.message.movement.rejoined",
                     event.getPlayer().getName(),
                     Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
