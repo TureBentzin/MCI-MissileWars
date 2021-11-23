@@ -111,6 +111,7 @@ public class MissileWarsGame extends Game {
         MissileWarsLevel level = MissileWars.getLevelManager().selectRandomLevel();
         MissileWars.broadcast("missilewars.message.start.level", level.getData().getLevelname());
         getMissileWarsLevel().sendPlayers();
+        MissileWars.GAME.setGameStatus(GameStatus.GAME);
 
 
     }
