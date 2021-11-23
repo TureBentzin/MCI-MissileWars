@@ -14,12 +14,6 @@ import java.util.Random;
 
 public class LevelManager {
 
-    private MissileWarsLevel missileWarsLevel;
-
-    @Nullable
-    public MissileWarsLevel getMissileWarsLevel() {
-        return missileWarsLevel;
-    }
 
     private final Map<String, MissileWarsLevel> missileWarsLevelMap = new HashMap<>();
 
@@ -67,9 +61,10 @@ public class LevelManager {
 
 
     public MissileWarsLevel selectRandomLevel() {
-        MissileWars.getMWL().info("Level was selected! -> " + missileWarsLevel.getData().getLevelname());
-        this.missileWarsLevel = getRandomLevel();
-        return missileWarsLevel;
+
+        MissileWars.GAME.setMissileWarsLevel(getRandomLevel());
+        MissileWars.getMWL().info("Level was selected! -> " + MissileWars.GAME.getMissileWarsLevel().getData().getLevelname());
+        return MissileWars.GAME.getMissileWarsLevel();
     }
 
     public static LevelManager getInstance() {
