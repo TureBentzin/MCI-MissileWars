@@ -42,8 +42,8 @@ public class Translations {
         Core.registerTranslation(KEY + "item.selector.test.4", "<system#accent>Debugserver");
         Core.registerTranslation(KEY + "item.selector.test.5", "<system#accent> :comNoKotlin: !");
 
-        Core.registerTranslation(KEY + "message.start", "<system#preifx><system#color>The game is <system#accent>starting<system#color>!");
-        Core.registerTranslation(KEY + "message.start.level", "<system#preifx><system#color>You are going to play on<system#accent>{0}<system#color>!");
+        Core.registerTranslation(KEY + "message.start", "<system#prefix><system#color>The game is <system#accent>starting<system#color>!");
+        Core.registerTranslation(KEY + "message.start.level", "<system#prefix><system#color>You are going to play on<system#accent>{0}<system#color>!");
 
 
 
