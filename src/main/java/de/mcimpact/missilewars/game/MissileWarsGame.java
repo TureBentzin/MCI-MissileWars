@@ -5,6 +5,7 @@ import de.mcimpact.core.game.Game;
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.game.team.Team;
 import de.mcimpact.game.team.Teamer;
+import de.mcimpact.gamephase.GamePhase;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.world.MissileWarsLevel;
 import net.kyori.adventure.text.Component;
@@ -130,6 +131,7 @@ public class MissileWarsGame extends Game implements Listener {
         NetPlayer player = Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId());
         if(!onlinePlayers.contains(event.getPlayer())) {
             onlinePlayers.add(event.getPlayer());
+            getMissileWarsLevel().sendIndividualPlayer(event.getPlayer());
             MissileWars.broadcast("missilewars.message.movement.rejoined",
                     event.getPlayer().getName(),
                     Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
@@ -138,6 +140,9 @@ public class MissileWarsGame extends Game implements Listener {
         }
     }
 
+    public Set<Player> getOnlinePlayers() {
+        return onlinePlayers;
+    }
 
     @Override
     public void start() {
@@ -150,6 +155,8 @@ public class MissileWarsGame extends Game implements Listener {
         MissileWars.broadcast("missilewars.message.start.level", level.getData().getLevelname());
         getMissileWarsLevel().sendPlayers();
         MissileWars.GAME.setGameStatus(GameStatus.GAME);
+
+        getOnlinePlayers().forEach( player -> GamePhase.phasePlayer(player));
 
 
     }
