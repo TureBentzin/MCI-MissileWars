@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 import java.io.File;
 import java.util.StringJoiner;
@@ -69,7 +70,22 @@ public class MissileWarsLevel {
     }
 
     protected Location completeLocation(ELocation elocation, LocationType locationType) {
-        return elocation.function.apply(locationType.function.apply(data));
+        return elocation.function.apply(locationType.function.apply(data)).setDirection(getLocationVector(elocation));
+    }
+
+    protected Vector getLocationVector(ELocation eLocation) {
+        Location location= eLocation.function.apply(getData().getSpawnLocationPair());
+        Location secondLocation = null;
+        for (ELocation value : ELocation.values()) {
+            if(value != eLocation) {
+                secondLocation = value.function.apply(getData().getSpawnLocationPair());
+            }
+        }
+        Vector firstVector = location.toVector();
+        firstVector.subtract(secondLocation.toVector());
+
+
+        return firstVector;
     }
 
     @Override
