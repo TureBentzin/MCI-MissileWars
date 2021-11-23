@@ -31,7 +31,9 @@ public class MissileWarsCommand extends Command<CommandSender> {
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> statusenum = JavaUtils.argument(
                 new ConstrainedArgument<>("statusenum",
                         context -> Arrays.stream(GameStatus.values()).map(GameStatus::toString).toArray(String[]::new)));
-        
+
+
+        /*
         selector.getBuilder().execute(new Consumer<CommandContext<CommandSender>>() {
             @Override
             public void accept(CommandContext<CommandSender> context) {
@@ -43,6 +45,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
                 }
             }
         });
+         */
       
         indexFolder.execute(consoleSenderCommandContext -> {
             CommandContext<? extends CommandSender> context = consoleSenderCommandContext;
