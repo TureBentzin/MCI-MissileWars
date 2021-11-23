@@ -12,19 +12,11 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
 
 import javax.annotation.Nullable;
-import javax.imageio.stream.MemoryCacheImageInputStream;
 
 public class MissileWarsGame extends Game {
 
 
-    private int players = 0;
-
-    public int getPlayers() {
-        return players;
-    }
-
     public static MissileWarsGame instance = new MissileWarsGame();
-
     /**
      * DONT USE:
      * teamer.add();
@@ -33,8 +25,7 @@ public class MissileWarsGame extends Game {
      * @see MissileWarsGame
      */
     public Teamer teamer = new Teamer(2);
-
-
+    private int players = 0;
     @Nullable
     private MissileWarsLevel missileWarsLevel;
     private boolean running;
@@ -44,6 +35,10 @@ public class MissileWarsGame extends Game {
 
     public static MissileWarsGame getInstance() {
         return instance;
+    }
+
+    public int getPlayers() {
+        return players;
     }
 
     @Nullable
@@ -92,14 +87,13 @@ public class MissileWarsGame extends Game {
 
     public void addPlayer(NetPlayer netPlayer) {
         getTeamer().add(netPlayer);
-        players ++;
+        players++;
     }
 
     public void removePlayer(NetPlayer netPlayer) {
         getTeamer().remove(netPlayer);
-        players --;
+        players--;
     }
-
 
 
     @Override

@@ -2,7 +2,6 @@ package de.mcimpact.missilewars.lobbyphase;
 
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.MissileWars;
-import de.mcimpact.missilewars.game.world.LevelManager;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 

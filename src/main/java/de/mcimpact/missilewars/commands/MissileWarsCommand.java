@@ -3,7 +3,6 @@ package de.mcimpact.missilewars.commands;
 import de.mcimpact.core.Core;
 import de.mcimpact.core.commands.Command;
 import de.mcimpact.core.commands.CommandSender;
-import de.mcimpact.core.commands.ConsoleSender;
 import de.mcimpact.core.commands.ConstrainedArgument;
 import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
@@ -33,7 +32,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
                         context -> Arrays.stream(GameStatus.values()).map(GameStatus::toString).toArray(String[]::new)));
 
         indexFolder.execute(consoleSenderCommandContext -> {
-            CommandContext<? extends CommandSender> context =  consoleSenderCommandContext;
+            CommandContext<? extends CommandSender> context = consoleSenderCommandContext;
 
             context.getSender().sendMessage(Arrays.toString(Utils.stringArrayToFolders(Utils.ROOT.getPath(), Utils.getSubdirectories(Utils.ROOT.getPath()))));
 
@@ -57,7 +56,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         });
 
         levelMap.execute(commandContext -> {
-           commandContext.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.cmd.missilewars.levelmap", LevelManager.getInstance().getMissileWarsLevelMap().toString()));
+            commandContext.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.cmd.missilewars.levelmap", LevelManager.getInstance().getMissileWarsLevelMap().toString()));
         });
 
         status.then(statusenum.build());

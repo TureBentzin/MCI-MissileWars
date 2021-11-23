@@ -4,8 +4,6 @@ import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.world.definition.LevelMetaManager;
 import org.bukkit.Bukkit;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.util.HashMap;
@@ -15,7 +13,12 @@ import java.util.Random;
 public class LevelManager {
 
 
+    private static final LevelManager manager = new LevelManager();
     private final Map<String, MissileWarsLevel> missileWarsLevelMap = new HashMap<>();
+
+    public static LevelManager getInstance() {
+        return manager;
+    }
 
     public Map<String, MissileWarsLevel> getMissileWarsLevelMap() {
         return missileWarsLevelMap;
@@ -35,7 +38,6 @@ public class LevelManager {
         return missileWarsLevelMap.get(strings[randomNumber]);
     }
 
-
     public void scanForLevels() {
         File folder = Bukkit.getServer().getWorldContainer();
 
@@ -43,22 +45,20 @@ public class LevelManager {
 
         for (File potentialLevel : potentialLevels) {
 
-                if(LevelMetaManager.isLevel(potentialLevel)) {
-                    LevelMetaManager metaManager = new LevelMetaManager(potentialLevel);
+            if (LevelMetaManager.isLevel(potentialLevel)) {
+                LevelMetaManager metaManager = new LevelMetaManager(potentialLevel);
 
-                    System.out.println("Found Level: " + potentialLevel);
+                System.out.println("Found Level: " + potentialLevel);
 
-                   getMissileWarsLevelMap().put(potentialLevel.getName(),
-                            new MissileWarsLevel(Bukkit.getWorld(potentialLevel.getName()),
-                                    metaManager.toMissileWarsLevelData()));
+                getMissileWarsLevelMap().put(potentialLevel.getName(),
+                        new MissileWarsLevel(Bukkit.getWorld(potentialLevel.getName()),
+                                metaManager.toMissileWarsLevelData()));
 
-                    System.out.println("Mapped Level: " + getMissileWarsLevelMap().get(potentialLevel.getName()));
-                }
+                System.out.println("Mapped Level: " + getMissileWarsLevelMap().get(potentialLevel.getName()));
+            }
 
         }
     }
-
-
 
     public MissileWarsLevel selectRandomLevel() {
 
@@ -66,9 +66,4 @@ public class LevelManager {
         MissileWars.getMWL().info("Level was selected! -> " + MissileWars.GAME.getMissileWarsLevel().getData().getLevelname());
         return MissileWars.GAME.getMissileWarsLevel();
     }
-
-    public static LevelManager getInstance() {
-        return manager;
-    }
-    private static LevelManager manager = new LevelManager();
 }

@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 public final class MissileWars extends JavaPlugin {
 
 
+    private static final LevelManager levelManager = LevelManager.getInstance();
     public static MissileWarsGame GAME = MissileWarsGame.getInstance();
     @Nullable
     private static MissileWars missileWars;
@@ -29,7 +30,6 @@ public final class MissileWars extends JavaPlugin {
     private static MultiverseCore multiverse = null;
     @UnknownInitialization
     private static World lobby;
-    private static LevelManager levelManager = LevelManager.getInstance();
 
     public static LevelManager getLevelManager() {
         return levelManager;
@@ -115,7 +115,7 @@ public final class MissileWars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
         Bukkit.getPluginManager().registerEvents(new FlightAttempt(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
-        Bukkit.getPluginManager().registerEvents(new TNTExplosion(),this);
+        Bukkit.getPluginManager().registerEvents(new TNTExplosion(), this);
 
     }
 

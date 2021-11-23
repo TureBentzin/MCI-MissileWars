@@ -5,10 +5,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.util.StringJoiner;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class MissileWarsLevel {
@@ -47,8 +45,8 @@ public class MissileWarsLevel {
         });
        */
 
-        MissileWars.GAME.getTeams()[0].getUuids().forEach( uuid -> Bukkit.getPlayer(uuid).teleport(completeLocation(ELocation.FIRST, LocationType.SPAWN)));
-        MissileWars.GAME.getTeams()[1].getUuids().forEach( uuid -> Bukkit.getPlayer(uuid).teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN)));
+        MissileWars.GAME.getTeams()[0].getUuids().forEach(uuid -> Bukkit.getPlayer(uuid).teleport(completeLocation(ELocation.FIRST, LocationType.SPAWN)));
+        MissileWars.GAME.getTeams()[1].getUuids().forEach(uuid -> Bukkit.getPlayer(uuid).teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN)));
 
     }
 
@@ -77,6 +75,7 @@ public class MissileWarsLevel {
 
 
     }
+
     private enum LocationType {
 
         SPAWN(MissileWarsLevelData::getSpawnLocationPair),
@@ -84,7 +83,7 @@ public class MissileWarsLevel {
 
         public final Function<MissileWarsLevelData, LocationPair> function;
 
-       LocationType(Function<MissileWarsLevelData, LocationPair> function) {
+        LocationType(Function<MissileWarsLevelData, LocationPair> function) {
             this.function = function;
         }
     }

@@ -1,8 +1,9 @@
 package de.mcimpact.missilewars.util;
 
-import org.bukkit.scheduler.BukkitRunnable;
-
 public abstract class Timer implements Runnable {
+
+    private boolean running;
+    private int value = 0;
 
     public Timer(int seconds) {
         value = seconds;
@@ -22,23 +23,18 @@ public abstract class Timer implements Runnable {
         finish();
     }
 
-    public void abort(){
+    public void abort() {
         running = false;
         abort(value);
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
     public int getValue() {
         return value;
     }
 
-
-    private boolean running;
-    private int value = 0;
-
+    public void setValue(int value) {
+        this.value = value;
+    }
 
     /**
      * When an object implementing interface {@code Runnable} is used
@@ -53,22 +49,26 @@ public abstract class Timer implements Runnable {
      */
     @Override
     public void run() {
-        if(running)
-        try {
-            if(value < 1) {
-                finish();
-                return;
+        if (running)
+            try {
+                if (value < 1) {
+                    finish();
+                    return;
+                }
+                Thread.sleep(1000);
+                value--;
+                update(value);
+                run();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            Thread.sleep(1000);
-            value--;
-            update(value);
-            run();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public abstract void update(int value);
-    protected void finish() {};
-    protected void abort(int finalvalue){}
+
+    protected void finish() {
+    }
+
+    protected void abort(int finalvalue) {
+    }
 }

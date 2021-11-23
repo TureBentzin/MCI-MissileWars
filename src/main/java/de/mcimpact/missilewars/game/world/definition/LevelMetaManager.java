@@ -19,28 +19,26 @@ public class LevelMetaManager {
     private final File file;
 
     private Config config;
+    private ConfigFactory factory;
 
     public LevelMetaManager(File level) {
         file = new File(level, NAME);
-        if(!file.exists()) return;
+        if (!file.exists()) return;
 
         config = ConfigFactory.parseFile(file);
     }
 
-    private ConfigFactory factory;
+    public static boolean isLevel(File folder) {
+        return new File(folder, NAME).exists();
+    }
 
-    public  void manage() {
+    public void manage() {
 
     }
 
     public Config getConfig() {
         return config;
     }
-
-    public static boolean isLevel(File folder) {
-        return  new File(folder, NAME).exists();
-    }
-
 
     public MissileWarsLevelData toMissileWarsLevelData() {
 
@@ -52,9 +50,9 @@ public class LevelMetaManager {
     }
 
     public Location getLocation(String key) {
-        double x,y,z;
+        double x, y, z;
 
-        x = config.getDouble(key+ ".X");
+        x = config.getDouble(key + ".X");
         y = config.getDouble(key + ".Y");
         z = config.getDouble(key + ".Z");
 
