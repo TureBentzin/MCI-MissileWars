@@ -48,7 +48,7 @@ public class LobbyPhase {
         lobby.setSpawnFlags(false, false);
         MissileWars.getLevelManager().scanForLevels();
         MissileWars.getMWL().info("All levels are scanned: " + MissileWars.getLevelManager().getMissileWarsLevelMap().size());
-
+        Bukkit.getServer().setMaxPlayers(16);
     }
 
     public  static boolean checkForStart() {
@@ -57,8 +57,8 @@ public class LobbyPhase {
        if( MissileWars.GAME.teamer.getPlayers().size() > 1) {
 
            MissileWars.getMWL().info("Ready for start!");
-           Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), getStartTimer());
-           System.out.println("DHOWFHAÄWAFHAPFHAWIFHAÄWOIDHA");
+           Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), () -> LobbyPhase.getStartTimer().start());
+
            return true;
        }
         return false;

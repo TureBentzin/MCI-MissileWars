@@ -1,6 +1,8 @@
 package de.mcimpact.gamephase;
 
+import de.mcimpact.missilewars.MissileWars;
 import net.kyori.adventure.sound.Sound;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class GamePhase {
@@ -13,5 +15,10 @@ public class GamePhase {
         player.getInventory().clear();
         player.setAllowFlight(false);
         player.setHealthScale(20);
+
+        Bukkit.getServer().setMaxPlayers(30);
+
+
+       player.sendMessage("Gamephase completed on you!");
     }
 }
