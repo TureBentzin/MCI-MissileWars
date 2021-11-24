@@ -49,7 +49,7 @@ public class JoinEvent implements Listener {
 
             player.sendMessage(Core.getTranslatableComponent("missilewars.message.teaming.joined",
                     Component.text(game.teamer.getTeam(player).getColor().name()).color(game.teamer.getTeam(player).getColor().getTextColor().adventure)));
-
+            LobbyPhase.
             //  MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
 
 
@@ -57,7 +57,6 @@ public class JoinEvent implements Listener {
             player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.movement.playerjoin.failed")));
             player.connectToFallback();
         } else
-
             player.sendMessage((Core.getTranslatableComponent("missilewars.message.movement.playerjoin.alreadyrunning")));
 
     }

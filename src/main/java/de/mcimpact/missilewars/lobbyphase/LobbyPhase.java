@@ -9,9 +9,9 @@ import org.bukkit.entity.Player;
 
 public class LobbyPhase {
 
-    private StartTimer startTimer = new StartTimer(20);
+    private static StartTimer startTimer = new StartTimer(20);
 
-    public StartTimer getStartTimer() {
+    public static StartTimer getStartTimer() {
         return startTimer;
     }
 
@@ -46,7 +46,7 @@ public class LobbyPhase {
 
     }
 
-    public boolean checkForStart() {
+    public  static boolean checkForStart() {
         if(MissileWars.GAME.getGameStatus() == GameStatus.GAME)
        if( MissileWars.GAME.teamer.getPlayers().size() > 1) {
            MissileWars.getMWL().info("Ready for start!");
@@ -57,7 +57,7 @@ public class LobbyPhase {
     }
 
 
-    public class StartTimer extends Timer {
+    public static class StartTimer extends Timer {
 
         public StartTimer(int seconds) {
             super(seconds);
