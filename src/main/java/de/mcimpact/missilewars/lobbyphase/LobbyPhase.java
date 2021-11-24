@@ -2,10 +2,17 @@ package de.mcimpact.missilewars.lobbyphase;
 
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.MissileWars;
+import de.mcimpact.missilewars.util.Timer;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 
 public class LobbyPhase {
+
+    private StartTimer startTimer = new StartTimer(20);
+
+    public StartTimer getStartTimer() {
+        return startTimer;
+    }
 
     public static void onSpawn(NetPlayer netPlayer) {
 
@@ -41,7 +48,21 @@ public class LobbyPhase {
     public boolean checkForStart() {
        if( MissileWars.GAME.teamer.getPlayers().size() > 1) {
            MissileWars.getMWL().info("Ready for start!");
-
+           getStartTimer().start();
        }
+    }
+
+
+    public class StartTimer extends Timer {
+
+        public StartTimer(int seconds) {
+            super(seconds);
+            MissileWars.broadcast("missilewars.message.game.autostart");
+        }
+
+        @Override
+        public void update(int value) {
+            MissileWars.broadcast("missilewars.message.game.autostart.timer", getValue());
+        }
     }
 }
