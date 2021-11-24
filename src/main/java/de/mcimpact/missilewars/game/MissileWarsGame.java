@@ -19,6 +19,7 @@ import org.jetbrains.annotations.ApiStatus;
 
 import javax.annotation.Nullable;
 import java.net.http.WebSocket;
+import java.sql.Time;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -26,6 +27,9 @@ import java.util.function.Consumer;
 
 public class MissileWarsGame extends Game implements Listener {
 
+    public static void staticstart() {
+        getInstance().start();
+    }
 
     public static MissileWarsGame instance = new MissileWarsGame();
     /**
@@ -160,6 +164,9 @@ public class MissileWarsGame extends Game implements Listener {
         MissileWars.broadcast("missilewars.message.start.level", level.getData().getLevelname());
         getMissileWarsLevel().sendPlayers();
         MissileWars.GAME.setGameStatus(GameStatus.GAME);
+
+        level.getWorld().setTime(2000);
+        level.getWorld().setViewDistance(36);
 
         getOnlinePlayers().forEach( player -> GamePhase.phasePlayer(player));
 

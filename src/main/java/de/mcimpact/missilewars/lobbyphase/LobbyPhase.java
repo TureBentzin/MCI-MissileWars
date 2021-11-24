@@ -3,9 +3,14 @@ package de.mcimpact.missilewars.lobbyphase;
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
+import de.mcimpact.missilewars.game.MissileWarsGame;
 import de.mcimpact.missilewars.util.Timer;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitScheduler;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 
 public class LobbyPhase {
 
@@ -52,7 +57,7 @@ public class LobbyPhase {
        if( MissileWars.GAME.teamer.getPlayers().size() > 1) {
 
            MissileWars.getMWL().info("Ready for start!");
-           Bukkit.getScheduler()
+           Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), getStartTimer());
            System.out.println("DHOWFHAÄWAFHAPFHAWIFHAÄWOIDHA");
            return true;
        }
@@ -74,7 +79,26 @@ public class LobbyPhase {
 
         @Override
         protected void finish() {
-            MissileWars.GAME.start();
+            startGame();
+
+        }
+
+
+        private synchronized void startGame() {
+            Future future = Bukkit.getScheduler().callSyncMethod(MissileWars.getMissileWars(), new Callable<>() {
+
+                /**
+                 * Computes a result, or throws an exception if unable to do so.
+                 *
+                 * @return computed result
+                 * @throws Exception if unable to compute a result
+                 */
+                @Override
+                public Object call() throws Exception {
+                    MissileWars.GAME.start();
+                    return null;
+                }
+            });
         }
     }
 }

@@ -6,6 +6,7 @@ import de.mcimpact.core.internal.Untested;
 import de.mcimpact.missilewars.commands.MissileWarsCommand;
 import de.mcimpact.missilewars.commands.StartCommand;
 import de.mcimpact.missilewars.commands.bukkit.DebugteamCommand;
+import de.mcimpact.missilewars.commands.bukkit.TasksCommand;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
 import de.mcimpact.missilewars.game.world.LevelManager;
@@ -17,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.initialization.qual.UnknownInitialization;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.logging.Logger;
 
 
@@ -129,6 +131,7 @@ public final class MissileWars extends JavaPlugin {
 
     public void registerBukkitCommands() {
         getCommand("debugteam").setExecutor(new DebugteamCommand());
+        getCommand("tasks").setExecutor(new TasksCommand());
     }
 
     public void registerCommands() {

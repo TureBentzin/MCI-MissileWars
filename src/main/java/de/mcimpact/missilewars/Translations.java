@@ -36,6 +36,8 @@ public class Translations {
 
         Core.registerTranslation("missilewars.message.cmd.test.status", "The Missilewars Gamestatus is {0}");
         Core.registerTranslation("missilewars.message.cmd.test.statusset", "The Missilewars Gamestatus is now {0}");
+        Core.registerTranslation("missilewars.message.cmd.tasks", "<system#preifx><system#color>Current Tasks: <system#accent> {0}");
+
 
         Core.registerTranslation(KEY + "message.cmd.test.selector", "<system#prefix><system#color>You can´t open the <system#accent>selector");
         Core.registerTranslation(KEY + "message.selector.test.handle.something", "<system#prefix><system#color>You have clicked<system#accent> something");

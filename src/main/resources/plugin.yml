@@ -11,5 +11,7 @@ depend:
 commands:
   debugteam:
     usage: /<command>
+  tasks:
+    usage: /<command>
 softdepend:
   - 'Multiverse-Core'

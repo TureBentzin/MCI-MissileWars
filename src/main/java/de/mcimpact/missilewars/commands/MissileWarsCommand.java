@@ -10,7 +10,9 @@ import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.world.LevelManager;
+import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import io.github.dseelp.kommon.command.*;
+import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -27,6 +29,8 @@ public class MissileWarsCommand extends Command<CommandSender> {
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> indexFolder = JavaUtils.literal("indexFolder");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> scanLevel = JavaUtils.literal("scanLevels");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> levelMap = JavaUtils.literal("levelMap");
+        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> async = JavaUtils.literal("startTimer");
+
 
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> statusenum = JavaUtils.argument(
                 new ConstrainedArgument<>("statusenum",
@@ -58,6 +62,13 @@ public class MissileWarsCommand extends Command<CommandSender> {
             context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.status", MissileWars.GAME.getGameStatus().toString()));
         });
 
+        async.execute(commandContext -> {
+            System.out.println("jey" + commandContext .getSender().getName());
+            System.out.println(Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), () -> {
+                LobbyPhase.getStartTimer().start();
+            }));
+        });
+
         scanLevel.execute(commandContext -> {
             commandContext.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.debug", "Scanning for Levels -> Look console!"));
             MissileWars.getLevelManager().scanForLevels();
@@ -79,7 +90,10 @@ public class MissileWarsCommand extends Command<CommandSender> {
         base.then(indexFolder.build());
         base.then(scanLevel);
         base.then(levelMap);
+        base.then(async);
+
         declaration = base.build();
+
     }
 
     @NotNull
