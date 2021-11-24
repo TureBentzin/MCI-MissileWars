@@ -52,7 +52,8 @@ public class LobbyPhase {
        if( MissileWars.GAME.teamer.getPlayers().size() > 1) {
 
            MissileWars.getMWL().info("Ready for start!");
-           getStartTimer().start();
+           Thread thread = new Thread(getStartTimer());
+           thread.start();
            return true;
        }
         return false;
