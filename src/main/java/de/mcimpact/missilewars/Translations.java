@@ -25,6 +25,9 @@ public class Translations {
 
         Core.registerTranslation(KEY + "message.cmd.missilewars.levelmap", "<system#prefix><system#color>Current Map: <system#accent>{0}");
 
+
+        Core.registerTranslation(KEY + "message.game.autostart", "<system#prefix><system#color>The game is <system#accent>starting<system#color>!");
+
         Core.registerTranslation(KEY + "message.game.aborted", "<fatal#prefix><fatal#color>Your<fatal#accent> MissileWars <fatal#color>game failed!");
         Core.registerTranslation(KEY + "message.movement.disconnect", "<system#prefix><system#accent>{0} <system#color>out of Team <system#accent>{1}<system#color> has quit!");
         Core.registerTranslation(KEY + "message.movement.rejoin", "<system#prefix><system#accent>{0} <system#color>out of Team <system#accent>{1}<system#color> rejoined");

@@ -37,4 +37,11 @@ public class LobbyPhase {
         MissileWars.getMWL().info("All levels are scanned: " + MissileWars.getLevelManager().getMissileWarsLevelMap().size());
 
     }
+
+    public boolean checkForStart() {
+       if( MissileWars.GAME.teamer.getPlayers().size() > 1) {
+           MissileWars.getMWL().info("Ready for start!");
+
+       }
+    }
 }
