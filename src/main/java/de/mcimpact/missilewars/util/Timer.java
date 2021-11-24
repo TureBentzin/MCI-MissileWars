@@ -1,6 +1,9 @@
 package de.mcimpact.missilewars.util;
 
-public abstract class Timer implements Runnable {
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
+
+public abstract class Timer extends BukkitRunnable {
 
     private boolean running;
     private int value = 0;

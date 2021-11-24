@@ -48,12 +48,12 @@ public class LobbyPhase {
 
     public  static boolean checkForStart() {
         if(MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
-            System.out.println("DEBUG: " + MissileWars.GAME.teamer.getPlayers().toString());
+            System.out.println("DEBUG: " + MissileWars.GAME.teamer.getPlayers());
        if( MissileWars.GAME.teamer.getPlayers().size() > 1) {
 
            MissileWars.getMWL().info("Ready for start!");
-           Thread thread = new Thread(getStartTimer());
-           thread.start();
+           Bukkit.getScheduler()
+           System.out.println("DHOWFHAÄWAFHAPFHAWIFHAÄWOIDHA");
            return true;
        }
         return false;
