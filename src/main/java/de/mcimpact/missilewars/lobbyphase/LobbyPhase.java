@@ -47,7 +47,7 @@ public class LobbyPhase {
     }
 
     public  static boolean checkForStart() {
-        if(MissileWars.GAME.getGameStatus() == GameStatus.GAME)
+        if(MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
        if( MissileWars.GAME.teamer.getPlayers().size() > 1) {
            MissileWars.getMWL().info("Ready for start!");
            getStartTimer().start();
