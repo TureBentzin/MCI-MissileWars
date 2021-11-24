@@ -48,7 +48,9 @@ public class LobbyPhase {
 
     public  static boolean checkForStart() {
         if(MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
+            System.out.println("DEBUG: " + MissileWars.GAME.teamer.getPlayers().toString());
        if( MissileWars.GAME.teamer.getPlayers().size() > 1) {
+
            MissileWars.getMWL().info("Ready for start!");
            getStartTimer().start();
            return true;
@@ -67,6 +69,11 @@ public class LobbyPhase {
         @Override
         public void update(int value) {
             MissileWars.broadcast("missilewars.message.game.autostart.timer", getValue());
+        }
+
+        @Override
+        protected void finish() {
+            MissileWars.GAME.start();
         }
     }
 }
