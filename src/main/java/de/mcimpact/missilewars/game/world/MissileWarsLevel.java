@@ -1,9 +1,10 @@
 package de.mcimpact.missilewars.game.world;
 
+import com.onarandombox.MultiverseCore.api.MultiversePlugin;
+import com.onarandombox.MultiverseCore.api.MultiverseWorld;
+import com.onarandombox.MultiverseCore.enums.AllowedPortalType;
 import de.mcimpact.missilewars.MissileWars;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
@@ -16,9 +17,12 @@ public class MissileWarsLevel {
     private World world;
     private MissileWarsLevelData data;
 
+    private MultiverseWorld multiverseWorld = MissileWars.getMultiverse().getMVWorldManager().getMVWorld( world.getName());
+
     protected MissileWarsLevel(World world, MissileWarsLevelData data) {
         this.world = world;
         this.data = data;
+        setupMVWorld();
     }
 
     public File worldFolder() {
@@ -39,6 +43,10 @@ public class MissileWarsLevel {
 
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    public MultiverseWorld getMultiverseWorld() {
+        return multiverseWorld;
     }
 
     public void sendPlayers() {
@@ -120,5 +128,17 @@ public class MissileWarsLevel {
         LocationType(Function<MissileWarsLevelData, LocationPair> function) {
             this.function = function;
         }
+    }
+
+    protected void setupMVWorld() {
+        getMultiverseWorld().allowPortalMaking( AllowedPortalType.NONE);
+        getMultiverseWorld().setAllowFlight(false);
+        getMultiverseWorld().setAutoHeal(true);
+        getMultiverseWorld().setBedRespawn(false);
+        getMultiverseWorld().setDifficulty(Difficulty.PEACEFUL);
+        getMultiverseWorld().setEnableWeather(false);
+        getMultiverseWorld().setGameMode(GameMode.SURVIVAL);
+        getMultiverseWorld().setPVPMode(true);
+        System.out.println(getMultiverseWorld().getName() + " was setup as a MissileWarsLevel!");
     }
 }

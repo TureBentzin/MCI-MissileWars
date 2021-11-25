@@ -18,7 +18,7 @@ public class GamePhase {
         player.setHealthScale(20);
 
         player.setGameMode(GameMode.SURVIVAL);
-       
+
 
         Bukkit.getServer().setMaxPlayers(30);
 
