@@ -17,11 +17,12 @@ public class MissileWarsLevel {
     private World world;
     private MissileWarsLevelData data;
 
-    private MultiverseWorld multiverseWorld = MissileWars.getMultiverse().getMVWorldManager().getMVWorld( world.getName());
+    private MultiverseWorld multiverseWorld;
 
     protected MissileWarsLevel(World world, MissileWarsLevelData data) {
         this.world = world;
         this.data = data;
+        this.multiverseWorld = MissileWars.getMultiverse().getMVWorldManager().getMVWorld( world.getName());
         setupMVWorld();
     }
 
