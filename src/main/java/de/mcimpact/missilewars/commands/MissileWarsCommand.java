@@ -4,6 +4,7 @@ import de.mcimpact.core.Core;
 import de.mcimpact.core.commands.Command;
 import de.mcimpact.core.commands.CommandSender;
 import de.mcimpact.core.commands.ConstrainedArgument;
+import de.mcimpact.core.commands.PermissionPredicate;
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.core.utils.TestSelector;
 import de.mcimpact.core.util.Utils;
@@ -31,7 +32,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> levelMap = JavaUtils.literal("levelMap");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> async = JavaUtils.literal("startTimer");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> players = JavaUtils.literal("players");
-
+        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> reset = JavaUtils.literal("reset");
 
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> statusenum = JavaUtils.argument(
                 new ConstrainedArgument<>("statusenum",
@@ -51,6 +52,19 @@ public class MissileWarsCommand extends Command<CommandSender> {
             }
         });
          */
+
+        reset.checkAccess(PermissionPredicate.create("missilewars.cmd.missilewars.reset")).execute(commandContext -> {
+            MissileWars.broadcast("missilewars.message.cmd.missilewars.reset", commandContext.getSender().getName(), Bukkit.getServer().getName());
+            Bukkit.shutdown();
+        });
+
+       JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> force = JavaUtils.literal("force");
+       force.execute(commandContext -> {
+           MissileWars.broadcast("missilewars.message.cmd.missilewars.reset.force", commandContext.getSender().getName(), Bukkit.getServer().getName());
+           System.exit(130);
+       });
+
+        reset.then(force);
       
         indexFolder.execute(consoleSenderCommandContext -> {
             CommandContext<? extends CommandSender> context = consoleSenderCommandContext;
@@ -95,6 +109,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         base.then(players);
         base.then(levelMap);
         base.then(async);
+        base.then(reset);
 
         declaration = base.build();
 
