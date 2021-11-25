@@ -16,8 +16,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.net.http.WebSocket;
 import java.sql.Time;
 import java.util.HashSet;
@@ -125,7 +125,7 @@ public class MissileWarsGame extends Game implements Listener {
             onlinePlayers.remove(event.getPlayer());
             teamer.getTeam(event.getPlayer().getUniqueId()).removeMember(player);
 
-            MissileWars.broadcast("missilewars.message.movement.disconnect",
+            MissileWars.broadcast("missilewars.message.movement.disconnect", player.getName(),
                     Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
         }
     }
@@ -166,7 +166,7 @@ public class MissileWarsGame extends Game implements Listener {
         MissileWars.GAME.setGameStatus(GameStatus.GAME);
 
         level.getWorld().setTime(2000);
-        level.getWorld().setViewDistance(36);
+        level.getWorld().setViewDistance(32);
 
         getOnlinePlayers().forEach( player -> GamePhase.phasePlayer(player));
 

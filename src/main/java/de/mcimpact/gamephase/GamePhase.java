@@ -3,6 +3,7 @@ package de.mcimpact.gamephase;
 import de.mcimpact.missilewars.MissileWars;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 public class GamePhase {
@@ -15,6 +16,9 @@ public class GamePhase {
         player.getInventory().clear();
         player.setAllowFlight(false);
         player.setHealthScale(20);
+
+        player.setGameMode(GameMode.SURVIVAL);
+       
 
         Bukkit.getServer().setMaxPlayers(30);
 

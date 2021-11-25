@@ -30,6 +30,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> scanLevel = JavaUtils.literal("scanLevels");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> levelMap = JavaUtils.literal("levelMap");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> async = JavaUtils.literal("startTimer");
+        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> players = JavaUtils.literal("players");
 
 
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> statusenum = JavaUtils.argument(
@@ -57,6 +58,8 @@ public class MissileWarsCommand extends Command<CommandSender> {
             context.getSender().sendMessage(Arrays.toString(Utils.stringArrayToFolders(Utils.ROOT.getPath(), Utils.getSubdirectories(Utils.ROOT.getPath()))));
 
         });
+
+        players.execute(commandContext -> commandContext.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.debug", "OnlinePlayers: " + MissileWars.GAME.getOnlinePlayers())));
 
         status.getBuilder().execute(context -> {
             context.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.command.test.status", MissileWars.GAME.getGameStatus().toString()));
@@ -89,6 +92,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         base.then(selector);
         base.then(indexFolder.build());
         base.then(scanLevel);
+        base.then(players);
         base.then(levelMap);
         base.then(async);
 

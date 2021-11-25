@@ -18,7 +18,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.initialization.qual.UnknownInitialization;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.concurrent.ThreadSafe;
 import java.util.logging.Logger;
 
 
