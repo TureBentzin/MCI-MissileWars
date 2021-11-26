@@ -180,6 +180,5 @@ public class MissileWarsGame extends Game implements Listener {
             onlinePlayer.kick(Core.translate(Core.getTranslatableComponent("missilewars.message.game.aborted")));
         }
         setGameStatus(GameStatus.GAME_END);
-        setRunning(false);
     }
 }
