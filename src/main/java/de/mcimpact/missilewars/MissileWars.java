@@ -1,6 +1,7 @@
 package de.mcimpact.missilewars;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
+import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import de.mcimpact.core.Core;
 import de.mcimpact.core.internal.Untested;
 import de.mcimpact.missilewars.commands.MissileWarsCommand;
@@ -31,7 +32,7 @@ public final class MissileWars extends JavaPlugin {
     private static Logger MISSILEWARS_LOGGER = Logger.getLogger("missilewars-nullman");
     private static MultiverseCore multiverse = null;
     @UnknownInitialization
-    private static World lobby;
+    private static MultiverseWorld lobby;
 
     public static LevelManager getLevelManager() {
         return levelManager;
@@ -71,7 +72,7 @@ public final class MissileWars extends JavaPlugin {
         Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key)));
     }
 
-    public static World getLobby() {
+    public static MultiverseWorld getLobby() {
         return lobby;
     }
 
@@ -82,7 +83,8 @@ public final class MissileWars extends JavaPlugin {
 
         // Plugin startup logic
         MISSILEWARS_LOGGER = getLogger();
-        lobby = Bukkit.getWorld("world");
+       // World bukkitlobby = Bukkit.getWorld("world");
+        lobby = getMultiverse().getMVWorldManager().getMVWorld("world");
 
         MISSILEWARS_LOGGER.warning("Running MissileWars v." + getDescription().getVersion());
         MISSILEWARS_LOGGER.info("registering Translations");

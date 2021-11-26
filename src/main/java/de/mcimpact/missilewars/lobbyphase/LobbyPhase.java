@@ -1,5 +1,6 @@
 package de.mcimpact.missilewars.lobbyphase;
 
+import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
@@ -39,13 +40,20 @@ public class LobbyPhase {
         bukkitPlayer.sendMessage("Lobbyphase completed on you!");
     }
 
-    public static void onLobbyPhase(World lobby) {
+    public static void onLobbyPhase(MultiverseWorld mvLobby) {
+
+        World lobby = mvLobby.getCBWorld();
         lobby.setAutoSave(false);
         lobby.setStorm(false);
         lobby.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
         lobby.setTime(0);
-        lobby.setPVP(false);
         lobby.setSpawnFlags(false, false);
+
+        mvLobby.setPVPMode(false);
+        mvLobby.setGameMode(GameMode.ADVENTURE);
+        mvLobby.setAutoHeal(true);
+        mvLobby.setAllowFlight(false);
+
         MissileWars.getLevelManager().scanForLevels();
         MissileWars.getMWL().info("All levels are scanned: " + MissileWars.getLevelManager().getMissileWarsLevelMap().size());
         Bukkit.getServer().setMaxPlayers(16);
