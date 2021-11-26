@@ -25,4 +25,16 @@ public class GamePhase {
 
        player.sendMessage("Gamephase completed on you!");
     }
+
+    public static void phaseSpectator(Player player) {
+        player.setFlying(false);
+        player.setAllowFlight(false);
+        player.setGameMode(GameMode.SPECTATOR);
+        player.playSound(Sound.sound(org.bukkit.Sound.UI_BUTTON_CLICK.getKey(), Sound.Source.BLOCK, 20, 1));
+        player.closeInventory();
+        player.getInventory().clear();
+        player.setHealthScale(20);
+
+        player.sendMessage("Gamephase [spectator] completed on you!");
+    }
 }

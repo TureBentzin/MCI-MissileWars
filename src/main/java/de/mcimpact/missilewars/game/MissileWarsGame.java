@@ -126,21 +126,26 @@ public class MissileWarsGame extends Game implements Listener {
     }
     @EventHandler
     public void playerJoin(PlayerJoinEvent event) {
-        if(gameStatus != GameStatus.GAME)
-            return;
         NetPlayer player = Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId());
+        if(isRunning())
         if(!onlinePlayers.contains(event.getPlayer())) {
-            onlinePlayers.add(event.getPlayer());
+
             getMissileWarsLevel().sendIndividualPlayer(event.getPlayer());
-            teamer.getTeam(event.getPlayer().getUniqueId()).addMember(event.getPlayer().getUniqueId());
-            GamePhase.phasePlayer(event.getPlayer());
+            if (teamer.getTeam(event.getPlayer().getUniqueId()) != null) {
+                onlinePlayers.add(event.getPlayer());
+                
+                teamer.getTeam(event.getPlayer().getUniqueId()).addMember(event.getPlayer().getUniqueId());
+                GamePhase.phasePlayer(event.getPlayer());
+                MissileWars.broadcast("missilewars.message.movement.rejoined",
+                        event.getPlayer().getName(),
+                        Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
 
-
-            MissileWars.broadcast("missilewars.message.movement.rejoined",
-                    event.getPlayer().getName(),
-                    Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
+            }else{
+                player.sendMessage("You are a spectator?!");
+                GamePhase.phaseSpectator(event.getPlayer());
+            }
         }else {
-            player.sendMessage("temp: you should be a spectator!");
+            player.sendMessage("something realy went wrong - please report this!");
         }
     }
 

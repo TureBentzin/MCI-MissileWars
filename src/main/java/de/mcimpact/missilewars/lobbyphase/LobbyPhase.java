@@ -82,8 +82,10 @@ public class LobbyPhase {
 
         @Override
         public void update(int value) {
-            if(MissileWars.GAME.isRunning())
+            if(!MissileWars.GAME.isRunning())
             MissileWars.broadcast("missilewars.message.game.autostart.timer", getValue());
+            else
+                abort();
         }
 
         @Override
@@ -104,7 +106,10 @@ public class LobbyPhase {
                  */
                 @Override
                 public Object call() throws Exception {
+                    if(!MissileWars.GAME.isRunning())
                     MissileWars.GAME.start();
+                    else
+                        System.err.println("game was started with a time and was already running!");
                     return null;
                 }
             });
