@@ -8,7 +8,7 @@ public class PlayerMove implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-        event.getPlayer().sendActionBar("ground:" + event.getPlayer().isOnGround());
+       // event.getPlayer().sendActionBar("ground:" + event.getPlayer().isOnGround());
         event.getPlayer().setAllowFlight(true);
         if (event.getPlayer().isOnGround())
             FlightAttempt.uuidSet.add(event.getPlayer().getUniqueId());

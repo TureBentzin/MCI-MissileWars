@@ -84,12 +84,12 @@ public final class MissileWars extends JavaPlugin {
         // Plugin startup logic
         MISSILEWARS_LOGGER = getLogger();
        // World bukkitlobby = Bukkit.getWorld("world");
-        lobby = getMultiverse().getMVWorldManager().getMVWorld("world");
 
         MISSILEWARS_LOGGER.warning("Running MissileWars v." + getDescription().getVersion());
         MISSILEWARS_LOGGER.info("registering Translations");
         Translations.run();
         multiverse = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
+        lobby = getMultiverse().getMVWorldManager().getMVWorld("world");
         MISSILEWARS_LOGGER.info("stating listening to events!");
         registerListeners();
         MISSILEWARS_LOGGER.info("all events are registered now!");

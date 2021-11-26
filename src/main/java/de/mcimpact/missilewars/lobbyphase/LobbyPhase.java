@@ -24,7 +24,7 @@ public class LobbyPhase {
     public static void onSpawn(NetPlayer netPlayer) {
 
         Player bukkitPlayer = Bukkit.getPlayer(netPlayer.getUniqueId());
-        Location spawnLocation = MissileWars.getLobby().getSpawnLocation();
+        Location spawnLocation = MissileWars.getLobby().getCBWorld().getSpawnLocation();
 
         spawnLocation.getBlock().setType(Material.AIR);
         Location secondLocation = spawnLocation.clone();
@@ -82,6 +82,7 @@ public class LobbyPhase {
 
         @Override
         public void update(int value) {
+            if(MissileWars.GAME.isRunning())
             MissileWars.broadcast("missilewars.message.game.autostart.timer", getValue());
         }
 
