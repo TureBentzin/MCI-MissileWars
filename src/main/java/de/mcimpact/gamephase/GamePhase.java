@@ -22,8 +22,6 @@ public class GamePhase {
 
         Bukkit.getServer().setMaxPlayers(30);
 
-
-       player.sendMessage("Gamephase completed on you!");
     }
 
     public static void phaseSpectator(Player player) {
@@ -35,6 +33,5 @@ public class GamePhase {
         player.getInventory().clear();
         player.setHealthScale(20);
 
-        player.sendMessage("Gamephase [spectator] completed on you!");
     }
 }

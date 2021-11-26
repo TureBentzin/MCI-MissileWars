@@ -67,14 +67,10 @@ public class MissileWarsLevel {
      */
     public void sendIndividualPlayer(Player player) {
        if( MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[0]) {
-           player.sendMessage("DEBUG: You are in Team 0");
            player.teleport(completeLocation(ELocation.FIRST, LocationType.SPAWN));
        }else if(MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[1]){
-
-           player.sendMessage("DEBUG: You are in Team 1");
            player.teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN));
        }else {
-           player.sendMessage("DEBUG: You are not part of a Team?!");
        }
     }
 

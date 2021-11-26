@@ -54,6 +54,8 @@ public class Translations {
         Core.registerTranslation(KEY + "message.start", "<system#prefix><system#color>The game is <system#accent>starting<system#color>!");
         Core.registerTranslation(KEY + "message.start.level", "<system#prefix><system#color>You are going to play on <system#accent>{0}<system#color>!");
 
+        Core.registerTranslation(KEY + "message.fatal", "<fatal#prefix>Something really went wrong! <fatal#accent> - please report this<fatal#color>!");
+
 
 
     }

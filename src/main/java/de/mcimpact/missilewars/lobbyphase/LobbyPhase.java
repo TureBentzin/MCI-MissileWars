@@ -37,7 +37,6 @@ public class LobbyPhase {
         bukkitPlayer.teleport(spawnLocation);
 
         bukkitPlayer.setAllowFlight(true);
-        bukkitPlayer.sendMessage("Lobbyphase completed on you!");
     }
 
     public static void onLobbyPhase(MultiverseWorld mvLobby) {

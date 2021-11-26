@@ -7,6 +7,7 @@ import de.mcimpact.game.team.Team;
 import de.mcimpact.game.team.Teamer;
 import de.mcimpact.gamephase.GamePhase;
 import de.mcimpact.missilewars.MissileWars;
+import de.mcimpact.missilewars.Translations;
 import de.mcimpact.missilewars.game.world.MissileWarsLevel;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -141,11 +142,10 @@ public class MissileWarsGame extends Game implements Listener {
                         Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
 
             }else{
-                player.sendMessage("You are a spectator?!");
                 GamePhase.phaseSpectator(event.getPlayer());
             }
         }else {
-            player.sendMessage("something realy went wrong - please report this!");
+            player.sendMessage(Core.getTranslatableComponent("missilewars.message.fatal"));
         }
     }
 

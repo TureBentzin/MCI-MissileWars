@@ -50,7 +50,6 @@ public class JoinEvent implements Listener {
 
             player.sendMessage(Core.getTranslatableComponent("missilewars.message.teaming.joined",
                     Component.text(game.teamer.getTeam(player).getColor().name()).color(game.teamer.getTeam(player).getColor().getTextColor().adventure)));
-            System.out.println("ready: " + LobbyPhase.checkForStart());
                         //  MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
 
 
