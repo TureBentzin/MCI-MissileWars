@@ -43,7 +43,6 @@ public class MissileWarsGame extends Game implements Listener {
     private int players = 0;
     @Nullable
     private MissileWarsLevel missileWarsLevel;
-    private boolean running;
     private GameStatus gameStatus = GameStatus.PAUSED;
     @Nullable
     private Team[] teams;
@@ -66,11 +65,7 @@ public class MissileWarsGame extends Game implements Listener {
     }
 
     public boolean isRunning() {
-        return running;
-    }
-
-    private void setRunning(boolean running) {
-        this.running = running;
+        return gameStatus == GameStatus.GAME;
     }
 
     public GameStatus getGameStatus() {
