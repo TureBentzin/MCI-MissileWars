@@ -18,6 +18,7 @@ public class PlayerMove implements Listener {
         // event.getPlayer().sendActionBar("ground:" + event.getPlayer().isOnGround());
         if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY) {
             event.getPlayer().setAllowFlight(true);
+
         } else if (MissileWars.GAME.getGameStatus() == GameStatus.GAME) {
             //GamePhase stuff
             NetPlayer netPlayer = Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId());
@@ -25,7 +26,15 @@ public class PlayerMove implements Listener {
                 GamePhase.killPlayer(new PlayerKill.KillInformation(netPlayer,
                         null, event.getPlayer().getLocation(), EntityDamageEvent.DamageCause.CONTACT));
             }
+            if(event.getPlayer().getLocation().getBlockY() > -10) {
+                GamePhase.killPlayer(new PlayerKill.KillInformation(netPlayer,
+                        null, event.getPlayer().getLocation(), EntityDamageEvent.DamageCause.VOID));
+                event.getPlayer().teleport(MissileWars.GAME.getSpwanOfPlayer(event.getPlayer()));
+            }
+
         }
+
+
 
         if (event.getPlayer().isOnGround())
             FlightAttempt.uuidSet.add(event.getPlayer().getUniqueId());

@@ -13,7 +13,8 @@ import java.util.concurrent.Future;
 
 public class LobbyPhase {
 
-    private static final StartTimer startTimer = new StartTimer(20);
+    private static int secs = 20;
+    private static final StartTimer startTimer = new StartTimer(secs);
 
     public static StartTimer getStartTimer() {
         return startTimer;
@@ -60,6 +61,8 @@ public class LobbyPhase {
         if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
             System.out.println("DEBUG: " + MissileWars.GAME.teamer.getPlayers());
         if (MissileWars.GAME.teamer.getPlayers().size() > 1) {
+            if(startTimer.getValue() !=  secs)
+                return false;
 
             MissileWars.getMWL().info("Ready for start!");
             Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), () -> LobbyPhase.getStartTimer().start());

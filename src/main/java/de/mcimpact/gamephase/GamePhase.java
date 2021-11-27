@@ -58,9 +58,11 @@ public class GamePhase {
             player.setKiller(Bukkit.getPlayer(information.killer().getUniqueId()));
 
         Bukkit.broadcast(Core.translate(information.generateDeathMessage()));
+
         player.teleport(MissileWars.GAME.getSpwanOfPlayer(player));
+        player.sendMessage("MissileWars.GAME.getSpwanOfPlayer(player) " + MissileWars.GAME.getSpwanOfPlayer(player));
         player.setHealth(player.getHealthScale());
-        player.showTitle(Title.title(Core.translate(Core.getTranslatableComponent("missilewars.display.title.died")), Component.empty()));
+        player.showTitle(Title.title(Core.translate(Core.getTranslatableComponent("missilewars.display.title.death")), Component.empty()));
 
         return true;
     }

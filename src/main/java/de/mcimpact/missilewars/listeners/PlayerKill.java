@@ -27,10 +27,10 @@ public class PlayerKill implements Listener {
 
 
         if(MissileWars.GAME.isRunning())
-            if(event.getEntity().getKiller() != null)
-            GamePhase.killPlayer( new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()),
-                    Core.getPlayerUtils().get(event.getEntity().getKiller().getUniqueId()), event.getEntity().getLocation(), cause));
-            else {
+            if(event.getEntity().getKiller() != null) {
+                GamePhase.killPlayer(new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()),
+                        Core.getPlayerUtils().get(event.getEntity().getKiller().getUniqueId()), event.getEntity().getLocation(), cause));
+            }else {
                 GamePhase.killPlayer( new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()),
                         null, event.getEntity().getLocation(), cause));
             }

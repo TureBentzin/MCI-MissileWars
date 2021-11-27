@@ -8,10 +8,13 @@ import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+
+import javax.persistence.Lob;
 
 public class JoinEvent implements Listener {
 
@@ -50,7 +53,7 @@ public class JoinEvent implements Listener {
             player.sendMessage(Core.getTranslatableComponent("missilewars.message.teaming.joined",
                     Component.text(game.teamer.getTeam(player).getColor().name()).color(game.teamer.getTeam(player).getColor().getTextColor().adventure)));
             //  MissileWars.broadcast("missilewars.message.debug", game.teamer.getTeamMap().toString());
-
+            LobbyPhase.checkForStart();
 
         } else if (game.getGameStatus() == GameStatus.PAUSED) {
             player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.movement.playerjoin.failed")));
