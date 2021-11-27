@@ -52,15 +52,11 @@ public class GamePhase {
         }
         Player player = Bukkit.getPlayer(information.player().getUniqueId());
 
-        EntityDamageEvent ede = new EntityDamageEvent(player, information.deathCause(), 1000);
-        Bukkit.getPluginManager().callEvent(ede);
-        if (ede.isCancelled()) return true;
-
-        ede.getEntity().setLastDamageCause(ede);
         player.setHealth(0);
         if (information.killer() != null)
             player.setKiller(Bukkit.getPlayer(information.killer().getUniqueId()));
-        Bukkit.broadcast(information.deathMessage());
+
+        Bukkit.broadcast();
 
         return true;
     }
