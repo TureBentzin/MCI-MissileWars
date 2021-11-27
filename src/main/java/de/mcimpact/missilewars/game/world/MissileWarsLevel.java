@@ -16,12 +16,12 @@ public class MissileWarsLevel {
     private World world;
     private MissileWarsLevelData data;
 
-    private MultiverseWorld multiverseWorld;
+    private final MultiverseWorld multiverseWorld;
 
     protected MissileWarsLevel(World world, MissileWarsLevelData data) {
         this.world = world;
         this.data = data;
-        this.multiverseWorld = MissileWars.getMultiverse().getMVWorldManager().getMVWorld( world.getName());
+        this.multiverseWorld = MissileWars.getMultiverse().getMVWorldManager().getMVWorld(world.getName());
         setupMVWorld();
     }
 
@@ -61,16 +61,15 @@ public class MissileWarsLevel {
     }
 
     /**
-     *
      * @param player that will be a
      */
     public void sendIndividualPlayer(Player player) {
-       if( MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[0]) {
-           player.teleport(completeLocation(ELocation.FIRST, LocationType.SPAWN));
-       }else if(MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[1]){
-           player.teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN));
-       }else {
-       }
+        if (MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[0]) {
+            player.teleport(completeLocation(ELocation.FIRST, LocationType.SPAWN));
+        } else if (MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[1]) {
+            player.teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN));
+        } else {
+        }
     }
 
     protected Location completeLocation(ELocation elocation, LocationType locationType) {
@@ -78,10 +77,10 @@ public class MissileWarsLevel {
     }
 
     protected Vector getLocationVector(ELocation eLocation) {
-        Location location= eLocation.function.apply(getData().getSpawnLocationPair());
+        Location location = eLocation.function.apply(getData().getSpawnLocationPair());
         Location secondLocation = null;
         for (ELocation value : ELocation.values()) {
-            if(value != eLocation) {
+            if (value != eLocation) {
                 secondLocation = value.function.apply(getData().getSpawnLocationPair());
             }
         }
@@ -98,6 +97,18 @@ public class MissileWarsLevel {
                 .add("world=" + world.getName())
                 .add("data=" + data)
                 .toString();
+    }
+
+    protected void setupMVWorld() {
+        getMultiverseWorld().allowPortalMaking(AllowedPortalType.NONE);
+        getMultiverseWorld().setAllowFlight(false);
+        getMultiverseWorld().setAutoHeal(true);
+        getMultiverseWorld().setBedRespawn(false);
+        getMultiverseWorld().setDifficulty(Difficulty.PEACEFUL);
+        getMultiverseWorld().setEnableWeather(false);
+        getMultiverseWorld().setGameMode(GameMode.SURVIVAL);
+        getMultiverseWorld().setPVPMode(true);
+        System.out.println(getMultiverseWorld().getName() + " was setup as a MissileWarsLevel!");
     }
 
     private enum ELocation {
@@ -124,17 +135,5 @@ public class MissileWarsLevel {
         LocationType(Function<MissileWarsLevelData, LocationPair> function) {
             this.function = function;
         }
-    }
-
-    protected void setupMVWorld() {
-        getMultiverseWorld().allowPortalMaking( AllowedPortalType.NONE);
-        getMultiverseWorld().setAllowFlight(false);
-        getMultiverseWorld().setAutoHeal(true);
-        getMultiverseWorld().setBedRespawn(false);
-        getMultiverseWorld().setDifficulty(Difficulty.PEACEFUL);
-        getMultiverseWorld().setEnableWeather(false);
-        getMultiverseWorld().setGameMode(GameMode.SURVIVAL);
-        getMultiverseWorld().setPVPMode(true);
-        System.out.println(getMultiverseWorld().getName() + " was setup as a MissileWarsLevel!");
     }
 }

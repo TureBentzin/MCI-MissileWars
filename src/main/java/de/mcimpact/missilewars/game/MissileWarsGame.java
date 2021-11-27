@@ -7,7 +7,6 @@ import de.mcimpact.game.team.Team;
 import de.mcimpact.game.team.Teamer;
 import de.mcimpact.gamephase.GamePhase;
 import de.mcimpact.missilewars.MissileWars;
-import de.mcimpact.missilewars.Translations;
 import de.mcimpact.missilewars.game.world.MissileWarsLevel;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -19,18 +18,12 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
-import java.net.http.WebSocket;
-import java.sql.Time;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 
 public class MissileWarsGame extends Game implements Listener {
-
-    public static void staticstart() {
-        getInstance().start();
-    }
 
     public static MissileWarsGame instance = new MissileWarsGame();
     /**
@@ -41,12 +34,17 @@ public class MissileWarsGame extends Game implements Listener {
      * @see MissileWarsGame
      */
     public Teamer teamer = new Teamer(2);
+    public Set<Player> onlinePlayers = new HashSet<>();
     private int players = 0;
     @Nullable
     private MissileWarsLevel missileWarsLevel;
     private GameStatus gameStatus = GameStatus.PAUSED;
     @Nullable
     private Team[] teams;
+
+    public static void staticstart() {
+        getInstance().start();
+    }
 
     public static MissileWarsGame getInstance() {
         return instance;
@@ -110,14 +108,12 @@ public class MissileWarsGame extends Game implements Listener {
         onlinePlayers.forEach(consumer);
     }
 
-    public Set<Player> onlinePlayers = new HashSet<>();
-
     @EventHandler
     public void playerQuit(PlayerQuitEvent event) {
-        if(gameStatus != GameStatus.GAME)
+        if (gameStatus != GameStatus.GAME)
             return;
         NetPlayer player = Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId());
-        if(onlinePlayers.contains(event.getPlayer())) {
+        if (onlinePlayers.contains(event.getPlayer())) {
             onlinePlayers.remove(event.getPlayer());
             teamer.getTeam(event.getPlayer().getUniqueId()).removeMember(player);
 
@@ -125,28 +121,29 @@ public class MissileWarsGame extends Game implements Listener {
                     Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
         }
     }
+
     @EventHandler
     public void playerJoin(PlayerJoinEvent event) {
         NetPlayer player = Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId());
-        if(isRunning())
-        if(!onlinePlayers.contains(event.getPlayer())) {
+        if (isRunning())
+            if (!onlinePlayers.contains(event.getPlayer())) {
 
-            getMissileWarsLevel().sendIndividualPlayer(event.getPlayer());
-            if (teamer.getTeam(event.getPlayer().getUniqueId()) != null) {
-                onlinePlayers.add(event.getPlayer());
+                getMissileWarsLevel().sendIndividualPlayer(event.getPlayer());
+                if (teamer.getTeam(event.getPlayer().getUniqueId()) != null) {
+                    onlinePlayers.add(event.getPlayer());
 
-                teamer.getTeam(event.getPlayer().getUniqueId()).addMember(event.getPlayer().getUniqueId());
-                GamePhase.phasePlayer(event.getPlayer());
-                MissileWars.broadcast("missilewars.message.movement.rejoin",
-                        event.getPlayer().getName(),
-                        Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
+                    teamer.getTeam(event.getPlayer().getUniqueId()).addMember(event.getPlayer().getUniqueId());
+                    GamePhase.phasePlayer(event.getPlayer());
+                    MissileWars.broadcast("missilewars.message.movement.rejoin",
+                            event.getPlayer().getName(),
+                            Component.text(teamer.getTeam(player).getColor().name()).color(teamer.getTeam(player).getColor().getTextColor().adventure));
 
-            }else{
-                GamePhase.phaseSpectator(event.getPlayer());
+                } else {
+                    GamePhase.phaseSpectator(event.getPlayer());
+                }
+            } else {
+                player.sendMessage(Core.getTranslatableComponent("missilewars.message.fatal"));
             }
-        }else {
-            player.sendMessage(Core.getTranslatableComponent("missilewars.message.fatal"));
-        }
     }
 
     public Set<Player> getOnlinePlayers() {
@@ -166,16 +163,15 @@ public class MissileWarsGame extends Game implements Listener {
     }
 
     /**
-     * 
      * @param player
      * @return is the player is a spectator
-     * @see MissileWarsGame#isPlayingPlayer(Player) 
+     * @see MissileWarsGame#isPlayingPlayer(Player)
      */
     public boolean isSpectatingPlayer(Player player) {
         return !isPlayingPlayer(player);
     }
+
     /**
-     *
      * @param netplayer
      * @return is the player is a spectator
      * @see MissileWarsGame#isPlayingPlayer(NetPlayer)
@@ -183,8 +179,8 @@ public class MissileWarsGame extends Game implements Listener {
     public boolean isSpectatingPlayer(NetPlayer netplayer) {
         return !isPlayingPlayer(netplayer.getUniqueId());
     }
+
     /**
-     *
      * @param uuid
      * @return is the player is a spectator
      * @see MissileWarsGame#isPlayingPlayer(UUID)
@@ -208,7 +204,7 @@ public class MissileWarsGame extends Game implements Listener {
         level.getWorld().setTime(2000);
         level.getWorld().setViewDistance(32);
 
-        getOnlinePlayers().forEach( player -> GamePhase.phasePlayer(player));
+        getOnlinePlayers().forEach(player -> GamePhase.phasePlayer(player));
 
 
     }

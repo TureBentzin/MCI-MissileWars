@@ -27,7 +27,7 @@ public class Selector {
         closeinv = closeInvOnClick;
     }
 
-    public void open(NetPlayer netPlayer){
+    public void open(NetPlayer netPlayer) {
         if (entries == null) {
             throw new NullPointerException("No SelectorEntries");
         }
@@ -192,7 +192,7 @@ public class Selector {
             }
             if (getNumber(entry) == 2) {
                 handle2(entry);
-                handle(entry,2);
+                handle(entry, 2);
             }
             if (getNumber(entry) == 3) {
                 handle3(entry);
@@ -250,7 +250,7 @@ public class Selector {
         this.entries = entries;
     }
 
-    public static class SelectorEntry{
+    public static class SelectorEntry {
         ItemStack item;
 
         public SelectorEntry(ItemStack item) {
