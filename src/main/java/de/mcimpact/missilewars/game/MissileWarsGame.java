@@ -165,6 +165,16 @@ public class MissileWarsGame extends Game implements Listener {
         return getOnlinePlayers().contains(player);
     }
 
+    /**
+     * 
+     * @param player
+     * @return is the player is a spectator
+     * @see MissileWarsGame#isPlayingPlayer(Player) 
+     */
+    public boolean isSpectatingPlayer(Player player) {
+        return !isPlayingPlayer(player);
+    }
+
     @Override
     public void start() {
 
