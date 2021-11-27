@@ -153,6 +153,19 @@ public class MissileWarsGame extends Game implements Listener {
         return onlinePlayers;
     }
 
+    public boolean isPlayingPlayer(NetPlayer netPlayer) {
+        return isPlayingPlayer(netPlayer.getUniqueId());
+    }
+
+    public boolean isPlayingPlayer(UUID uuid) {
+        return isPlayingPlayer(Bukkit.getPlayer(uuid));
+    }
+
+    public boolean isPlayingPlayer(Player player) {
+        //TODO: check if the player is playing
+        return false;
+    }
+
     @Override
     public void start() {
 
