@@ -1,6 +1,9 @@
 package de.mcimpact.missilewars.listeners;
 
+import com.destroystokyo.paper.event.profile.ProfileWhitelistVerifyEvent;
 import de.mcimpact.core.players.NetPlayer;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Entity;
@@ -29,11 +32,21 @@ public class PlayerKill implements Listener {
 
 
     public static record KillInformation(
-            NetPlayer player, Component deathMessage, @Nullable NetPlayer killer, Location killPosition, EntityDamageEvent.DamageCause deathCause)
+            NetPlayer player, TextComponent deathMessage, @Nullable NetPlayer killer, Location killPosition, EntityDamageEvent.DamageCause deathCause)
     {
 
+        /**
+         *
+         * @param player
+         * @param deathCause
+         * @return a KillInformation for a simple kill
+         */
+        public static KillInformation generateEasyKillInformation(NetPlayer player, EntityDamageEvent.DamageCause deathCause) {
+            return new KillInformation(player, new TextComponent(""), null, Bukkit.getPlayer(player.getUniqueId()).getLocation(), deathCause);
+        }
+
         @Override
-        public Component deathMessage() {
+        public TextComponent deathMessage() {
             return deathMessage;
         }
 
