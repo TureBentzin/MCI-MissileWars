@@ -19,7 +19,6 @@ public class PlayerKill implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
 
-
         Entity ent = event.getEntity();
         EntityDamageEvent ede = ent.getLastDamageCause();
         EntityDamageEvent.DamageCause cause = ede.getCause();
@@ -29,7 +28,7 @@ public class PlayerKill implements Listener {
 
         if(MissileWars.GAME.isRunning())
             GamePhase.killPlayer( new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()),
-                    Core.getPlayerUtils().get(event.getPlayer().getKiller().getUniqueId()), event.getPlayer().getLocation(), cause));
+                    Core.getPlayerUtils().get(event.getEntity().getKiller().getUniqueId()), event.getPlayer().getLocation(), cause));
     }
 
 
