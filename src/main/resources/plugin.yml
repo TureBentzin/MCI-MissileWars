@@ -8,10 +8,9 @@ description: MissileWars Plugin for mcimpcat.de
 website: https://mcimpact.de
 depend:
   - 'MCI-Core'
+  - 'Multiverse-Core'
 commands:
   debugteam:
     usage: /<command>
   tasks:
     usage: /<command>
-softdepend:
-  - 'Multiverse-Core'
