@@ -162,8 +162,7 @@ public class MissileWarsGame extends Game implements Listener {
     }
 
     public boolean isPlayingPlayer(Player player) {
-        //TODO: check if the player is playing
-        return false;
+        return getOnlinePlayers().contains(player);
     }
 
     @Override
