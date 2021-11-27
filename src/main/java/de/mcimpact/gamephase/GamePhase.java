@@ -48,6 +48,10 @@ public class GamePhase {
     }
 
     public static boolean killPlayer(PlayerKill.KillInformation information) {
+        if(MissileWars.GAME.isSpectatingPlayer(information.player().getUniqueId()) ||
+                MissileWars.GAME.isSpectatingPlayer(information.killer().getUniqueId())) {
+            return false;
+        }
         Player player = Bukkit.getPlayer(information.player().getUniqueId());
 
         EntityDamageEvent ede = new EntityDamageEvent(player, information.deathCause(), 1000);
@@ -60,6 +64,6 @@ public class GamePhase {
         player.setKiller(Bukkit.getPlayer(information.killer().getUniqueId()));
         Bukkit.broadcast(information.deathMessage());
 
-
+        return true;
     }
 }
