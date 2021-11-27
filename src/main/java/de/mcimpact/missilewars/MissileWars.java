@@ -107,6 +107,9 @@ public final class MissileWars extends JavaPlugin {
 
         MISSILEWARS_LOGGER.info("The Game is now open!");
         GAME.setGameStatus(GameStatus.LOBBY); //Define the GameStatus
+
+        Bukkit.getServer().setMaxPlayers(16);
+
         LobbyPhase.onLobbyPhase(getLobby());
     }
 
