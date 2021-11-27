@@ -1,6 +1,5 @@
 package de.mcimpact.missilewars.game.world;
 
-import com.onarandombox.MultiverseCore.api.MultiversePlugin;
 import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import com.onarandombox.MultiverseCore.enums.AllowedPortalType;
 import de.mcimpact.missilewars.MissileWars;
@@ -103,7 +102,7 @@ public class MissileWarsLevel {
 
     private enum ELocation {
 
-        FIRST(LocationPair::getFist),
+        FIRST(LocationPair::getFirst),
         SECOND(LocationPair::getSecond);
 
         Function<LocationPair, Location> function;

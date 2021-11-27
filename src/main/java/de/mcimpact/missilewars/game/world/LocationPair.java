@@ -11,19 +11,19 @@ public class LocationPair extends Pair<Location> {
     }
 
     public double getDistance() {
-        return getFist().distance(getSecond());
+        return getFirst().distance(getSecond());
     }
 
     public Pair<Block> getBlocks() {
-        return new Pair<>(getFist().getBlock(), getSecond().getBlock());
+        return new Pair<>(getFirst().getBlock(), getSecond().getBlock());
     }
 
     public Pair<Vector> getToVector() {
-        return new Pair<>(getFist().toVector(), getSecond().toVector());
+        return new Pair<>(getFirst().toVector(), getSecond().toVector());
     }
 
     public boolean isLoaded() {
-        return getFist().isChunkLoaded() && getSecond().isChunkLoaded();
+        return getFirst().isChunkLoaded() && getSecond().isChunkLoaded();
     }
 
 
