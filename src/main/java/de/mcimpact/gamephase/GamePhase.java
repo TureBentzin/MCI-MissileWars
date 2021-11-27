@@ -1,9 +1,12 @@
 package de.mcimpact.gamephase;
 
+import de.mcimpact.core.Core;
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.listeners.PlayerKill;
 import net.kyori.adventure.sound.Sound;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -42,7 +45,7 @@ public class GamePhase {
 
     public static boolean hasContact(NetPlayer player, Material material) {
         Player bukkitPlayer = Bukkit.getPlayer(player.getUniqueId());
-        return bukkitPlayer.getLocation().add(0, -1, 0).getBlock().getType() == material;
+        return bukkitPlayer.getLocation().add(0, 0, 0).getBlock().getType() == material;
     }
 
     public static boolean killPlayer(PlayerKill.KillInformation information) {
@@ -51,12 +54,13 @@ public class GamePhase {
         }
         Player player = Bukkit.getPlayer(information.player().getUniqueId());
 
-        player.setHealth(0);
         if (information.killer() != null)
             player.setKiller(Bukkit.getPlayer(information.killer().getUniqueId()));
 
-        Bukkit.broadcast(information.generateDeathMessage());
+        Bukkit.broadcast(Core.translate(information.generateDeathMessage()));
         player.teleport(MissileWars.GAME.getSpwanOfPlayer(player));
+        player.setHealth(player.getHealthScale());
+        player.showTitle(Title.title(Core.translate(Core.getTranslatableComponent("missilewars.display.title.died")), Component.empty()));
 
         return true;
     }
