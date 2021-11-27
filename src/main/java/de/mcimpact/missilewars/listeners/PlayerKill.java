@@ -27,12 +27,17 @@ public class PlayerKill implements Listener {
 
 
         if(MissileWars.GAME.isRunning())
+            if(event.getEntity().getKiller() != null)
             GamePhase.killPlayer( new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()),
                     Core.getPlayerUtils().get(event.getEntity().getKiller().getUniqueId()), event.getPlayer().getLocation(), cause));
+            else {
+                GamePhase.killPlayer( new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()),
+                        null, event.getPlayer().getLocation(), cause));
+            }
     }
 
 
-    public static record KillInformation(
+    public static record KillInformation( 
             NetPlayer player, @Nullable NetPlayer killer, Location killPosition,
             EntityDamageEvent.DamageCause deathCause)
     {

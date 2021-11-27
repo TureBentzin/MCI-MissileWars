@@ -56,6 +56,7 @@ public class GamePhase {
             player.setKiller(Bukkit.getPlayer(information.killer().getUniqueId()));
 
         Bukkit.broadcast(information.generateDeathMessage());
+        player.teleport(MissileWars.GAME.getSpwanOfPlayer(player));
 
         return true;
     }
