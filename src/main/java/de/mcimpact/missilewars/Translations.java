@@ -57,6 +57,9 @@ public class Translations {
         Core.registerTranslation(KEY + "message.fatal", "<fatal#prefix>Something really went wrong! <fatal#accent> - please report this<fatal#color>!");
 
 
+        Core.registerTranslation(KEY + "message.killed", "<system#prefix><system#accent>{0} <system#color>was killed by <system#accent>{1}<system#color>!");
+        Core.registerTranslation(KEY + "message.died", "<system#prefix><system#accent>{0} <system#color>died!");
+
 
     }
 
