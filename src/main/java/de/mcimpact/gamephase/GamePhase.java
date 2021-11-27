@@ -56,7 +56,7 @@ public class GamePhase {
         if (information.killer() != null)
             player.setKiller(Bukkit.getPlayer(information.killer().getUniqueId()));
 
-        Bukkit.broadcast();
+        Bukkit.broadcast(information.generateDeathMessage());
 
         return true;
     }
