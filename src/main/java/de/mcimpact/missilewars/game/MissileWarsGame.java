@@ -174,6 +174,24 @@ public class MissileWarsGame extends Game implements Listener {
     public boolean isSpectatingPlayer(Player player) {
         return !isPlayingPlayer(player);
     }
+    /**
+     *
+     * @param netplayer
+     * @return is the player is a spectator
+     * @see MissileWarsGame#isPlayingPlayer(NetPlayer)
+     */
+    public boolean isSpectatingPlayer(NetPlayer netplayer) {
+        return !isPlayingPlayer(netplayer.getUniqueId());
+    }
+    /**
+     *
+     * @param uuid
+     * @return is the player is a spectator
+     * @see MissileWarsGame#isPlayingPlayer(UUID)
+     */
+    public boolean isSpectatingPlayer(UUID uuid) {
+        return !isPlayingPlayer(uuid);
+    }
 
     @Override
     public void start() {
