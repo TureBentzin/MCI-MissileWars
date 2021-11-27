@@ -66,6 +66,13 @@ public class PlayerKill implements Listener {
             return killer;
         }
 
+        /**
+         *
+         * @return <code>missilewars.message.explode</code> when the player blew up!
+         * @return <code>missilewars.message.died</code> when the player died!
+         * @return <code>missilewars.message.killed</code> when there is a <code>killer()</code>!
+         *
+         */
         public Component generateDeathMessage() {
             if(deathCause == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || deathCause == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
                 return Core.getTranslatableComponent("missilewars.message.explode", player.getName());
