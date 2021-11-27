@@ -28,13 +28,13 @@ public class PlayerKill implements Listener {
 
 
         if(MissileWars.GAME.isRunning())
-            GamePhase.killPlayer( new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()), Component.text(event.getDeathMessage()),
+            GamePhase.killPlayer( new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()),
                     Core.getPlayerUtils().get(event.getPlayer().getKiller().getUniqueId()), event.getPlayer().getLocation(), cause));
     }
 
 
     public static record KillInformation(
-            NetPlayer player, Component deathMessage, @Nullable NetPlayer killer, Location killPosition,
+            NetPlayer player, @Nullable NetPlayer killer, Location killPosition,
             EntityDamageEvent.DamageCause deathCause)
     {
 
@@ -44,19 +44,13 @@ public class PlayerKill implements Listener {
          * @return a KillInformation for a simple kill
          */
         public static KillInformation generateEasyKillInformation(NetPlayer player, EntityDamageEvent.DamageCause deathCause) {
-            return new KillInformation(player, Component.text(""), null, Bukkit.getPlayer(player.getUniqueId()).getLocation(), deathCause);
+            return new KillInformation(player, null, Bukkit.getPlayer(player.getUniqueId()).getLocation(), deathCause);
         }
 
         @Override
         public EntityDamageEvent.DamageCause deathCause() {
             return deathCause;
         }
-
-        @Override
-        public Component deathMessage() {
-            return deathMessage;
-        }
-
         @Override
         public NetPlayer player() {
             return player;
@@ -70,6 +64,15 @@ public class PlayerKill implements Listener {
         @Override
         public @Nullable NetPlayer killer() {
             return killer;
+        }
+
+        public Component generateDeathMessage() {
+            if(deathCause == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || deathCause == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
+                return Core.getTranslatableComponent("missilewars.message.explode", player.getName());
+            }else if(killer != null) {
+                return Core.getTranslatableComponent("missilewars.message.killed", player.getName(), killer);
+            } else
+                return Core.getTranslatableComponent("missilewars.message.died",player.getName());
         }
 
     }
