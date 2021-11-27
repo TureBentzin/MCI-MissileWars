@@ -46,8 +46,7 @@ public class GamePhase {
     }
 
     public static boolean killPlayer(PlayerKill.KillInformation information) {
-        if (MissileWars.GAME.isSpectatingPlayer(information.player().getUniqueId()) ||
-                MissileWars.GAME.isSpectatingPlayer(information.killer().getUniqueId())) {
+        if (MissileWars.GAME.isSpectatingPlayer(information.player().getUniqueId())) {
             return false;
         }
         Player player = Bukkit.getPlayer(information.player().getUniqueId());
