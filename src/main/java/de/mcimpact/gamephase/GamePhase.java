@@ -1,9 +1,11 @@
 package de.mcimpact.gamephase;
 
+import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.MissileWars;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 public class GamePhase {
@@ -33,5 +35,11 @@ public class GamePhase {
         player.getInventory().clear();
         player.setHealthScale(20);
 
+    }
+
+    
+    public static boolean hasContact(NetPlayer player, Material material){
+        Player bukkitPlayer = Bukkit.getPlayer(player.getUniqueId());
+        return bukkitPlayer.getLocation().add(0, -1, 0).getBlock().getType() == material;
     }
 }

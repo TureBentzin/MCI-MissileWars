@@ -13,7 +13,14 @@ public class PlayerMove implements Listener {
        // event.getPlayer().sendActionBar("ground:" + event.getPlayer().isOnGround());
         if(MissileWars.GAME.getGameStatus() == GameStatus.LOBBY) {
         event.getPlayer().setAllowFlight(true);
+        }else if(MissileWars.GAME.getGameStatus() == GameStatus.GAME) {
+            //GamePhase stuff
+
+
+
         }
+
+
         if (event.getPlayer().isOnGround())
             FlightAttempt.uuidSet.add(event.getPlayer().getUniqueId());
     }
