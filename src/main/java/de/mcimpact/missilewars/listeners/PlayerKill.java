@@ -1,6 +1,9 @@
 package de.mcimpact.missilewars.listeners;
 
+import de.mcimpact.core.Core;
 import de.mcimpact.core.players.NetPlayer;
+import de.mcimpact.gamephase.GamePhase;
+import de.mcimpact.missilewars.MissileWars;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -16,17 +19,24 @@ public class PlayerKill implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
 
+
         Entity ent = event.getEntity();
         EntityDamageEvent ede = ent.getLastDamageCause();
         EntityDamageEvent.DamageCause cause = ede.getCause();
         event.deathMessage();
         event.setCancelled(true);
+
+
+        if(MissileWars.GAME.isRunning())
+            GamePhase.killPlayer( new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()), Component.text(event.getDeathMessage()),
+                    Core.getPlayerUtils().get(event.getPlayer().getKiller().getUniqueId()), event.getPlayer().getLocation(), cause));
     }
 
 
     public static record KillInformation(
             NetPlayer player, Component deathMessage, @Nullable NetPlayer killer, Location killPosition,
-            EntityDamageEvent.DamageCause deathCause) {
+            EntityDamageEvent.DamageCause deathCause)
+    {
 
         /**
          * @param player
