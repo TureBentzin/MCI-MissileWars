@@ -17,7 +17,7 @@ public class EntityDamage implements Listener {
         if (MissileWars.GAME.getGameStatus() != GameStatus.GAME)
             if (event.getEntity() instanceof Player) {
                 Player player = (Player) event.getEntity();
-                if (MissileWars.GAME.getGameStatus() != GameStatus.GAME) event.setCancelled(true);
+                event.setCancelled(true);
             }
 
     }
