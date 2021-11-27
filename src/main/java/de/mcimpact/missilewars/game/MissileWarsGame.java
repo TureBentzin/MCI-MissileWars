@@ -10,6 +10,7 @@ import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.world.MissileWarsLevel;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -187,6 +188,42 @@ public class MissileWarsGame extends Game implements Listener {
      */
     public boolean isSpectatingPlayer(UUID uuid) {
         return !isPlayingPlayer(uuid);
+    }
+
+    public Location getSpwanOfPlayer(Player player) {
+        if(isSpectatingPlayer(player)) return getMissileWarsLevel().getWorld().getSpawnLocation();
+        if(isPlayingPlayer(player)) {
+            int number = getPlayersTeamNumber(player.getUniqueId());
+            if(number != 2){
+                if(number == 0) return getMissileWarsLevel().getData().getSpawnLocationPair().getFirst();
+                if(number == 1) return getMissileWarsLevel().getData().getSpawnLocationPair().getSecond();
+            }else {
+                MissileWars.broadcast("missilewars.message.fatal");
+                return getMissileWarsLevel().getWorld().getSpawnLocation();
+            }
+        }
+        MissileWars.broadcast("missilewars.message.fatal");
+        return getMissileWarsLevel().getWorld().getSpawnLocation();
+    }
+
+    /**
+     *
+     * @param player
+     * @return 0 or 1 for the Teams and 2 if there is no team!
+     */
+    public int getPlayersTeamNumber(NetPlayer player) {
+        if(teamer.getTeam(player) == teamer.getTeams()[0]) return 0;
+        if(teamer.getTeam(player) == teamer.getTeams()[1]) return 1;
+        return 2;
+    }
+
+    /**
+     *
+     * @param  uuid
+     * @return 0 or 1 for the Teams and 2 if there is no team!
+     */
+    public int getPlayersTeamNumber(UUID uuid) {
+        return getPlayersTeamNumber(Core.getPlayerUtils().getPlayer(uuid));
     }
 
     @Override
