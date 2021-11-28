@@ -51,6 +51,8 @@ public class GamePhase {
         if (MissileWars.GAME.isSpectatingPlayer(information.player().getUniqueId())) {
             return false;
         }
+
+        NetPlayer netPlayer = information.player();
         Player player = Bukkit.getPlayer(information.player().getUniqueId());
 
         if (information.killer() != null)
@@ -58,6 +60,9 @@ public class GamePhase {
 
         Bukkit.broadcast(Core.translate(information.generateDeathMessage()));
 
+        if(player.isDead()) {
+
+        }
         player.teleport(MissileWars.GAME.getSpwanOfPlayer(player));
         player.sendMessage("MissileWars.GAME.getSpwanOfPlayer(player) " + MissileWars.GAME.getSpwanOfPlayer(player));
         player.setHealth(player.getHealthScale());
