@@ -40,25 +40,24 @@ public class PlayerKill implements Listener {
     @EventHandler
     public void onDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
-        if(entity instanceof Player){
+        if (entity instanceof Player) {
             Player player = (Player) entity;
           /* String message = "Damage: " + event.getCause().name() + "*" + event.getDamage() + " | " + (player.getHealth() - event.getDamage())+ "/" + player.getHealthScale();
             player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.debug", message)));
            */
-            if(MissileWars.GAME.isRunning())
-                if(MissileWars.GAME.isPlayingPlayer(player)) {
-                    if( (player.getHealth() - event.getDamage()) <= 0) {
-                        player.teleport(MissileWars.GAME.getSpwanOfPlayer(player));
-                    }
-                }
+            if (MissileWars.GAME.isRunning() &&
+                    MissileWars.GAME.isPlayingPlayer(player)
+                    && (player.getHealth() - event.getDamage()) <= 0) {
+                player.teleport(MissileWars.GAME.getSpwanOfPlayer(player));
+
+            }
         }
     }
 
 
     public static record KillInformation(
             NetPlayer player, @Nullable NetPlayer killer, Location killPosition,
-            EntityDamageEvent.DamageCause deathCause)
-    {
+            EntityDamageEvent.DamageCause deathCause) {
 
         /**
          * @param player
