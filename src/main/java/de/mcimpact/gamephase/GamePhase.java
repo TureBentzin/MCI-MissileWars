@@ -64,7 +64,6 @@ public class GamePhase {
 
         }
         player.teleport(MissileWars.GAME.getSpwanOfPlayer(player));
-        player.sendMessage("MissileWars.GAME.getSpwanOfPlayer(player) " + MissileWars.GAME.getSpwanOfPlayer(player));
         player.setHealth(player.getHealthScale());
         player.showTitle(Title.title(Core.translate(Core.getTranslatableComponent("missilewars.display.title.death")), Component.empty()));
 
