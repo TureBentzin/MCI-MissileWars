@@ -4,18 +4,17 @@ import com.onarandombox.MultiverseCore.api.MultiverseWorld;
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
-import de.mcimpact.missilewars.game.MissileWarsGame;
 import de.mcimpact.missilewars.util.Timer;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
 public class LobbyPhase {
 
-    private static StartTimer startTimer = new StartTimer(20);
+    private static final int secs = 20;
+    private static final StartTimer startTimer = new StartTimer(secs);
 
     public static StartTimer getStartTimer() {
         return startTimer;
@@ -58,16 +57,18 @@ public class LobbyPhase {
         Bukkit.getServer().setMaxPlayers(16);
     }
 
-    public  static boolean checkForStart() {
-        if(MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
+    public static boolean checkForStart() {
+        if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
             System.out.println("DEBUG: " + MissileWars.GAME.teamer.getPlayers());
-       if( MissileWars.GAME.teamer.getPlayers().size() > 1) {
+        if (MissileWars.GAME.teamer.getPlayers().size() > 1) {
+            if (startTimer.getValue() != secs)
+                return false;
 
-           MissileWars.getMWL().info("Ready for start!");
-           Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), () -> LobbyPhase.getStartTimer().start());
+            MissileWars.getMWL().info("Ready for start!");
+            Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), () -> LobbyPhase.getStartTimer().start());
 
-           return true;
-       }
+            return true;
+        }
         return false;
     }
 
@@ -81,8 +82,8 @@ public class LobbyPhase {
 
         @Override
         public void update(int value) {
-            if(!MissileWars.GAME.isRunning())
-            MissileWars.broadcast("missilewars.message.game.autostart.timer", getValue());
+            if (!MissileWars.GAME.isRunning())
+                MissileWars.broadcast("missilewars.message.game.autostart.timer", getValue());
             else
                 abort();
         }
@@ -105,8 +106,8 @@ public class LobbyPhase {
                  */
                 @Override
                 public Object call() throws Exception {
-                    if(!MissileWars.GAME.isRunning())
-                    MissileWars.GAME.start();
+                    if (!MissileWars.GAME.isRunning())
+                        MissileWars.GAME.start();
                     else
                         System.err.println("game was started with a time and was already running!");
                     return null;

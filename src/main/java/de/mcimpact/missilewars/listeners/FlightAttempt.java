@@ -37,14 +37,12 @@ public class FlightAttempt implements Listener {
                 }
             event.getPlayer().setFlying(false);
             event.setCancelled(true);
-        }else if(MissileWars.GAME.getGameStatus() == GameStatus.GAME) {
-            if(MissileWars.GAME.getOnlinePlayers().contains(event.getPlayer())) {
+        } else if (MissileWars.GAME.getGameStatus() == GameStatus.GAME) {
+            if (MissileWars.GAME.getOnlinePlayers().contains(event.getPlayer())) {
                 event.getPlayer().setFlying(false);
                 event.setCancelled(true);
             }
         }
-
-
 
 
     }

@@ -1,7 +1,6 @@
 package de.mcimpact.missilewars.errors;
 
-public class SelectorOpenedException extends Exception{
-
+public class SelectorOpenedException extends Exception {
 
 
     @Override
