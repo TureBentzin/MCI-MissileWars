@@ -13,7 +13,7 @@ import java.util.concurrent.Future;
 
 public class LobbyPhase {
 
-    private static int secs = 20;
+    private static final int secs = 20;
     private static final StartTimer startTimer = new StartTimer(secs);
 
     public static StartTimer getStartTimer() {
@@ -61,7 +61,7 @@ public class LobbyPhase {
         if (MissileWars.GAME.getGameStatus() == GameStatus.LOBBY)
             System.out.println("DEBUG: " + MissileWars.GAME.teamer.getPlayers());
         if (MissileWars.GAME.teamer.getPlayers().size() > 1) {
-            if(startTimer.getValue() !=  secs)
+            if (startTimer.getValue() != secs)
                 return false;
 
             MissileWars.getMWL().info("Ready for start!");

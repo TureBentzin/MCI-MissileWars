@@ -13,10 +13,9 @@ import java.util.function.Function;
 
 public class MissileWarsLevel {
 
+    private final MultiverseWorld multiverseWorld;
     private World world;
     private MissileWarsLevelData data;
-
-    private final MultiverseWorld multiverseWorld;
 
     protected MissileWarsLevel(World world, MissileWarsLevelData data) {
         this.world = world;

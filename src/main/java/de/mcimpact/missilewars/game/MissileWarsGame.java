@@ -191,13 +191,13 @@ public class MissileWarsGame extends Game implements Listener {
     }
 
     public Location getSpwanOfPlayer(Player player) {
-        if(isSpectatingPlayer(player)) return getMissileWarsLevel().getWorld().getSpawnLocation();
-        if(isPlayingPlayer(player)) {
+        if (isSpectatingPlayer(player)) return getMissileWarsLevel().getWorld().getSpawnLocation();
+        if (isPlayingPlayer(player)) {
             int number = getPlayersTeamNumber(player.getUniqueId());
-            if(number != 2){
-                if(number == 0) return getMissileWarsLevel().getData().getSpawnLocationPair().getFirst();
-                if(number == 1) return getMissileWarsLevel().getData().getSpawnLocationPair().getSecond();
-            }else {
+            if (number != 2) {
+                if (number == 0) return getMissileWarsLevel().getData().getSpawnLocationPair().getFirst();
+                if (number == 1) return getMissileWarsLevel().getData().getSpawnLocationPair().getSecond();
+            } else {
                 MissileWars.broadcast("missilewars.message.fatal");
                 return getMissileWarsLevel().getWorld().getSpawnLocation();
             }
@@ -207,19 +207,17 @@ public class MissileWarsGame extends Game implements Listener {
     }
 
     /**
-     *
      * @param player
      * @return 0 or 1 for the Teams and 2 if there is no team!
      */
     public int getPlayersTeamNumber(NetPlayer player) {
-        if(teamer.getTeam(player) == teamer.getTeams()[0]) return 0;
-        if(teamer.getTeam(player) == teamer.getTeams()[1]) return 1;
+        if (teamer.getTeam(player) == teamer.getTeams()[0]) return 0;
+        if (teamer.getTeam(player) == teamer.getTeams()[1]) return 1;
         return 2;
     }
 
     /**
-     *
-     * @param  uuid
+     * @param uuid
      * @return 0 or 1 for the Teams and 2 if there is no team!
      */
     public int getPlayersTeamNumber(UUID uuid) {

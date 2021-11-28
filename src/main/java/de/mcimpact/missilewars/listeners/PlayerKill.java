@@ -26,12 +26,12 @@ public class PlayerKill implements Listener {
         event.setCancelled(true);
 
 
-        if(MissileWars.GAME.isRunning())
-            if(event.getEntity().getKiller() != null) {
+        if (MissileWars.GAME.isRunning())
+            if (event.getEntity().getKiller() != null) {
                 GamePhase.killPlayer(new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()),
                         Core.getPlayerUtils().get(event.getEntity().getKiller().getUniqueId()), event.getEntity().getLocation(), cause));
-            }else {
-                GamePhase.killPlayer( new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()),
+            } else {
+                GamePhase.killPlayer(new KillInformation(Core.getPlayerUtils().getPlayer(ent.getUniqueId()),
                         null, event.getEntity().getLocation(), cause));
             }
     }
@@ -39,8 +39,7 @@ public class PlayerKill implements Listener {
 
     public static record KillInformation(
             NetPlayer player, @Nullable NetPlayer killer, Location killPosition,
-            EntityDamageEvent.DamageCause deathCause)
-    {
+            EntityDamageEvent.DamageCause deathCause) {
 
         /**
          * @param player
@@ -55,6 +54,7 @@ public class PlayerKill implements Listener {
         public EntityDamageEvent.DamageCause deathCause() {
             return deathCause;
         }
+
         @Override
         public NetPlayer player() {
             return player;
@@ -71,19 +71,17 @@ public class PlayerKill implements Listener {
         }
 
         /**
-         *
          * @return <code>missilewars.message.explode</code> when the player blew up!
          * @return <code>missilewars.message.died</code> when the player died!
          * @return <code>missilewars.message.killed</code> when there is a <code>killer()</code>!
-         *
          */
         public Component generateDeathMessage() {
-            if(deathCause == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || deathCause == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
-                return Core.getTranslatableComponent("missilewars.message.explode",Component.text(player.getName()).color(MissileWars.GAME.teamer.getTeam(player).getColor().getTextColor().adventure));
-            }else if(killer != null) {
+            if (deathCause == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || deathCause == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
+                return Core.getTranslatableComponent("missilewars.message.explode", Component.text(player.getName()).color(MissileWars.GAME.teamer.getTeam(player).getColor().getTextColor().adventure));
+            } else if (killer != null) {
                 return Core.getTranslatableComponent("missilewars.message.killed", Component.text(player.getName()).color(MissileWars.GAME.teamer.getTeam(player).getColor().getTextColor().adventure), Component.text(killer.getName()).color(MissileWars.GAME.teamer.getTeam(killer).getColor().getTextColor().adventure));
             } else
-                return Core.getTranslatableComponent("missilewars.message.died",Component.text(player.getName()).color(MissileWars.GAME.teamer.getTeam(player).getColor().getTextColor().adventure));
+                return Core.getTranslatableComponent("missilewars.message.died", Component.text(player.getName()).color(MissileWars.GAME.teamer.getTeam(player).getColor().getTextColor().adventure));
         }
 
     }
