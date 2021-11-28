@@ -42,8 +42,9 @@ public class PlayerKill implements Listener {
         Entity entity = event.getEntity();
         if(entity instanceof Player){
             Player player = (Player) entity;
-            String message = "Damage: " + event.getCause().name() + "*" + event.getDamage() + " | " + (player.getHealth() - event.getDamage())+ "/" + player.getHealthScale();
+          /* String message = "Damage: " + event.getCause().name() + "*" + event.getDamage() + " | " + (player.getHealth() - event.getDamage())+ "/" + player.getHealthScale();
             player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.debug", message)));
+           */
             if(MissileWars.GAME.isRunning())
                 if(MissileWars.GAME.isPlayingPlayer(player)) {
                     if( (player.getHealth() - event.getDamage()) <= 0) {
