@@ -77,7 +77,6 @@ public class MissileWarsCommand extends Command<CommandSender> {
         });
 
         async.execute(commandContext -> {
-            System.out.println("jey" + commandContext.getSender().getName());
             System.out.println(Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), () -> {
                 LobbyPhase.getStartTimer().start();
             }));
