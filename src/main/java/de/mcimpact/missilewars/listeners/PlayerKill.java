@@ -8,6 +8,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -36,10 +37,27 @@ public class PlayerKill implements Listener {
             }
     }
 
+    @EventHandler
+    public void onDamage(EntityDamageEvent event) {
+        Entity entity = event.getEntity();
+        if(entity instanceof Player){
+            Player player = (Player) entity;
+            String message = "Damage: " + event.getCause().name() + "*" + event.getDamage() + " | " + (player.getHealth() - event.getDamage())+ "/" + player.getHealthScale();
+            player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.debug", message)));
+            if(MissileWars.GAME.isRunning())
+                if(MissileWars.GAME.isPlayingPlayer(player)) {
+                    if( (player.getHealth() - event.getDamage()) <= 0) {
+                        player.teleport(MissileWars.GAME.getSpwanOfPlayer(player));
+                    }
+                }
+        }
+    }
+
 
     public static record KillInformation(
             NetPlayer player, @Nullable NetPlayer killer, Location killPosition,
-            EntityDamageEvent.DamageCause deathCause) {
+            EntityDamageEvent.DamageCause deathCause)
+    {
 
         /**
          * @param player
