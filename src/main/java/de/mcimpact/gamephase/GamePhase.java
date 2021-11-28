@@ -42,7 +42,7 @@ public class GamePhase {
     }
 
 
-    public static boolean hasContact(NetPlayer player, Material material) {
+    public static boolean isInMaterial(NetPlayer player, Material material) {
         Player bukkitPlayer = Bukkit.getPlayer(player.getUniqueId());
         return bukkitPlayer.getLocation().add(0, 0, 0).getBlock().getType() == material;
     }

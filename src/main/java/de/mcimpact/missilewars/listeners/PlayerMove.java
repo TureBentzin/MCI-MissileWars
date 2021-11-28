@@ -22,7 +22,7 @@ public class PlayerMove implements Listener {
         } else if (MissileWars.GAME.getGameStatus() == GameStatus.GAME) {
             //GamePhase stuff
             NetPlayer netPlayer = Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId());
-            if (GamePhase.hasContact(netPlayer, Material.WATER) && MissileWars.GAME.isPlayingPlayer(netPlayer)) {
+            if (GamePhase.isInMaterial(netPlayer, Material.WATER) && MissileWars.GAME.isPlayingPlayer(netPlayer)) {
                 GamePhase.killPlayer(new PlayerKill.KillInformation(netPlayer,
                         null, event.getPlayer().getLocation(), EntityDamageEvent.DamageCause.CONTACT));
             }
