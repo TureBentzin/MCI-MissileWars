@@ -68,26 +68,6 @@ public class PlayerKill implements Listener {
             return new KillInformation(player, null, Bukkit.getPlayer(player.getUniqueId()).getLocation(), deathCause);
         }
 
-        @Override
-        public EntityDamageEvent.DamageCause deathCause() {
-            return deathCause;
-        }
-
-        @Override
-        public NetPlayer player() {
-            return player;
-        }
-
-        @Override
-        public Location killPosition() {
-            return killPosition;
-        }
-
-        @Override
-        public @Nullable NetPlayer killer() {
-            return killer;
-        }
-
         /**
          * @return <code>missilewars.message.explode</code> when the player blew up!
          * @return <code>missilewars.message.died</code> when the player died!
