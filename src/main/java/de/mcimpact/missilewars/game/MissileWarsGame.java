@@ -7,6 +7,7 @@ import de.mcimpact.game.team.Team;
 import de.mcimpact.game.team.Teamer;
 import de.mcimpact.gamephase.GamePhase;
 import de.mcimpact.missilewars.MissileWars;
+import de.mcimpact.missilewars.game.items.ItemManager;
 import de.mcimpact.missilewars.game.items.Items;
 import de.mcimpact.missilewars.game.world.MissileWarsLevel;
 import net.kyori.adventure.text.Component;
@@ -243,6 +244,7 @@ public class MissileWarsGame extends Game implements Listener {
 
         getOnlinePlayers().forEach(player -> GamePhase.phasePlayer(player));
         Items.registerItems(MissileWars.getItemManager());
+        MissileWars.getItemManager().startReceiver();
 
     }
 
