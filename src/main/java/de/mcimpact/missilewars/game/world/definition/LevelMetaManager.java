@@ -61,7 +61,7 @@ public class LevelMetaManager {
     }
 
     public Pair<Double> getWalls(String key) {
-        return new Pair<>(config.getDouble(key + "lowest"), config.getDouble(key + "highest"));
+        return new Pair<>(config.getDouble(key + ".lowest"), config.getDouble(key + ".highest"));
     }
 
     public World getWorld() {

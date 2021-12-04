@@ -77,7 +77,9 @@ public class MissileWarsLevelData implements Serializable {
                 .add("levelname='" + levelname + "'")
                 .add("spawnLocationPair=" + spawnLocationPair)
                 .add("portalCheckLocations=" + portalCheckLocations)
-                .add("size=" + size)
+                .add("wallsx=" + wallsX)
+                .add("wallsz" + wallsZ)
+                .add("wallsy" + wallY)
                 .toString();
     }
 }

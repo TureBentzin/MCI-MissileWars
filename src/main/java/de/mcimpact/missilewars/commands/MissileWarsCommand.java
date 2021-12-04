@@ -53,6 +53,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         });
          */
 
+
         reset.checkAccess(PermissionPredicate.create("missilewars.cmd.missilewars.reset")).execute(commandContext -> {
             MissileWars.broadcast("missilewars.message.cmd.missilewars.reset", commandContext.getSender().getName(), Bukkit.getServer().getName());
             Bukkit.shutdown();

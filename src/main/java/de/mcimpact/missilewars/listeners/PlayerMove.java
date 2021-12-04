@@ -1,7 +1,11 @@
 package de.mcimpact.missilewars.listeners;
 
+import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -32,6 +36,12 @@ public class PlayerMove implements Listener {
             }
             if (event.getPlayer().getLocation().getY() >= MissileWars.GAME.getMissileWarsLevel().getData().getWallY()) {
                 event.setCancelled(true);
+            }
+            if (MissileWars.GAME.) {
+                for(Location location : Utils.BLOCKS.get(event.getPlayer())) {
+                    location.getWorld().getBlockAt(location).setType(Material.AIR);
+                }
+                Utils.createWall(event.getPlayer(), Material.RED_STAINED_GLASS, 5);
             }
         }
     }
