@@ -64,6 +64,10 @@ public class Translations {
         Core.registerTranslation(KEY + "item.value.formatting", "<gold><bold>{0} <yellow>:<gold>{1}");
         Core.registerTranslation(KEY + "message.itemreceived", "<system#prefix><system#color>You received {0}* <system#accent>{1}<system#color>!");
 
+        Core.registerTranslation(KEY + "motd.lobby", "<bold><gradient:#8a2527:#ff0004> MissileWars </bold><gray>|</gray> <yellow>Waiting for players...");
+        Core.registerTranslation(KEY + "motd.game", "<bold><gradient:#8a2527:#ff0004> MissileWars </bold><gray>|</gray> <orange>Game is running!");
+        Core.registerTranslation(KEY + "motd.end", "<bold><gradient:#8a2527:#ff0004> MissileWars </bold><gray>|</gray> <red>Game has ended! Server will restart soon!");
+        Core.registerTranslation(KEY + "motd.paused", "<bold><gradient:#8a2527:#ff0004> MissileWars </bold><gray>|</gray> <dark_red>MissileWars is not responding...");
 
         Core.registerTranslation(KEY + "item.fireball.name", "<red>FIREBALL");
         Core.registerTranslation(KEY + "item.fireball.lore", "<gray>Throw it like its hot!");
