@@ -41,4 +41,5 @@ public final class ItemManager {
                 ((UsableItem) item).onClick(inventoryClickEvent); });
         }
     }
+
 }
