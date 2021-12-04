@@ -22,6 +22,10 @@ public final class ItemManager {
         return items;
     }
 
+    public boolean addItem(Item item) {
+        return getItems().add(item);
+    }
+
     private void handle(Event event) {
 
 
