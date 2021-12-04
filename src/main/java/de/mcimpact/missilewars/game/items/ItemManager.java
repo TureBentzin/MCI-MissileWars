@@ -42,10 +42,13 @@ public final class ItemManager {
 
 
         if (event instanceof PlayerInteractEvent) {
+            PlayerInteractEvent interactEvent = (PlayerInteractEvent) event;
             if (!MissileWars.GAME.isPlayingPlayer(((PlayerEvent) event).getPlayer().getUniqueId())) return;
             items.forEach(item -> {
-                if (item instanceof InteractableItem)
-                    ((InteractableItem) item).onInteract((PlayerInteractEvent) event);
+                if (item instanceof InteractableItem && item.toStack().isSimilar(interactEvent.getItem())) {
+
+                    ((InteractableItem) item).onInteract(interactEvent);
+                }
             });
         }
         if (event instanceof InventoryClickEvent) {
