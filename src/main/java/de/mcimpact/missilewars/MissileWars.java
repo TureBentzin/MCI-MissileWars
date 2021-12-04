@@ -14,7 +14,6 @@ import de.mcimpact.missilewars.game.world.LevelManager;
 import de.mcimpact.missilewars.listeners.*;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.initialization.qual.UnknownInitialization;
 import org.jetbrains.annotations.Nullable;
@@ -83,7 +82,7 @@ public final class MissileWars extends JavaPlugin {
 
         // Plugin startup logic
         MISSILEWARS_LOGGER = getLogger();
-       // World bukkitlobby = Bukkit.getWorld("world");
+        // World bukkitlobby = Bukkit.getWorld("world");
 
         MISSILEWARS_LOGGER.warning("Running MissileWars v." + getDescription().getVersion());
         MISSILEWARS_LOGGER.info("registering Translations");
@@ -128,6 +127,7 @@ public final class MissileWars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new FlightAttempt(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
         Bukkit.getPluginManager().registerEvents(new TNTExplosion(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerKill(), this);
 
         Bukkit.getPluginManager().registerEvents(MissileWars.GAME, this); //register internal GameEvents
 

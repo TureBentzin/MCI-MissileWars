@@ -5,8 +5,6 @@ import de.mcimpact.core.commands.Command;
 import de.mcimpact.core.commands.CommandSender;
 import de.mcimpact.core.commands.ConstrainedArgument;
 import de.mcimpact.core.commands.PermissionPredicate;
-import de.mcimpact.core.players.NetPlayer;
-import de.mcimpact.core.utils.TestSelector;
 import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
@@ -17,7 +15,6 @@ import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 public class MissileWarsCommand extends Command<CommandSender> {
     private final NamedCommandNode<CommandSender> declaration;
@@ -59,14 +56,14 @@ public class MissileWarsCommand extends Command<CommandSender> {
             Bukkit.shutdown();
         });
 
-       JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> force = JavaUtils.literal("force");
-       force.execute(commandContext -> {
-           MissileWars.broadcast("missilewars.message.cmd.missilewars.reset.force", commandContext.getSender().getName(), Bukkit.getServer().getName());
-           System.exit(130);
-       });
+        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> force = JavaUtils.literal("force");
+        force.execute(commandContext -> {
+            MissileWars.broadcast("missilewars.message.cmd.missilewars.reset.force", commandContext.getSender().getName(), Bukkit.getServer().getName());
+            System.exit(130);
+        });
 
         reset.then(force);
-      
+
         indexFolder.execute(consoleSenderCommandContext -> {
             CommandContext<? extends CommandSender> context = consoleSenderCommandContext;
 
@@ -81,7 +78,6 @@ public class MissileWarsCommand extends Command<CommandSender> {
         });
 
         async.execute(commandContext -> {
-            System.out.println("jey" + commandContext .getSender().getName());
             System.out.println(Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), () -> {
                 LobbyPhase.getStartTimer().start();
             }));
