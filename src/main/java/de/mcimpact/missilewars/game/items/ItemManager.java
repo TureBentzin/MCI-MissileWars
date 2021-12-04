@@ -58,6 +58,13 @@ public final class ItemManager {
 
     public void startReceiver() {
         final int time = 20;
+        if(MissileWars.GAME.getOnlinePlayers().size() == 0) {
+            return;
+        }
+        if(MissileWars.GAME.getOnlinePlayers().size() == 1) {
+            MissileWars.GAME.getOnlinePlayers().forEach(player -> Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), new ReceiverTimer(10, MissileWars.GAME.teamer.getTeam(player.getUniqueId()))));
+            return;
+                    }
         if(MissileWars.GAME.getTeams()[0].getUuids().size() > MissileWars.GAME.getTeams()[1].getUuids().size()) {
             int ratio = MissileWars.GAME.getTeams()[0].getUuids().size() / MissileWars.GAME.getTeams()[1].getUuids().size();
             MissileWars.broadcast("missilewars.message.debug", "ratio: " + ratio);
