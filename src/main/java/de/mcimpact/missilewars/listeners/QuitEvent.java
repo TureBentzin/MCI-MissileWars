@@ -34,8 +34,10 @@ public class QuitEvent implements Listener {
             game.removePlayer(player);
             player.sendMessage(Core.getTranslatableComponent("missilewars.message.movement.playerquit", player.getName()));
         }
-        for(Location location : Utils.BLOCKS.get(e.getPlayer())) {
-            location.getWorld().getBlockAt(location).setType(Material.AIR);
+        if (Utils.BLOCKS.containsKey(e.getPlayer())) {
+            for(Location location : Utils.BLOCKS.get(e.getPlayer())) {
+                location.getWorld().getBlockAt(location).setType(Material.AIR);
+            }
         }
 
 

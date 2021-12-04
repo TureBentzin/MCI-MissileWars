@@ -20,6 +20,7 @@ public class Utils {
 
     public static File ROOT = Bukkit.getServer().getWorldContainer();
     public static Map<Player, List<Location>> BLOCKS = new HashMap<>();
+    static List<Location> checkedblocks = new ArrayList<>();
 
 
     public static boolean isOnGround(NetPlayer netPlayer) {
@@ -51,28 +52,31 @@ public class Utils {
 
     public static void createWall(Player player, Material material, int distance) {
         MissileWarsLevelData data = MissileWars.GAME.getMissileWarsLevel().getData();
-        if (player.getLocation().getX() + distance >= data.getWallsX().getFirst()) {
+        int playerX = player.getLocation().getBlockX();
+        if (playerX + distance >= data.getWallsX().getFirst()) {
             if (!BLOCKS.containsKey(player)) {
                 BLOCKS.put(player, new ArrayList<>());
             }
             int i = 0;
             while (i <= distance) {
-                if (player.getLocation().getX() + i == data.getWallsX().getFirst()) {
+                if (playerX + i == data.getWallsX().getFirst()) {
                     Location loc = new Location(player.getWorld(), player.getLocation().getBlockX() + i, player.getLocation().getBlockY(), player.getLocation().getBlockZ());
                     Block block = player.getWorld().getBlockAt(loc);
                     if (block.getType() == Material.AIR) {
                         BLOCKS.get(player).add(loc);
                         block.setType(material);
                     }
+                    checkedblocks.add(loc);
                     neighboursx(player, material, distance, loc);
+                    checkedblocks = new ArrayList<>();
                 }
                 i++;
             }
         }
-        if (player.getLocation().getX() - distance <= data.getWallsX().getFirst()) {
+        if (player.getLocation().getX() - distance <= data.getWallsX().getSecond()) {
             int i = 0;
             while (i <= distance) {
-                if (player.getLocation().getX() - i == data.getWallsX().getFirst()) {
+                if (player.getLocation().getX() - i == data.getWallsX().getSecond()) {
                     Location loc = new Location(player.getWorld(), player.getLocation().getBlockX() - i, player.getLocation().getBlockY(), player.getLocation().getBlockZ());
                     Block block = player.getWorld().getBlockAt(loc);
                     if (block.getType() == Material.AIR) {
@@ -91,33 +95,49 @@ public class Utils {
         Block block2 = player.getWorld().getBlockAt(location.getBlockX(), location.getBlockY() + 1, location.getBlockZ());
         Block block3 = player.getWorld().getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ() - 1);
         Block block4 = player.getWorld().getBlockAt(location.getBlockX(), location.getBlockY() - 1, location.getBlockZ());
+        boolean block1test = false;
+        boolean block2test = false;
+        boolean block3test = false;
+        boolean block4test = false;
 
-        if(player.getEyeLocation().distance(block1.getLocation()) <= distance) {
+        if(player.getEyeLocation().distance(block1.getLocation()) <= distance && !checkedblocks.contains(block1.getLocation())) {
             if (block1.getType() == Material.AIR) {
                 BLOCKS.get(player).add(block1.getLocation());
                 block1.setType(material);
             }
-            neighboursx(player, material, distance, block1.getLocation());
+            checkedblocks.add(block1.getLocation());
         }
-        if(player.getEyeLocation().distance(block2.getLocation()) <= distance) {
+        if(player.getEyeLocation().distance(block2.getLocation()) <= distance && !checkedblocks.contains(block1.getLocation())) {
             if (block2.getType() == Material.AIR) {
                 BLOCKS.get(player).add(block2.getLocation());
                 block2.setType(material);
             }
-            neighboursx(player, material, distance, block2.getLocation());
+            checkedblocks.add(block2.getLocation());
         }
-        if(player.getEyeLocation().distance(block3.getLocation()) <= distance) {
+        if(player.getEyeLocation().distance(block3.getLocation()) <= distance && !checkedblocks.contains(block1.getLocation())) {
             if (block3.getType() == Material.AIR) {
                 BLOCKS.get(player).add(block3.getLocation());
                 block3.setType(material);
             }
-            neighboursx(player, material, distance, block3.getLocation());
+            checkedblocks.add(block3.getLocation());
         }
-        if(player.getEyeLocation().distance(block4.getLocation()) <= distance) {
+        if(player.getEyeLocation().distance(block4.getLocation()) <= distance && !checkedblocks.contains(block1.getLocation())) {
             if (block4.getType() == Material.AIR) {
                 BLOCKS.get(player).add(block4.getLocation());
                 block4.setType(material);
             }
+            checkedblocks.add(block4.getLocation());
+        }
+        if (block1test) {
+            neighboursx(player, material, distance, block1.getLocation());
+        }
+        if (block2test) {
+            neighboursx(player, material, distance, block2.getLocation());
+        }
+        if (block3test) {
+            neighboursx(player, material, distance, block3.getLocation());
+        }
+        if (block4test) {
             neighboursx(player, material, distance, block4.getLocation());
         }
     }

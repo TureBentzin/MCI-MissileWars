@@ -44,6 +44,7 @@ public class PlayerMove implements Listener {
             FlightAttempt.uuidSet.add(event.getPlayer().getUniqueId());
         }
         if (MissileWars.GAME.getGameStatus() == GameStatus.GAME) {
+            /*
             if (event.getPlayer().getLocation().getX() <= MissileWars.GAME.getMissileWarsLevel().getData().getWallsX().getFirst()) {
                 event.setCancelled(true);
             }
@@ -59,9 +60,14 @@ public class PlayerMove implements Listener {
             if (event.getPlayer().getLocation().getY() >= MissileWars.GAME.getMissileWarsLevel().getData().getWallY()) {
                 event.setCancelled(true);
             }
-            if (MissileWars.GAME.) {
-                for(Location location : Utils.BLOCKS.get(event.getPlayer())) {
-                    location.getWorld().getBlockAt(location).setType(Material.AIR);
+             */
+            if (MissileWars.GAME.isPlayingPlayer(event.getPlayer())) {
+                if (Utils.BLOCKS.containsKey(event.getPlayer())) {
+                    for(Location location : Utils.BLOCKS.get(event.getPlayer())) {
+                        if (event.getPlayer().getEyeLocation().distance(location) > 5) {
+                            location.getWorld().getBlockAt(location).setType(Material.AIR);
+                        }
+                    }
                 }
                 Utils.createWall(event.getPlayer(), Material.RED_STAINED_GLASS, 5);
             }
