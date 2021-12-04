@@ -3,6 +3,7 @@ package de.mcimpact.missilewars.game.items;
 import de.mcimpact.core.players.NetPlayer;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
@@ -23,6 +24,17 @@ public class TradeableItem implements SellableItem, BuyableItem{
         this.material = material;
 
     }
+
+    public TradeableItem(int sellWorth, int buyWorth, ItemStack itemStack) {
+
+        this.sellWorth = new ItemWorth(sellWorth);
+        this.buyWorth = new ItemWorth(buyWorth);
+        this.name = itemStack.displayName();
+        this.lore = itemStack.lore();
+        this.material = itemStack.getType();
+
+    }
+
 
     @Override
     public ItemWorth buyWorth() {
