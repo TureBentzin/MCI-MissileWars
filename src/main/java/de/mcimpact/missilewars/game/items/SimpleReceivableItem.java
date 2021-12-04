@@ -9,8 +9,8 @@ public class SimpleReceivableItem extends SimpleItem implements ReceivableItem{
 
     private final double percentage;
 
-    public SimpleReceivableItem(Material material, Component name, List<Component> components, double percentage) {
-        super(material, name, components);
+    public SimpleReceivableItem(Material material, Component name, double percentage) {
+        super(material, name);
         this.percentage = percentage;
     }
 
