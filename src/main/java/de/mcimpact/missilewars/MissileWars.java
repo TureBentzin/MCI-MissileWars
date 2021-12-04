@@ -10,6 +10,7 @@ import de.mcimpact.missilewars.commands.bukkit.DebugteamCommand;
 import de.mcimpact.missilewars.commands.bukkit.TasksCommand;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
+import de.mcimpact.missilewars.game.items.ItemManager;
 import de.mcimpact.missilewars.game.world.LevelManager;
 import de.mcimpact.missilewars.listeners.*;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
@@ -19,6 +20,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.initialization.qual.UnknownInitialization;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Logger;
@@ -35,6 +37,13 @@ public final class MissileWars extends JavaPlugin {
     private static MultiverseCore multiverse = null;
     @UnknownInitialization
     private static MultiverseWorld lobby;
+
+    private static ItemManager itemManager = ItemManager.getInstance();
+
+    @NotNull
+    public static ItemManager getItemManager() {
+        return itemManager;
+    }
 
     public static LevelManager getLevelManager() {
         return levelManager;
