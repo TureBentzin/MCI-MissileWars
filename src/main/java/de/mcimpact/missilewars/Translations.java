@@ -65,6 +65,10 @@ public class Translations {
         Core.registerTranslation(KEY + "message.itemreceived", "<system#prefix>You received {0}* <system#accent>{1}<system#color>!");
 
 
+        Core.registerTranslation(KEY + "item.fireball.name", "<red>FIREBALL");
+        Core.registerTranslation(KEY + "item.fireball.lore", "<gray>Throw it like its hot!");
+
+
         Core.registerTranslation(KEY + "display.title.death", "<bold><gradient:#8a2527:#ff0004> You died!");
 
 

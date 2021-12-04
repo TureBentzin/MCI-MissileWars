@@ -7,6 +7,9 @@ import de.mcimpact.game.team.Team;
 import de.mcimpact.game.team.Teamer;
 import de.mcimpact.gamephase.GamePhase;
 import de.mcimpact.missilewars.MissileWars;
+import de.mcimpact.missilewars.game.items.ItemManager;
+import de.mcimpact.missilewars.game.items.Items;
+import de.mcimpact.missilewars.game.items.items.ItemFireball;
 import de.mcimpact.missilewars.game.world.MissileWarsLevel;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -238,9 +241,10 @@ public class MissileWarsGame extends Game implements Listener {
 
         level.getWorld().setTime(2000);
         level.getWorld().setViewDistance(32);
+        Bukkit.getServer().setMaxPlayers(30);
 
         getOnlinePlayers().forEach(player -> GamePhase.phasePlayer(player));
-
+        Items.registerItems(MissileWars.getItemManager());
 
     }
 

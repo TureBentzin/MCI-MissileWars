@@ -26,7 +26,7 @@ public class GamePhase {
         player.setGameMode(GameMode.SURVIVAL);
 
 
-        Bukkit.getServer().setMaxPlayers(30);
+
 
     }
 

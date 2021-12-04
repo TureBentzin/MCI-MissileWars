@@ -21,6 +21,13 @@ public class SimpleItem implements Item{
         this.amount = amount;
     }
 
+    public SimpleItem(Material material, Component name, Component oneLineLore, int amount) {
+        this.material = material;
+        this.name = name;
+        lore = new ArrayList<>();
+        lore.add(oneLineLore);
+        this.amount = amount;
+    }
     public SimpleItem(Material material, Component name, int amount) {
         this.material = material;
         this.name = name;
