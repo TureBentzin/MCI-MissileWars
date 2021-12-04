@@ -55,7 +55,7 @@ public class Pair<E> implements Serializable {
     protected Object clone() throws CloneNotSupportedException {
         return new Pair<E>(first, second);
     }
-    
+
     public void forBoth(Consumer<E> consumer) {
         consumer.accept(getFirst());
         consumer.accept(getSecond());
