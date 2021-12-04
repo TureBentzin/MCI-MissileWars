@@ -2,16 +2,14 @@ package de.mcimpact.missilewars.game.items.items;
 
 import de.mcimpact.core.Core;
 import de.mcimpact.core.players.NetPlayer;
-import de.mcimpact.missilewars.game.items.BuyableItem;
-import de.mcimpact.missilewars.game.items.InteractableItem;
-import de.mcimpact.missilewars.game.items.ItemWorth;
-import de.mcimpact.missilewars.game.items.SimpleItem;
+import de.mcimpact.missilewars.game.items.*;
 import org.bukkit.Material;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class ItemFireball extends SimpleItem implements InteractableItem, BuyableItem {
+public class ItemFireball extends SimpleItem implements InteractableItem, BuyableItem, ReceivableItem {
 
     public ItemFireball() {
         super(Material.FIRE_CHARGE, Core.translate(Core.getTranslatableComponent("missilewars.item.fireball.name")), Core.translate(Core.getTranslatableComponent("missilewars.item.fireball.lore")), 1);
@@ -37,7 +35,17 @@ public class ItemFireball extends SimpleItem implements InteractableItem, Buyabl
      */
     @Override
     public void onInteract(PlayerInteractEvent interactEvent) {
-        Player player = interactEvent.getPlayer();
-        player.launchProjectile(Fireball.class);
+        if(interactEvent.getAction() == Action.RIGHT_CLICK_AIR) {
+            Player player = interactEvent.getPlayer();
+            player.launchProjectile(Fireball.class);
+        }
+    }
+
+    /**
+     * @return value between 0 and 1
+     */
+    @Override
+    public double getPercentage() {
+        return 0.4;
     }
 }

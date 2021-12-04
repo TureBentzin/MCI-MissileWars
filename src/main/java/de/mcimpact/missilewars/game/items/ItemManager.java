@@ -38,7 +38,7 @@ public final class ItemManager {
         return b;
     }
 
-    private void handle(Event event) {
+    public void handle(Event event) {
 
 
         if (event instanceof PlayerInteractEvent) {
@@ -78,7 +78,7 @@ public final class ItemManager {
             }
         }
 
-        throw new RuntimeException("FATAL!");
+        throw new RuntimeException("Error, the size is: " + localReceivableItems.size());
     }
 
     public void giveItem(Player... players) {
