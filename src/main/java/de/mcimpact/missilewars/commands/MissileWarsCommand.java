@@ -80,15 +80,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         giveItem.execute(commandContext -> {
             if(commandContext.getSender() instanceof NetPlayer) {
                 NetPlayer netPlayer = (NetPlayer) commandContext.getSender();
-
                 Player player = Bukkit.getPlayer(netPlayer.getUniqueId());
-                ReceivableItem receivableItem = new SimpleReceivableItem(Material.MAGENTA_BANNER, Component.text("Hallo"), 0.2);
-                ReceivableItem receivableItem1 = new SimpleReceivableItem(Material.BRICK, Component.text("!=$"), 0.4);
-                ReceivableItem receivableItem2 = new SimpleReceivableItem(Material.DISPENSER, Component.text("bRE"), 0.32);
-                ReceivableItem receivableItem3 = new SimpleReceivableItem(Material.STICK, Component.text("Yeas"), 0.19);
-
-                MissileWars.getItemManager().addItems(receivableItem, receivableItem1, receivableItem2, receivableItem3);
-
                 player.getInventory().addItem(MissileWars.getItemManager().getRandomItem().toStack());
             }
         });
