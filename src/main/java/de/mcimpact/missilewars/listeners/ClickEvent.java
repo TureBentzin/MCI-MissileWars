@@ -12,11 +12,13 @@ public class ClickEvent implements Listener {
     public void onClick(InventoryClickEvent clickEvent) {
         MissileWars.getItemManager().handle(clickEvent);
     }
+
     @EventHandler
     public void onInteract(PlayerInteractEvent interactEvent) {
         MissileWars.getItemManager().handle(interactEvent);
     }
 
 
-    public static record InternalItemClickEvent(){}
+    public static record InternalItemClickEvent() {
+    }
 }

@@ -9,14 +9,10 @@ import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
-import de.mcimpact.missilewars.game.items.ReceivableItem;
-import de.mcimpact.missilewars.game.items.SimpleReceivableItem;
 import de.mcimpact.missilewars.game.world.LevelManager;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import io.github.dseelp.kommon.command.*;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -78,7 +74,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         });
 
         giveItem.execute(commandContext -> {
-            if(commandContext.getSender() instanceof NetPlayer) {
+            if (commandContext.getSender() instanceof NetPlayer) {
                 NetPlayer netPlayer = (NetPlayer) commandContext.getSender();
                 Player player = Bukkit.getPlayer(netPlayer.getUniqueId());
                 MissileWars.getItemManager().giveItem(player);

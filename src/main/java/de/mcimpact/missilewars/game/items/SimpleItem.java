@@ -7,12 +7,12 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleItem implements Item{
+public class SimpleItem implements Item {
 
     private final Material material;
-    private Component name;
-    private List<Component> lore;
     private final int amount;
+    private final Component name;
+    private List<Component> lore;
 
     public SimpleItem(Material material, Component name, List<Component> components, int amount) {
         this.material = material;
@@ -28,6 +28,7 @@ public class SimpleItem implements Item{
         lore.add(oneLineLore);
         this.amount = amount;
     }
+
     public SimpleItem(Material material, Component name, int amount) {
         this.material = material;
         this.name = name;
@@ -58,6 +59,11 @@ public class SimpleItem implements Item{
     }
 
     @Override
+    public void setLore(List<Component> components) {
+        lore = components;
+    }
+
+    @Override
     public int getAmount() {
         return amount;
     }
@@ -65,10 +71,5 @@ public class SimpleItem implements Item{
     @Override
     public void appendLore(Component component) {
         lore.add(component);
-    }
-
-    @Override
-    public void setLore(List<Component> components) {
-        lore = components;
     }
 }

@@ -3,7 +3,7 @@ package de.mcimpact.missilewars.game.items;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 
-public class SimpleReceivableItem extends SimpleItem implements ReceivableItem{
+public class SimpleReceivableItem extends SimpleItem implements ReceivableItem {
 
     private final double percentage;
 

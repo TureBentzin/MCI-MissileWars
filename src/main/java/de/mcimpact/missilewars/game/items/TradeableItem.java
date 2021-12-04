@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-public class TradeableItem extends SimpleItem implements SellableItem, BuyableItem{
+public class TradeableItem extends SimpleItem implements SellableItem, BuyableItem {
 
     private final ItemWorth sellWorth;
     private final ItemWorth buyWorth;

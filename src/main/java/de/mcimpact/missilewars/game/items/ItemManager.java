@@ -86,10 +86,10 @@ public final class ItemManager {
 
     public void giveItem(Player... players) {
         for (Player player : players) {
-            if(MissileWars.GAME.isPlayingPlayer(player.getUniqueId())) {
-                ReceivableItem item  = getRandomItem();
+            if (MissileWars.GAME.isPlayingPlayer(player.getUniqueId())) {
+                ReceivableItem item = getRandomItem();
                 player.getInventory().addItem(item.toStack());
-                player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.itemreceived",item.getAmount(), item.getLegacyName())));
+                player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.itemreceived", item.getAmount(), item.getName())));
             }
         }
     }

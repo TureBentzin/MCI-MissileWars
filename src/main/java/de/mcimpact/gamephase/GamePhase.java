@@ -26,8 +26,6 @@ public class GamePhase {
         player.setGameMode(GameMode.SURVIVAL);
 
 
-
-
     }
 
     public static void phaseSpectator(Player player) {

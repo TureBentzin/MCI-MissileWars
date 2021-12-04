@@ -13,7 +13,7 @@ public interface Item {
     default ItemStack toStack() {
         ItemStack itemStack = new ItemStack(getMaterial());
         itemStack.lore(getLore());
-        if(itemStack.hasItemMeta()) {
+        if (itemStack.hasItemMeta()) {
             ItemMeta meta = itemStack.getItemMeta();
             meta.displayName(getName());
             itemStack.setItemMeta(meta);
@@ -23,13 +23,16 @@ public interface Item {
     }
 
     Material getMaterial();
+
     Component getName();
+
     List<Component> getLore();
+
+    void setLore(List<Component> components);
 
     int getAmount();
 
     void appendLore(Component component);
-    void setLore(List<Component> components);
 
     default String getLegacyName() {
         return LegacyComponentSerializer.legacyAmpersand().serialize(getName());

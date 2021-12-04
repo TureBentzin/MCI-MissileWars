@@ -8,7 +8,6 @@ import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 
 public class ItemFireball extends SimpleItem implements InteractableItem, BuyableItem, ReceivableItem {
 
@@ -36,13 +35,10 @@ public class ItemFireball extends SimpleItem implements InteractableItem, Buyabl
      */
     @Override
     public void onInteract(PlayerInteractEvent interactEvent) {
-        if(interactEvent.getAction() == Action.RIGHT_CLICK_AIR) {
+        if (interactEvent.getAction() == Action.RIGHT_CLICK_AIR) {
             Player player = interactEvent.getPlayer();
             player.launchProjectile(Fireball.class);
-            if(interactEvent.getItem().getAmount() > 1)
-            player.getInventory().getItem(interactEvent.getHand()).setAmount(interactEvent.getItem().getAmount() - 1);
-            else
-            player.getInventory().setItem(interactEvent.getHand(), new ItemStack(Material.AIR));
+            consumeItem(interactEvent);
         }
 
         interactEvent.setCancelled(true);
