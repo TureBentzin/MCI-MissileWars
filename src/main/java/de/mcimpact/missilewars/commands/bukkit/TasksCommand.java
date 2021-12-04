@@ -25,7 +25,7 @@ public class TasksCommand implements CommandExecutor {
 
         sender.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.cmd.tasks",
                 Bukkit.getScheduler().getPendingTasks()
-                        )));
+        )));
 
         return true;
     }

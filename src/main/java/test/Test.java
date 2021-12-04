@@ -16,6 +16,6 @@ class SimpleApp {
         // application.conf
         Config conf = ConfigFactory.load();
         System.out.println("The answer is: " + conf.getString("simple-app.answer"));
-        
+
     }
 }
