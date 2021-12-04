@@ -16,6 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.util.Vector;
 
 public class PlayerMove implements Listener {
 
@@ -44,32 +45,59 @@ public class PlayerMove implements Listener {
             FlightAttempt.uuidSet.add(event.getPlayer().getUniqueId());
         }
         if (MissileWars.GAME.getGameStatus() == GameStatus.GAME) {
-            /*
-            if (event.getPlayer().getLocation().getX() <= MissileWars.GAME.getMissileWarsLevel().getData().getWallsX().getFirst()) {
-                event.setCancelled(true);
+            if (event.getPlayer().getLocation().getBlockX() == MissileWars.GAME.getMissileWarsLevel().getData().getWallsX().getSecond() + 1) {
+                event.getPlayer().setVelocity(new Vector(0.2, 0, 0));
             }
-            if (event.getPlayer().getLocation().getX() >= MissileWars.GAME.getMissileWarsLevel().getData().getWallsX().getSecond()) {
-                event.setCancelled(true);
+            if (event.getPlayer().getLocation().getBlockX() == MissileWars.GAME.getMissileWarsLevel().getData().getWallsX().getFirst() - 1) {
+                event.getPlayer().setVelocity(new Vector(-0.2, 0, 0));
             }
-            if (event.getPlayer().getLocation().getZ() <= MissileWars.GAME.getMissileWarsLevel().getData().getWallsZ().getFirst()) {
-                event.setCancelled(true);
+            if (event.getPlayer().getLocation().getBlockZ() == MissileWars.GAME.getMissileWarsLevel().getData().getWallsZ().getSecond() + 1) {
+                event.getPlayer().setVelocity(new Vector(0, 0, 0.2));
             }
-            if (event.getPlayer().getLocation().getZ() >= MissileWars.GAME.getMissileWarsLevel().getData().getWallsZ().getSecond()) {
-                event.setCancelled(true);
+            if (event.getPlayer().getLocation().getBlockZ() == MissileWars.GAME.getMissileWarsLevel().getData().getWallsZ().getFirst() - 1) {
+                event.getPlayer().setVelocity(new Vector(0, 0, -0.2));
+            }
+
+            if (event.getPlayer().getLocation().getX() <= MissileWars.GAME.getMissileWarsLevel().getData().getWallsX().getSecond()) {
+                GamePhase.killPlayer(new PlayerKill.KillInformation(Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId()), null, event.getPlayer().getLocation(), EntityDamageEvent.DamageCause.VOID));
+                if (MissileWars.GAME.isSpectatingPlayer(event.getPlayer())) {
+                    event.getPlayer().teleport(MissileWars.GAME.getSpwanOfPlayer(event.getPlayer()));
+                }
+            }
+            if (event.getPlayer().getLocation().getX() >= MissileWars.GAME.getMissileWarsLevel().getData().getWallsX().getFirst()) {
+                GamePhase.killPlayer(new PlayerKill.KillInformation(Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId()), null, event.getPlayer().getLocation(), EntityDamageEvent.DamageCause.VOID));
+                if (MissileWars.GAME.isSpectatingPlayer(event.getPlayer())) {
+                    event.getPlayer().teleport(MissileWars.GAME.getSpwanOfPlayer(event.getPlayer()));
+                }
+            }
+            if (event.getPlayer().getLocation().getZ() <= MissileWars.GAME.getMissileWarsLevel().getData().getWallsZ().getSecond()) {
+                GamePhase.killPlayer(new PlayerKill.KillInformation(Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId()), null, event.getPlayer().getLocation(), EntityDamageEvent.DamageCause.VOID));
+                if (MissileWars.GAME.isSpectatingPlayer(event.getPlayer())) {
+                    event.getPlayer().teleport(MissileWars.GAME.getSpwanOfPlayer(event.getPlayer()));
+                }
+            }
+            if (event.getPlayer().getLocation().getZ() >= MissileWars.GAME.getMissileWarsLevel().getData().getWallsZ().getFirst()) {
+                GamePhase.killPlayer(new PlayerKill.KillInformation(Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId()), null, event.getPlayer().getLocation(), EntityDamageEvent.DamageCause.VOID));
+                if (MissileWars.GAME.isSpectatingPlayer(event.getPlayer())) {
+                    event.getPlayer().teleport(MissileWars.GAME.getSpwanOfPlayer(event.getPlayer()));
+                }
             }
             if (event.getPlayer().getLocation().getY() >= MissileWars.GAME.getMissileWarsLevel().getData().getWallY()) {
-                event.setCancelled(true);
+                GamePhase.killPlayer(new PlayerKill.KillInformation(Core.getPlayerUtils().getPlayer(event.getPlayer().getUniqueId()), null, event.getPlayer().getLocation(), EntityDamageEvent.DamageCause.VOID));
+                if (MissileWars.GAME.isSpectatingPlayer(event.getPlayer())) {
+                    event.getPlayer().teleport(MissileWars.GAME.getSpwanOfPlayer(event.getPlayer()));
+                }
             }
-             */
+
             if (MissileWars.GAME.isPlayingPlayer(event.getPlayer())) {
                 if (Utils.BLOCKS.containsKey(event.getPlayer())) {
                     for(Location location : Utils.BLOCKS.get(event.getPlayer())) {
-                        if (event.getPlayer().getEyeLocation().distance(location) > 5) {
+                        if (event.getPlayer().getEyeLocation().distance(location) > 3) {
                             location.getWorld().getBlockAt(location).setType(Material.AIR);
                         }
                     }
                 }
-                Utils.createWall(event.getPlayer(), Material.RED_STAINED_GLASS, 5);
+                Utils.createWall(event.getPlayer(), Material.RED_STAINED_GLASS, 4);
             }
         }
     }

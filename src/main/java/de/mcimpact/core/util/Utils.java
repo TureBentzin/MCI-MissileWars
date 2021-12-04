@@ -20,7 +20,6 @@ public class Utils {
 
     public static File ROOT = Bukkit.getServer().getWorldContainer();
     public static Map<Player, List<Location>> BLOCKS = new HashMap<>();
-    static List<Location> checkedblocks = new ArrayList<>();
 
 
     public static boolean isOnGround(NetPlayer netPlayer) {
@@ -51,12 +50,29 @@ public class Utils {
     }
 
     public static void createWall(Player player, Material material, int distance) {
+
         MissileWarsLevelData data = MissileWars.GAME.getMissileWarsLevel().getData();
         int playerX = player.getLocation().getBlockX();
+        int playerZ = player.getLocation().getBlockZ();
+        int playerY = player.getLocation().getBlockY();
+
+
         if (playerX + distance >= data.getWallsX().getFirst()) {
             if (!BLOCKS.containsKey(player)) {
                 BLOCKS.put(player, new ArrayList<>());
             }
+            List<Location> circle = circle(player.getLocation(), distance, distance, false, true, 1);
+            for (Location location : circle) {
+                if (location.getX() == data.getWallsX().getFirst()) {
+                    if (player.getEyeLocation().distance(location) <= distance) {
+                        if (location.getBlock().getType() == Material.AIR) {
+                            location.getBlock().setType(material);
+                            BLOCKS.get(player).add(location);
+                        }
+                    }
+                }
+            }
+            /*
             int i = 0;
             while (i <= distance) {
                 if (playerX + i == data.getWallsX().getFirst()) {
@@ -72,7 +88,73 @@ public class Utils {
                 }
                 i++;
             }
+         */
         }
+        if (playerX - distance <= data.getWallsX().getSecond()) {
+            if (!BLOCKS.containsKey(player)) {
+                BLOCKS.put(player, new ArrayList<>());
+            }
+            List<Location> circle = circle(player.getLocation(), distance, distance, false, true, 0);
+            for (Location location : circle) {
+                if (location.getX() == data.getWallsX().getSecond()) {
+                    if (player.getEyeLocation().distance(location) <= distance) {
+                        if (location.getBlock().getType() == Material.AIR) {
+                            location.getBlock().setType(material);
+                            BLOCKS.get(player).add(location);
+                        }
+                    }
+                }
+            }
+        }
+        if (playerZ + distance >= data.getWallsZ().getFirst()) {
+            if (!BLOCKS.containsKey(player)) {
+                BLOCKS.put(player, new ArrayList<>());
+            }
+            List<Location> circle = circle(player.getLocation(), distance, distance, false, true, 0);
+            for (Location location : circle) {
+                if (location.getZ() == data.getWallsZ().getFirst()) {
+                    if (player.getEyeLocation().distance(location) <= distance) {
+                        if (location.getBlock().getType() == Material.AIR) {
+                            location.getBlock().setType(material);
+                            BLOCKS.get(player).add(location);
+                        }
+                    }
+                }
+            }
+        }
+        if (playerZ - distance <= data.getWallsZ().getSecond()) {
+            if (!BLOCKS.containsKey(player)) {
+                BLOCKS.put(player, new ArrayList<>());
+            }
+            List<Location> circle = circle(player.getLocation(), distance, distance, false, true, 0);
+            for (Location location : circle) {
+                if (location.getX() == data.getWallsZ().getSecond()) {
+                    if (player.getEyeLocation().distance(location) <= distance) {
+                        if (location.getBlock().getType() == Material.AIR) {
+                            location.getBlock().setType(material);
+                            BLOCKS.get(player).add(location);
+                        }
+                    }
+                }
+            }
+        }
+        if (playerY + distance >= data.getWallY()) {
+            if (!BLOCKS.containsKey(player)) {
+                BLOCKS.put(player, new ArrayList<>());
+            }
+            List<Location> circle = circle(player.getLocation(), distance, distance, false, true, 0);
+            for (Location location : circle) {
+                if (location.getY() == data.getWallY()) {
+                    if (player.getEyeLocation().distance(location) <= distance) {
+                        if (location.getBlock().getType() == Material.AIR) {
+                            location.getBlock().setType(material);
+                            BLOCKS.get(player).add(location);
+                        }
+                    }
+                }
+            }
+        }
+        /*
         if (player.getLocation().getX() - distance <= data.getWallsX().getSecond()) {
             int i = 0;
             while (i <= distance) {
@@ -88,9 +170,11 @@ public class Utils {
                 i++;
             }
         }
+         */
     }
-
+/*
     private static void neighboursx(Player player, Material material, int distance, Location location) {
+
         Block block1 = player.getWorld().getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ() + 1);
         Block block2 = player.getWorld().getBlockAt(location.getBlockX(), location.getBlockY() + 1, location.getBlockZ());
         Block block3 = player.getWorld().getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ() - 1);
@@ -140,6 +224,28 @@ public class Utils {
         if (block4test) {
             neighboursx(player, material, distance, block4.getLocation());
         }
+    }
+ */
+    private static List<Location> circle(Location loc, int radius, int height, boolean hollow, boolean sphere, int plusY){
+        List<Location> circleblocks = new ArrayList<Location>();
+        int cx = loc.getBlockX();
+        int cy = loc.getBlockY();
+        int cz = loc.getBlockZ();
+
+        for(int x = cx - radius; x <= cx + radius; x++){
+            for (int z = cz - radius; z <= cz + radius; z++){
+                for(int y = (sphere ? cy - radius : cy); y < (sphere ? cy + radius : cy + height); y++){
+                    double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z) + (sphere ? (cy - y) * (cy - y) : 0);
+
+                    if(dist < radius * radius && !(hollow && dist < (radius - 1) * (radius - 1))){
+                        Location l = new Location(loc.getWorld(), x, y + plusY, z);
+                        circleblocks.add(l);
+                    }
+                }
+            }
+        }
+
+        return circleblocks;
     }
 
 }

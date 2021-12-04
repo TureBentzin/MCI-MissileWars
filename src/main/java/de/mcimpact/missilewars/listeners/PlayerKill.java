@@ -72,12 +72,15 @@ public class PlayerKill implements Listener {
          * @return <code>missilewars.message.explode</code> when the player blew up!
          * @return <code>missilewars.message.died</code> when the player died!
          * @return <code>missilewars.message.killed</code> when there is a <code>killer()</code>!
+         * @return <code>missilewars.message.void</code> when the player was out of the map!
          */
         public Component generateDeathMessage() {
             if (deathCause == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || deathCause == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
                 return Core.getTranslatableComponent("missilewars.message.explode", Component.text(player.getName()).color(MissileWars.GAME.teamer.getTeam(player).getColor().getTextColor().adventure));
             } else if (killer != null) {
                 return Core.getTranslatableComponent("missilewars.message.killed", Component.text(player.getName()).color(MissileWars.GAME.teamer.getTeam(player).getColor().getTextColor().adventure), Component.text(killer.getName()).color(MissileWars.GAME.teamer.getTeam(killer).getColor().getTextColor().adventure));
+            } else if (deathCause == EntityDamageEvent.DamageCause.VOID) {
+                return Core.getTranslatableComponent("missilewars.message.void", Component.text(player.getName()).color(MissileWars.GAME.teamer.getTeam(player).getColor().getTextColor().adventure));
             } else
                 return Core.getTranslatableComponent("missilewars.message.died", Component.text(player.getName()).color(MissileWars.GAME.teamer.getTeam(player).getColor().getTextColor().adventure));
         }

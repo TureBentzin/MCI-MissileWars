@@ -60,6 +60,7 @@ public class Translations {
         Core.registerTranslation(KEY + "message.killed", "<system#prefix><system#accent>{0} <system#color>was killed by <system#accent>{1}<system#color>!");
         Core.registerTranslation(KEY + "message.died", "<system#prefix><system#accent>{0} <system#color>died!");
         Core.registerTranslation(KEY + "message.explode", "<system#prefix><system#accent>{0} <system#color>was blown up!");
+        Core.registerTranslation(KEY + "message.void", "<system#prefix><system#accent>{0} <system#color>was out of the map!");
 
 
         Core.registerTranslation(KEY + "display.title.death", "<bold><gradient:#8a2527:#ff0004> You died!");
