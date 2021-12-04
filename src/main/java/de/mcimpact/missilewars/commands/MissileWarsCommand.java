@@ -8,10 +8,14 @@ import de.mcimpact.core.commands.PermissionPredicate;
 import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
+import de.mcimpact.missilewars.game.items.ReceivableItem;
+import de.mcimpact.missilewars.game.items.SimpleReceivableItem;
 import de.mcimpact.missilewars.game.world.LevelManager;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import io.github.dseelp.kommon.command.*;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -30,6 +34,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> async = JavaUtils.literal("startTimer");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> players = JavaUtils.literal("players");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> reset = JavaUtils.literal("reset");
+        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> giveItem = JavaUtils.literal("giveItem");
 
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> statusenum = JavaUtils.argument(
                 new ConstrainedArgument<>("statusenum",
@@ -70,6 +75,16 @@ public class MissileWarsCommand extends Command<CommandSender> {
 
         });
 
+        giveItem.execute(commandContext -> {
+            ReceivableItem receivableItem = new SimpleReceivableItem(Material.MAGENTA_BANNER, Component.text("Hallo"), 0.2);
+            ReceivableItem receivableItem1 = new SimpleReceivableItem(Material.BRICK, Component.text("!=$"), 0.4);
+            ReceivableItem receivableItem2 = new SimpleReceivableItem(Material.DISPENSER, Component.text("bRE"), 0.32);
+            ReceivableItem receivableItem3 = new SimpleReceivableItem(Material.STICK, Component.text("Yeas"), 0.19);
+
+            MissileWars.getItemManager().addItems(receivableItem, receivableItem1, receivableItem2, receivableItem3);
+            MissileWars.getItemManager().getRandomItem();
+        });
+
         players.execute(commandContext -> commandContext.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.debug", "OnlinePlayers: " + MissileWars.GAME.getOnlinePlayers())));
 
         status.getBuilder().execute(context -> {
@@ -105,6 +120,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         base.then(players);
         base.then(levelMap);
         base.then(async);
+        base.then(giveItem);
         base.then(reset);
 
         declaration = base.build();
