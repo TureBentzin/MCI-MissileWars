@@ -2,6 +2,7 @@ package de.mcimpact.missilewars.game.items;
 
 import de.mcimpact.core.Core;
 import de.mcimpact.missilewars.MissileWars;
+import de.mcimpact.missilewars.util.Timer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -37,6 +38,11 @@ public final class ItemManager {
         }
         return b;
     }
+
+    public static void startReceiver() {
+
+    }
+
 
     public void handle(Event event) {
 
@@ -91,6 +97,30 @@ public final class ItemManager {
                 player.getInventory().addItem(item.toStack());
                 player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.itemreceived", item.getAmount(), item.getName())));
             }
+        }
+    }
+
+    public static class ReceiverTimer extends Timer {
+
+        private final Player player;
+        private final int initialValue;
+
+        public ReceiverTimer(int seconds, Player player) {
+            super(seconds);
+            this.player = player;
+            this.initialValue = seconds;
+        }
+
+        @Override
+        public void update(int value) {
+            player.setLevel(value);
+            player.setExp(value / initialValue);
+        }
+
+        @Override
+        protected void finish() {
+            player.setLevel(0);
+            player.setExp(0);
         }
     }
 
