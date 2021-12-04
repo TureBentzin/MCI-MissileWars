@@ -13,7 +13,10 @@ import de.mcimpact.missilewars.game.MissileWarsGame;
 import de.mcimpact.missilewars.game.world.LevelManager;
 import de.mcimpact.missilewars.listeners.*;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.md_5.bungee.chat.ComponentSerializer;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.initialization.qual.UnknownInitialization;
 import org.jetbrains.annotations.Nullable;
@@ -56,15 +59,28 @@ public final class MissileWars extends JavaPlugin {
 
     @Untested
     public static void broadcast(String key, Object... objects) {
-        Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key, objects)));
+       // Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key, objects)));
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            Core.getPlayerUtils().getPlayer(onlinePlayer.getUniqueId()).sendMessage(Core.getTranslatableComponent(key, objects));
+        }
+        getMWL().info(LegacyComponentSerializer.legacyAmpersand().serialize(Core.translate(Core.getTranslatableComponent(key, objects))));
+
     }
 
     public static void broadcast(String key, String... args) {
-        Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key, Translations.toObjectArray(args))));
+       // Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key, Translations.toObjectArray(args))));
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            Core.getPlayerUtils().getPlayer(onlinePlayer.getUniqueId()).sendMessage(Core.getTranslatableComponent(key, Translations.toObjectArray(args)));
+        }
+        getMWL().info(LegacyComponentSerializer.legacyAmpersand().serialize(Core.translate(Core.getTranslatableComponent(key,Translations.toObjectArray(args)))));
+
     }
 
     public static void broadcast(String key, String arg) {
-        Bukkit.broadcast(Core.translate(Core.getTranslatableComponent(key, arg)));
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            Core.getPlayerUtils().getPlayer(onlinePlayer.getUniqueId()).sendMessage(Core.getTranslatableComponent(key, arg));
+        }
+        getMWL().info(LegacyComponentSerializer.legacyAmpersand().serialize(Core.translate(Core.getTranslatableComponent(key, arg))));
     }
 
     public static void broadcast(String key) {
