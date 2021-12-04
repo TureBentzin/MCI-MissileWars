@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 
 import java.io.Serializable;
 import java.util.StringJoiner;
+import java.util.function.Consumer;
 
 
 /**
@@ -53,5 +54,10 @@ public class Pair<E> implements Serializable {
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return new Pair<E>(first, second);
+    }
+    
+    public void forBoth(Consumer<E> consumer) {
+        consumer.accept(getFirst());
+        consumer.accept(getSecond());
     }
 }
