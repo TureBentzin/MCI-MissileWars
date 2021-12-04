@@ -6,7 +6,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public final class ItemManager {
@@ -26,6 +28,16 @@ public final class ItemManager {
         return getItems().add(item);
     }
 
+    public boolean addItems(Item... items) {
+        boolean b = true;
+        for (Item item : items) {
+            if(!getItems().add(item)){
+                b = false;
+            }
+        }
+        return b;
+    }
+
     private void handle(Event event) {
 
 
@@ -40,6 +52,33 @@ public final class ItemManager {
             items.forEach(item -> { if(item instanceof UsableItem)
                 ((UsableItem) item).onClick(inventoryClickEvent); });
         }
+    }
+    
+    public ReceivableItem getRandomItem() {
+        Set<ReceivableItem> localReceivableItems = new HashSet<>();
+        for (Item item : items) {
+            if(item instanceof ReceivableItem)
+                localReceivableItems.add((ReceivableItem) item);
+        }
+
+        //Random
+
+        double all = localReceivableItems.stream().mapToDouble(ReceivableItem::getPercentage).sum();
+        double dif = 1 - all;
+        double individual = dif / localReceivableItems.size();
+        Map<ReceivableItem, Double> receivableItemDoubleMap = new HashMap<>();
+        for (ReceivableItem localReceivableItem : localReceivableItems) {
+          receivableItemDoubleMap.put(localReceivableItem, localReceivableItem.getPercentage() + individual);
+        }
+
+        double i = 0;
+        for (ReceivableItem localReceivableItem : localReceivableItems) {
+            System.out.println(localReceivableItem.getLegacyName() + receivableItemDoubleMap.get(localReceivableItem));
+            i = i + receivableItemDoubleMap.get(localReceivableItem);
+        }
+        System.out.println("final: " + i);
+
+        return null;
     }
 
 }
