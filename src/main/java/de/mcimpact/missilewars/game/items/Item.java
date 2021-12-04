@@ -1,6 +1,7 @@
 package de.mcimpact.missilewars.game.items;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -27,5 +28,9 @@ public interface Item {
 
     void appendLore(Component component);
     void setLore(List<Component> components);
+
+    default String getLegacyName() {
+        return LegacyComponentSerializer.legacyAmpersand().serialize(getName());
+    }
 
 }
