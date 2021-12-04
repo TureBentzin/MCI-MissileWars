@@ -7,32 +7,22 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-public class TradeableItem implements SellableItem, BuyableItem{
+public class TradeableItem extends SimpleItem implements SellableItem, BuyableItem{
 
     private final ItemWorth sellWorth;
     private final ItemWorth buyWorth;
-    private final Material material;
-    private Component name;
-    private List<Component> lore;
 
     public TradeableItem(int sellWorth, int buyWorth, Material material, Component name, List<Component> lore) {
+        super(material, name, lore);
 
         this.sellWorth = new ItemWorth(sellWorth);
         this.buyWorth = new ItemWorth(buyWorth);
-        this.name = name;
-        this.lore = lore;
-        this.material = material;
-
     }
 
     public TradeableItem(int sellWorth, int buyWorth, ItemStack itemStack) {
-
+        super(itemStack);
         this.sellWorth = new ItemWorth(sellWorth);
         this.buyWorth = new ItemWorth(buyWorth);
-        this.name = itemStack.displayName();
-        this.lore = itemStack.lore();
-        this.material = itemStack.getType();
-
     }
 
 
@@ -51,30 +41,6 @@ public class TradeableItem implements SellableItem, BuyableItem{
         return false;
     }
 
-    @Override
-    public Material getMaterial() {
-        return material;
-    }
-
-    @Override
-    public Component getName() {
-        return name;
-    }
-
-    @Override
-    public List<Component> getLore() {
-        return lore;
-    }
-
-    @Override
-    public void appendLore(Component component) {
-            lore.add(component);
-    }
-
-    @Override
-    public void setLore(List<Component> components) {
-        lore = components;
-    }
 
     @Override
     public ItemWorth sellWorth() {
