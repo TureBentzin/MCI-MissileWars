@@ -6,6 +6,8 @@ import de.mcimpact.gamephase.GamePhase;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
 import org.bukkit.Material;
+import de.mcimpact.missilewars.MissileWars;
+import de.mcimpact.missilewars.game.GameStatus;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -33,9 +35,26 @@ public class PlayerMove implements Listener {
             }
 
         }
-
-
-        if (event.getPlayer().isOnGround())
+      
+        if (event.getPlayer().isOnGround()) {
             FlightAttempt.uuidSet.add(event.getPlayer().getUniqueId());
+        }
+        if (MissileWars.GAME.getGameStatus() == GameStatus.GAME) {
+            if (event.getPlayer().getLocation().getX() <= MissileWars.GAME.getMissileWarsLevel().getData().getWallsX().getFirst()) {
+                event.setCancelled(true);
+            }
+            if (event.getPlayer().getLocation().getX() >= MissileWars.GAME.getMissileWarsLevel().getData().getWallsX().getSecond()) {
+                event.setCancelled(true);
+            }
+            if (event.getPlayer().getLocation().getZ() <= MissileWars.GAME.getMissileWarsLevel().getData().getWallsZ().getFirst()) {
+                event.setCancelled(true);
+            }
+            if (event.getPlayer().getLocation().getZ() >= MissileWars.GAME.getMissileWarsLevel().getData().getWallsZ().getSecond()) {
+                event.setCancelled(true);
+            }
+            if (event.getPlayer().getLocation().getY() >= MissileWars.GAME.getMissileWarsLevel().getData().getWallY()) {
+                event.setCancelled(true);
+            }
+        }
     }
 }

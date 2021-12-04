@@ -2,6 +2,7 @@ package de.mcimpact.missilewars.game.world.definition;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import de.mcimpact.core.util.Pair;
 import de.mcimpact.missilewars.game.world.LocationPair;
 import de.mcimpact.missilewars.game.world.MissileWarsLevelData;
 import org.bukkit.Bukkit;
@@ -42,7 +43,7 @@ public class LevelMetaManager {
 
     public MissileWarsLevelData toMissileWarsLevelData() {
 
-        return new MissileWarsLevelData(config.getString("levelname"), getLocationPair("spawn"), getLocationPair("portal"), config.getInt("size"));
+        return new MissileWarsLevelData(config.getString("levelname"), getLocationPair("spawn"), getLocationPair("portal"), config.getInt("size"), getWalls("walls.x"), getWalls("walls.z"), config.getDouble("walls.y"));
     }
 
     public LocationPair getLocationPair(String key) {
@@ -57,6 +58,10 @@ public class LevelMetaManager {
         z = config.getDouble(key + ".Z");
 
         return new Location(getWorld(), x, y, z);
+    }
+
+    public Pair<Double> getWalls(String key) {
+        return new Pair<>(config.getDouble(key + "lowest"), config.getDouble(key + "highest"));
     }
 
     public World getWorld() {

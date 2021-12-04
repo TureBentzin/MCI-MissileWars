@@ -1,5 +1,7 @@
 package de.mcimpact.missilewars.game.world;
 
+import de.mcimpact.core.util.Pair;
+
 import java.io.Serializable;
 import java.util.StringJoiner;
 
@@ -14,13 +16,30 @@ public class MissileWarsLevelData implements Serializable {
      * Where is portal is checked for each team
      */
     private final LocationPair portalCheckLocations;
+    /**
+     * Where the walls on the x coordinate are
+     */
+    private final Pair<Double> wallsX;
+    /**
+     * Where the walls on the x coordinate are
+     */
+    private final Pair<Double> wallsZ;
+    /**
+     * Where the wall on the y coordinate are
+     * = Max height
+     */
+    private final Double wallY;
+
     private final int size;
 
-    public MissileWarsLevelData(String levelname, LocationPair spawnLocationPair, LocationPair portalCheckLocations, int size) {
+    public MissileWarsLevelData(String levelname, LocationPair spawnLocationPair, LocationPair portalCheckLocations, int size, Pair<Double> wallsX, Pair<Double> wallsZ, Double wallY) {
         this.levelname = levelname;
         this.spawnLocationPair = spawnLocationPair;
         this.portalCheckLocations = portalCheckLocations;
         this.size = size;
+        this.wallsX = wallsX;
+        this.wallsZ = wallsZ;
+        this.wallY = wallY;
     }
 
     public int getSize() {
@@ -38,6 +57,18 @@ public class MissileWarsLevelData implements Serializable {
 
     public String getLevelname() {
         return levelname;
+    }
+
+    public Pair<Double> getWallsX() {
+        return wallsX;
+    }
+
+    public Pair<Double> getWallsZ() {
+        return wallsZ;
+    }
+
+    public Double getWallY() {
+        return wallY;
     }
 
     @Override
