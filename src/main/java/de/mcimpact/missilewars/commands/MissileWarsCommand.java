@@ -5,6 +5,7 @@ import de.mcimpact.core.commands.Command;
 import de.mcimpact.core.commands.CommandSender;
 import de.mcimpact.core.commands.ConstrainedArgument;
 import de.mcimpact.core.commands.PermissionPredicate;
+import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.core.util.Utils;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.game.GameStatus;
@@ -16,6 +17,7 @@ import io.github.dseelp.kommon.command.*;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -76,13 +78,19 @@ public class MissileWarsCommand extends Command<CommandSender> {
         });
 
         giveItem.execute(commandContext -> {
-            ReceivableItem receivableItem = new SimpleReceivableItem(Material.MAGENTA_BANNER, Component.text("Hallo"), 0.2);
-            ReceivableItem receivableItem1 = new SimpleReceivableItem(Material.BRICK, Component.text("!=$"), 0.4);
-            ReceivableItem receivableItem2 = new SimpleReceivableItem(Material.DISPENSER, Component.text("bRE"), 0.32);
-            ReceivableItem receivableItem3 = new SimpleReceivableItem(Material.STICK, Component.text("Yeas"), 0.19);
+            if(commandContext.getSender() instanceof NetPlayer) {
+                NetPlayer netPlayer = (NetPlayer) commandContext.getSender();
 
-            MissileWars.getItemManager().addItems(receivableItem, receivableItem1, receivableItem2, receivableItem3);
-            MissileWars.getItemManager().getRandomItem();
+                Player player = Bukkit.getPlayer(netPlayer.getUniqueId());
+                ReceivableItem receivableItem = new SimpleReceivableItem(Material.MAGENTA_BANNER, Component.text("Hallo"), 0.2);
+                ReceivableItem receivableItem1 = new SimpleReceivableItem(Material.BRICK, Component.text("!=$"), 0.4);
+                ReceivableItem receivableItem2 = new SimpleReceivableItem(Material.DISPENSER, Component.text("bRE"), 0.32);
+                ReceivableItem receivableItem3 = new SimpleReceivableItem(Material.STICK, Component.text("Yeas"), 0.19);
+
+                MissileWars.getItemManager().addItems(receivableItem, receivableItem1, receivableItem2, receivableItem3);
+
+                player.getInventory().addItem(MissileWars.getItemManager().getRandomItem().toStack());
+            }
         });
 
         players.execute(commandContext -> commandContext.getSender().sendMessage(Core.getTranslatableComponent("missilewars.message.debug", "OnlinePlayers: " + MissileWars.GAME.getOnlinePlayers())));
