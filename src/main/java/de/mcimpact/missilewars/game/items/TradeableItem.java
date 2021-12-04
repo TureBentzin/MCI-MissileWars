@@ -13,14 +13,14 @@ public class TradeableItem extends SimpleItem implements SellableItem, BuyableIt
     private final ItemWorth buyWorth;
 
     public TradeableItem(int sellWorth, int buyWorth, Material material, Component name, List<Component> lore) {
-        super(material, name, lore);
+        super(material, name, lore, amount);
 
         this.sellWorth = new ItemWorth(sellWorth);
         this.buyWorth = new ItemWorth(buyWorth);
     }
 
     public TradeableItem(int sellWorth, int buyWorth, ItemStack itemStack) {
-        super(itemStack);
+        super(itemStack, amount);
         this.sellWorth = new ItemWorth(sellWorth);
         this.buyWorth = new ItemWorth(buyWorth);
     }

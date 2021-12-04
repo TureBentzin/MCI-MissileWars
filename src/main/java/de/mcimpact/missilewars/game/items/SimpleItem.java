@@ -12,23 +12,27 @@ public class SimpleItem implements Item{
     private final Material material;
     private Component name;
     private List<Component> lore;
+    private final int amount;
 
-    public SimpleItem(Material material, Component name, List<Component> components) {
+    public SimpleItem(Material material, Component name, List<Component> components, int amount) {
         this.material = material;
         this.name = name;
         lore = components;
+        this.amount = amount;
     }
 
-    public SimpleItem(Material material, Component name) {
+    public SimpleItem(Material material, Component name, int amount) {
         this.material = material;
         this.name = name;
+        this.amount = amount;
         lore = new ArrayList<>();
     }
 
-    public SimpleItem(ItemStack itemStack) {
+    public SimpleItem(ItemStack itemStack, int amount) {
         this.material = itemStack.getType();
         this.name = itemStack.displayName();
         this.lore = itemStack.lore();
+        this.amount = amount;
     }
 
     @Override
@@ -44,6 +48,11 @@ public class SimpleItem implements Item{
     @Override
     public List<Component> getLore() {
         return lore;
+    }
+
+    @Override
+    public int getAmount() {
+        return amount;
     }
 
     @Override

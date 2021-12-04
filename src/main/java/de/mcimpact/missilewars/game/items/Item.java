@@ -26,6 +26,8 @@ public interface Item {
     Component getName();
     List<Component> getLore();
 
+    int getAmount();
+
     void appendLore(Component component);
     void setLore(List<Component> components);
 

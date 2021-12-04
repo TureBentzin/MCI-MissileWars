@@ -1,6 +1,8 @@
 package de.mcimpact.missilewars.game.items;
 
+import de.mcimpact.core.Core;
 import de.mcimpact.missilewars.MissileWars;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerEvent;
@@ -77,6 +79,15 @@ public final class ItemManager {
         }
 
         throw new RuntimeException("FATAL!");
+    }
+
+    public boolean giveItem(Player... players) {
+        for (Player player : players) {
+            if(MissileWars.GAME.isPlayingPlayer(player.getUniqueId())) {
+                player.getInventory().addItem(getRandomItem().toStack());
+                player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.itemreceived",)));
+            }
+        }
     }
 
 }
