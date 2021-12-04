@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleItem implements Item{
@@ -16,6 +17,12 @@ public class SimpleItem implements Item{
         this.material = material;
         this.name = name;
         lore = components;
+    }
+
+    public SimpleItem(Material material, Component name) {
+        this.material = material;
+        this.name = name;
+        lore = new ArrayList<>();
     }
 
     public SimpleItem(ItemStack itemStack) {
