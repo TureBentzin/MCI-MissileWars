@@ -81,7 +81,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
             if(commandContext.getSender() instanceof NetPlayer) {
                 NetPlayer netPlayer = (NetPlayer) commandContext.getSender();
                 Player player = Bukkit.getPlayer(netPlayer.getUniqueId());
-                player.getInventory().addItem(MissileWars.getItemManager().getRandomItem().toStack());
+                MissileWars.getItemManager().giveItem(player);
             }
         });
 
