@@ -64,21 +64,6 @@ public final class ItemManager {
         //Random
 
         double all = localReceivableItems.stream().mapToDouble(ReceivableItem::getPercentage).sum();
-     /*   double dif = 1 - all;
-        double individual = dif / localReceivableItems.size();
-        Map<ReceivableItem, Double> receivableItemDoubleMap = new HashMap<>();
-        for (ReceivableItem localReceivableItem : localReceivableItems) {
-          receivableItemDoubleMap.put(localReceivableItem, localReceivableItem.getPercentage() + individual);
-        }
-
-        double i = 0;
-        for (ReceivableItem localReceivableItem : localReceivableItems) {
-            System.out.println(localReceivableItem.getLegacyName() + receivableItemDoubleMap.get(localReceivableItem));
-            i = i + receivableItemDoubleMap.get(localReceivableItem);
-        }
-        System.out.println("final: " + i);
-
-      */
         double r = Math.random() * all;
 
         double c = 0;
