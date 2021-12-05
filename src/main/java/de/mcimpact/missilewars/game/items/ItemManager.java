@@ -51,7 +51,7 @@ public final class ItemManager {
 
         for (Item item : getItems()) {
             boolean complete = false;
-            while (!complete)
+            while (!complete && i <= items.length -1)
                 if (items[i] != null) {
                     items[i] = item;
                     complete = true;
