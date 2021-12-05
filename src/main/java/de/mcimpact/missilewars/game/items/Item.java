@@ -42,7 +42,7 @@ public interface Item {
     default List<Component> translateLore(Locale locale) {
         ArrayList<Component> arrayList = new ArrayList<>();
         getLore().forEach(component -> arrayList.add(Core.translate(component,locale)));
-
+        return arrayList;
     }
 
     Material getMaterial();
