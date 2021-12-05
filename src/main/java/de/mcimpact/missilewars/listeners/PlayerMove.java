@@ -29,7 +29,7 @@ public class PlayerMove implements Listener {
             if (event.getPlayer().getLocation().getBlockY() < -10) {
                 GamePhase.killPlayer(new PlayerKill.KillInformation(netPlayer,
                         null, event.getPlayer().getLocation(), EntityDamageEvent.DamageCause.VOID));
-                event.getPlayer().teleport(MissileWars.GAME.getSpwanOfPlayer(event.getPlayer()));
+                event.getPlayer().teleport(MissileWars.GAME.getSpawnOfPlayer(event.getPlayer()));
             }
 
         }

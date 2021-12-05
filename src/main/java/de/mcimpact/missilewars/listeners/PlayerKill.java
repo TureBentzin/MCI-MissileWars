@@ -48,7 +48,7 @@ public class PlayerKill implements Listener {
             if (MissileWars.GAME.isRunning() &&
                     MissileWars.GAME.isPlayingPlayer(player)
                     && (player.getHealth() - event.getDamage()) <= 0) {
-                player.teleport(MissileWars.GAME.getSpwanOfPlayer(player));
+                player.teleport(MissileWars.GAME.getSpawnOfPlayer(player));
 
             }
         }

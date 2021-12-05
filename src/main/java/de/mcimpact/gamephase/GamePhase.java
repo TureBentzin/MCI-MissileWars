@@ -58,7 +58,7 @@ public class GamePhase {
 
         Bukkit.broadcast(Core.translate(information.generateDeathMessage()));
 
-        player.teleport(MissileWars.GAME.getSpwanOfPlayer(player));
+        player.teleport(MissileWars.GAME.getSpawnOfPlayer(player));
         player.setHealth(player.getHealthScale());
         player.showTitle(Title.title(Core.translate(Core.getTranslatableComponent("missilewars.display.title.death")), Component.empty()));
 

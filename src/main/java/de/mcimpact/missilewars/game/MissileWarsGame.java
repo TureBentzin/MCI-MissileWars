@@ -192,7 +192,7 @@ public class MissileWarsGame extends Game implements Listener {
         return !isPlayingPlayer(uuid);
     }
 
-    public Location getSpwanOfPlayer(Player player) {
+    public Location getSpawnOfPlayer(Player player) {
         if (isSpectatingPlayer(player)) return getMissileWarsLevel().getWorld().getSpawnLocation();
         if (isPlayingPlayer(player)) {
             int number = getPlayersTeamNumber(player.getUniqueId());
