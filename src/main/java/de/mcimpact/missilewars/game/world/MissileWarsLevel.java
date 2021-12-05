@@ -54,8 +54,16 @@ public class MissileWarsLevel {
         });
        */
 
-        MissileWars.GAME.getTeams()[0].getUuids().forEach(uuid -> Bukkit.getPlayer(uuid).teleport(completeLocation(ELocation.FIRST, LocationType.SPAWN)));
-        MissileWars.GAME.getTeams()[1].getUuids().forEach(uuid -> Bukkit.getPlayer(uuid).teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN)));
+        MissileWars.GAME.getTeams()[0].getUuids().forEach(uuid -> {
+            Location location = completeLocation(ELocation.FIRST, LocationType.SPAWN);
+            location.setWorld(getWorld());
+            Bukkit.getPlayer(uuid).teleport(location);
+        });
+        MissileWars.GAME.getTeams()[1].getUuids().forEach(uuid -> {
+            Location location = completeLocation(ELocation.SECOND, LocationType.SPAWN);
+            location.setWorld(getWorld());
+            Bukkit.getPlayer(uuid).teleport(location);
+        });
 
     }
 
@@ -64,7 +72,9 @@ public class MissileWarsLevel {
      */
     public void sendIndividualPlayer(Player player) {
         if (MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[0]) {
-            player.teleport(completeLocation(ELocation.FIRST, LocationType.SPAWN));
+            Location location = completeLocation(ELocation.FIRST, LocationType.SPAWN);
+            location.setWorld(MissileWars.GAME.getMissileWarsLevel().getWorld());
+            player.teleport(location);
         } else if (MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[1]) {
             player.teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN));
         } else {

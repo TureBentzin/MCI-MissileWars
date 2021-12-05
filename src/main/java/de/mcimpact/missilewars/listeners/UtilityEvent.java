@@ -11,7 +11,7 @@ import java.net.http.WebSocket;
 
 public class UtilityEvent implements Listener {
 
-    @EventHandler
+    //@EventHandler
     public void onServerListPing(ServerListPingEvent event) {
        if(MissileWars.GAME.getGameStatus() == GameStatus.LOBBY) {
            event.motd(Core.translate(Core.getTranslatableComponent("missilewars.motd.lobby")));
