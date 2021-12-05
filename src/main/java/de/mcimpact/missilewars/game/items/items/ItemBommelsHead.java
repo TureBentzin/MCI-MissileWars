@@ -1,5 +1,6 @@
 package de.mcimpact.missilewars.game.items.items;
 
+import de.mcimpact.core.Core;
 import de.mcimpact.missilewars.game.items.InteractableItem;
 import de.mcimpact.missilewars.game.items.ReceivableItem;
 import de.mcimpact.missilewars.game.items.SimpleItem;
@@ -13,7 +14,8 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 public class ItemBommelsHead extends SimpleItem implements InteractableItem, ReceivableItem, SkullItem {
     public ItemBommelsHead() {
-        super(Material.PLAYER_HEAD, Component.text("§3Bommels"), 1);
+        super(Material.PLAYER_HEAD, Core.getTranslatableComponent("missilewars.item.bommels.name"),
+                Core.getTranslatableComponent("missilewars.item.bommels.lore"), 1);
     }
 
     /**

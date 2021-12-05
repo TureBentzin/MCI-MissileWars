@@ -2,7 +2,6 @@ package de.mcimpact.missilewars.game.items;
 
 import de.mcimpact.missilewars.MissileWars;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TranslatableComponent;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -32,7 +31,7 @@ public class SimpleItem implements Item {
         this.amount = amount;
     }
 
-    public SimpleItem(Material material, TranslatableComponent name, int amount) {
+    public SimpleItem(Material material, Component name, int amount) {
         this.material = material;
         this.name = name;
         this.amount = amount;

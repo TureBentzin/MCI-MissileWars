@@ -1,10 +1,14 @@
 package de.mcimpact.missilewars;
 
 import de.mcimpact.core.Core;
+import de.mcimpact.core.messages.MessageManager;
+
+import java.util.Locale;
 
 public class Translations {
 
     private static final String KEY = "missilewars.";
+    private static final MessageManager manager = Core.getMessageManager();
 
     public static void run() {
 
@@ -73,6 +77,12 @@ public class Translations {
 
         Core.registerTranslation(KEY + "item.fireball.name", "<red>FIREBALL");
         Core.registerTranslation(KEY + "item.fireball.lore", "<gray>Throw it like its hot!");
+
+        Core.registerTranslation(KEY + "item.bommels.name", "<cyan>Bommels Head");
+        Core.registerTranslation(KEY + "item.bommels.lore", "<gray>I <3 Joana!");
+        manager.registerTranslation(KEY + "item.bommels.name", "<cyan>Bommels Kopf", Locale.GERMAN);
+        manager.registerTranslation(KEY + "item.bommels.lore", "<gray>Ich <3 Joana!", Locale.GERMAN);
+
 
         Core.registerTranslation(KEY + "item.buzer.msg", "<system#preifx><system#color>You received the <system#accent>Absorption<system#color> Effect!");
 
