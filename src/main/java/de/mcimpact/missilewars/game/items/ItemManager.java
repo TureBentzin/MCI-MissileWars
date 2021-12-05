@@ -1,11 +1,9 @@
 package de.mcimpact.missilewars.game.items;
 
 import de.mcimpact.core.Core;
-import de.mcimpact.core.game.Game;
 import de.mcimpact.core.util.Pair;
 import de.mcimpact.game.team.Team;
 import de.mcimpact.missilewars.MissileWars;
-import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import de.mcimpact.missilewars.util.Timer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -47,6 +45,22 @@ public final class ItemManager {
         return b;
     }
 
+    public Item[] toArray() {
+        Item[] items = new Item[getItems().size()];
+        int i = 0;
+
+        for (Item item : getItems()) {
+            boolean complete = false;
+            while (!complete)
+                if (items[i] != null) {
+                    items[i] = item;
+                    complete = true;
+                } else
+                    i++;
+        }
+        return items;
+    }
+
     @UnknownInitialization
     private Pair<ReceiverTimer> receiverTimerPair;
 
@@ -58,28 +72,28 @@ public final class ItemManager {
 
     public void startReceiver() {
         final int time = 20;
-        if(MissileWars.GAME.getOnlinePlayers().size() == 0) {
+        if (MissileWars.GAME.getOnlinePlayers().size() == 0) {
             return;
         }
-        if(MissileWars.GAME.getOnlinePlayers().size() == 1) {
+        if (MissileWars.GAME.getOnlinePlayers().size() == 1) {
+            MissileWars.broadcast("missilewars.message.game.single");
             MissileWars.GAME.getOnlinePlayers().forEach(player -> Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), new ReceiverTimer(10, MissileWars.GAME.teamer.getTeam(player.getUniqueId()))));
             return;
-                    }
-        if(MissileWars.GAME.getTeams()[0].getUuids().size() > MissileWars.GAME.getTeams()[1].getUuids().size()) {
+        }
+        if (MissileWars.GAME.getTeams()[0].getUuids().size() > MissileWars.GAME.getTeams()[1].getUuids().size()) {
             int ratio = MissileWars.GAME.getTeams()[0].getUuids().size() / MissileWars.GAME.getTeams()[1].getUuids().size();
             MissileWars.broadcast("missilewars.message.debug", "ratio: " + ratio);
             receiverTimerPair = new Pair<>(new ReceiverTimer(time, MissileWars.GAME.getTeams()[0]), new ReceiverTimer(20 / ratio, MissileWars.GAME.getTeams()[1]));
-        }else
-        if(MissileWars.GAME.getTeams()[1].getUuids().size() > MissileWars.GAME.getTeams()[0].getUuids().size()) {
+        } else if (MissileWars.GAME.getTeams()[1].getUuids().size() > MissileWars.GAME.getTeams()[0].getUuids().size()) {
             int ratio = MissileWars.GAME.getTeams()[1].getUuids().size() / MissileWars.GAME.getTeams()[0].getUuids().size();
             MissileWars.broadcast("missilewars.message.debug", "ratio: " + ratio);
 
             receiverTimerPair = new Pair<>(new ReceiverTimer(time, MissileWars.GAME.getTeams()[1]), new ReceiverTimer(20 / ratio, MissileWars.GAME.getTeams()[0]));
-        }else {
-            receiverTimerPair = new Pair<>(new ReceiverTimer(time, MissileWars.GAME.getTeams()[1]), new ReceiverTimer(20 , MissileWars.GAME.getTeams()[0]));
+        } else {
+            receiverTimerPair = new Pair<>(new ReceiverTimer(time, MissileWars.GAME.getTeams()[1]), new ReceiverTimer(20, MissileWars.GAME.getTeams()[0]));
 
         }
-       getReceiverTimerPair().forBoth(receiverTimer -> Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), () -> receiverTimer.start()));
+        getReceiverTimerPair().forBoth(receiverTimer -> Bukkit.getScheduler().runTaskAsynchronously(MissileWars.getMissileWars(), () -> receiverTimer.start()));
 
     }
 
@@ -140,6 +154,16 @@ public final class ItemManager {
         }
     }
 
+    public Item giveItem(Item item, Player... players) {
+        for (Player player : players) {
+            if(MissileWars.GAME.isPlayingPlayer(player)) {
+                player.getInventory().addItem(item.toStack());
+                player.sendMessage(Core.translate(Core.getTranslatableComponent("missilewars.message.itemreceived", item.getAmount(), item.getName())));
+            }
+        }
+        return item;
+    }
+
     public static class ReceiverTimer extends Timer {
 
         private final Team team;
@@ -159,12 +183,12 @@ public final class ItemManager {
 
         @Override
         public void update(int value) {
-            if(MissileWars.GAME.isRunning())
-            for (UUID uuid : team.getUuids()) {
-                Player player = Bukkit.getPlayer(uuid);
-                player.setLevel(value);
-                player.setExp(value / initialValue);
-            }
+            if (MissileWars.GAME.isRunning())
+                for (UUID uuid : team.getUuids()) {
+                    Player player = Bukkit.getPlayer(uuid);
+                    player.setLevel(value);
+                    player.setExp(value / initialValue);
+                }
             else
                 abort();
         }

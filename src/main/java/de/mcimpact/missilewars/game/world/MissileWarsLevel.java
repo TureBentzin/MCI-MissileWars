@@ -78,6 +78,7 @@ public class MissileWarsLevel {
         } else if (MissileWars.GAME.teamer.getTeam(player.getUniqueId()) == MissileWars.GAME.getTeams()[1]) {
             player.teleport(completeLocation(ELocation.SECOND, LocationType.SPAWN));
         } else {
+
         }
     }
 

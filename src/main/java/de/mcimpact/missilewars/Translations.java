@@ -28,6 +28,8 @@ public class Translations {
 
         Core.registerTranslation(KEY + "message.game.autostart", "<system#prefix><system#color>The game is <system#accent>starting<system#color>!");
         Core.registerTranslation(KEY + "message.game.autostart.timer", "<system#prefix><system#color>The game is starting in <error#accent>{0}<system#color>s!");
+        Core.registerTranslation(KEY + "message.game.single", "<system#prefix><system#color>You are currently <system#accent>alone<system#color> in the game!");
+
 
         Core.registerTranslation(KEY + "message.game.aborted", "<fatal#prefix><fatal#color>Your<fatal#accent> MissileWars <fatal#color>game failed!");
         Core.registerTranslation(KEY + "message.movement.disconnect", "<system#prefix><system#accent>{0} <system#color>out of Team <system#accent>{1}<system#color> has quit!");
@@ -71,6 +73,8 @@ public class Translations {
 
         Core.registerTranslation(KEY + "item.fireball.name", "<red>FIREBALL");
         Core.registerTranslation(KEY + "item.fireball.lore", "<gray>Throw it like its hot!");
+
+        Core.registerTranslation(KEY + "item.buzer.msg", "<system#preifx><system#color>You received the <system#accent>Absorption<system#color> Effect!");
 
 
         Core.registerTranslation(KEY + "display.title.death", "<bold><gradient:#8a2527:#ff0004> You died!");

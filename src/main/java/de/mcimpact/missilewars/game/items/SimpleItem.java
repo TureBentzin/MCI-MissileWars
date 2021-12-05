@@ -1,7 +1,10 @@
 package de.mcimpact.missilewars.game.items;
 
+import de.mcimpact.missilewars.MissileWars;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TranslatableComponent;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -29,7 +32,7 @@ public class SimpleItem implements Item {
         this.amount = amount;
     }
 
-    public SimpleItem(Material material, Component name, int amount) {
+    public SimpleItem(Material material, TranslatableComponent name, int amount) {
         this.material = material;
         this.name = name;
         this.amount = amount;
@@ -41,6 +44,11 @@ public class SimpleItem implements Item {
         this.name = itemStack.displayName();
         this.lore = itemStack.lore();
         this.amount = amount;
+    }
+
+    public Item give(Player... players) {
+        MissileWars.getItemManager().giveItem(this, players);
+        return this;
     }
 
     @Override

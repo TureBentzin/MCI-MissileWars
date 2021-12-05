@@ -3,6 +3,7 @@ package de.mcimpact.missilewars.game.items.items;
 import de.mcimpact.missilewars.game.items.InteractableItem;
 import de.mcimpact.missilewars.game.items.ReceivableItem;
 import de.mcimpact.missilewars.game.items.SimpleItem;
+import de.mcimpact.missilewars.game.items.SkullItem;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.event.block.Action;
@@ -10,7 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-public class ItemBommelsHead extends SimpleItem implements InteractableItem, ReceivableItem {
+public class ItemBommelsHead extends SimpleItem implements InteractableItem, ReceivableItem, SkullItem {
     public ItemBommelsHead() {
         super(Material.PLAYER_HEAD, Component.text("§3Bommels"), 1);
     }
@@ -28,21 +29,9 @@ public class ItemBommelsHead extends SimpleItem implements InteractableItem, Rec
         interactEvent.setCancelled(true);
     }
 
-
     @Override
-    public ItemStack toStack() {
-        ItemStack stack = skull("Bommels05");
-        stack.editMeta(meta -> meta.displayName(getName()));
-        stack.lore(getLore());
-        return stack;
-    }
-
-    protected ItemStack skull(String owner) {
-        ItemStack skull = new ItemStack(Material.PLAYER_HEAD);
-        SkullMeta meta = (SkullMeta) skull.getItemMeta();
-        meta.setOwner(owner);
-        skull.setItemMeta(meta);
-        return skull;
+    public String getSkullOwner() {
+        return "Bommels05";
     }
 
     /**
