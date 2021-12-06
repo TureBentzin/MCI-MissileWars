@@ -1,19 +1,31 @@
 package de.mcimpact.missilewars.game.items;
 
 import de.mcimpact.core.Core;
+import de.mcimpact.core.util.Identifiable;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TranslatableComponent;
+import net.kyori.adventure.text.serializer.ComponentSerializer;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.persistence.metamodel.IdentifiableType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public interface Item {
+public interface Item extends Identifiable {
+    @Override
+    default String getID() {
+        String s = getLegacyName();
+        s = ChatColor.stripColor(s);
+        s.replace(" ", "");
+        s.replace("`", "");
+        return s;
+    }
 
     default ItemStack toStack() {
         ItemStack itemStack = new ItemStack(getMaterial());
@@ -44,6 +56,8 @@ public interface Item {
         getLore().forEach(component -> arrayList.add(Core.translate(component,locale)));
         return arrayList;
     }
+    
+
 
     Material getMaterial();
 
