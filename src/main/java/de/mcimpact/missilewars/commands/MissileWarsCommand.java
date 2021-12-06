@@ -43,7 +43,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> giveItems = JavaUtils.argument(
                 new ConstrainedArgument<CommandSender>("giveitems", netPlayerCommandContext -> {
                     String[] ret = new String[MissileWars.getItemManager().getItems().size()];
-                    return Arrays.stream(MissileWars.getItemManager().toArray()).map(Item::getName).toArray(String[]::new);
+                    return Arrays.stream(MissileWars.getItemManager().toArray()).map(Item::getID).toArray(String[]::new);
                 }));
         giveItem.then(giveItems.build());
         /*
@@ -92,7 +92,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
            String arg =  commandContext.get("giveitems", String.class);
            NetPlayer netPlayer = (NetPlayer) commandContext.getSender();
             MissileWars.getItemManager().getItems().forEach( item -> {
-                if(item.getName().equals(arg)) {
+                if(item.getID().equals(arg)) {
                     MissileWars.getItemManager().giveItem(item, Bukkit.getPlayer(netPlayer.getUniqueId()));
                 }
             });
