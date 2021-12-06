@@ -20,11 +20,7 @@ import java.util.Locale;
 public interface Item extends Identifiable {
     @Override
     default String getID() {
-        String s = getLegacyName();
-        s = ChatColor.stripColor(s);
-        s.replace(" ", "");
-        s.replace("`", "");
-        return s;
+        return Identifiable.generateID(ChatColor.stripColor(getLegacyName()));
     }
 
     default ItemStack toStack() {
