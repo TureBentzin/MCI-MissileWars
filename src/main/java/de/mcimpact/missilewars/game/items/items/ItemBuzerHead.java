@@ -13,8 +13,8 @@ import org.bukkit.potion.PotionEffectType;
 
 public class ItemBuzerHead extends SimpleSkullItem implements ReceivableItem, InteractableItem {
 
-    public ItemBuzerHead() {
-        super(Component.text("§7Buzer Head"), 3);
+    public ItemBuzerHead(){
+        super("missilewars.item.buzer", 3);
     }
     /**
      * @return value between 0 and 1

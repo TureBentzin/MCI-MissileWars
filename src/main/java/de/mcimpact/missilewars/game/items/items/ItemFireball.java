@@ -1,6 +1,5 @@
 package de.mcimpact.missilewars.game.items.items;
 
-import de.mcimpact.core.Core;
 import de.mcimpact.core.players.NetPlayer;
 import de.mcimpact.missilewars.game.items.*;
 import org.bukkit.Material;
@@ -9,10 +8,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class ItemFireball extends SimpleItem implements InteractableItem, BuyableItem, ReceivableItem {
+public class ItemFireball extends SimpleTranslatableItem implements InteractableItem, BuyableItem, ReceivableItem {
 
     public ItemFireball() {
-        super(Material.FIRE_CHARGE, Core.translate(Core.getTranslatableComponent("missilewars.item.fireball.name")), Core.translate(Core.getTranslatableComponent("missilewars.item.fireball.lore")), 1);
+        super(Material.FIRE_CHARGE, "missilewars.item.fireball", 1);
     }
 
     @Override
