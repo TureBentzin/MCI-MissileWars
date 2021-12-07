@@ -6,8 +6,10 @@ import de.mcimpact.game.team.Team;
 import de.mcimpact.missilewars.MissileWars;
 import de.mcimpact.missilewars.util.Timer;
 import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -117,6 +119,16 @@ public final class ItemManager {
             items.forEach(item -> {
                 if (item instanceof UsableItem)
                     ((UsableItem) item).onClick(inventoryClickEvent);
+            });
+        }
+        if (event instanceof BlockPlaceEvent) {
+            BlockPlaceEvent blockPlaceEvent = (BlockPlaceEvent) event;
+            if(!MissileWars.GAME.isPlayingPlayer(((BlockPlaceEvent) event).getPlayer().getUniqueId())) return;
+            items.forEach(item -> {
+                if (item instanceof PlaceableItem) {
+                    blockPlaceEvent.setCancelled(true);
+                    ((PlaceableItem) item).place(blockPlaceEvent);
+                }
             });
         }
     }

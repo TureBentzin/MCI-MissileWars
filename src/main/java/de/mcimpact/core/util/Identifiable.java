@@ -14,10 +14,14 @@ public interface Identifiable {
 
     static String generateID(String s) {
         s.replace(" ", "_");
-        for (char c : UTF.toCharArray()) {
-            if(!ALLOWED.contains(s))
+        for (char c : s.toCharArray()) {
+            if(!ALLOWED.contains(c + ""))
                 s.replace(c + "", "");
         }
         return s;
+    }
+
+    static CharSequence getUTF() {
+        return UTF;
     }
 }

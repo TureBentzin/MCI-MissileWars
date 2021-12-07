@@ -6,6 +6,7 @@ import de.mcimpact.missilewars.game.items.ReceivableItem;
 import de.mcimpact.missilewars.game.items.SimpleItem;
 import de.mcimpact.missilewars.game.items.SkullItem;
 import net.kyori.adventure.text.Component;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
