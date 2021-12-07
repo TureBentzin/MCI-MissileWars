@@ -13,7 +13,6 @@ import de.mcimpact.missilewars.game.items.Item;
 import de.mcimpact.missilewars.game.world.LevelManager;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
 import io.github.dseelp.kommon.command.*;
-import kotlin.jvm.functions.Function1;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -34,7 +33,7 @@ public class MissileWarsCommand extends Command<CommandSender> {
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> async = JavaUtils.literal("startTimer");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> players = JavaUtils.literal("players");
         JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> reset = JavaUtils.literal("reset");
-        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> giveItem = JavaUtils.<CommandSender>literal("giveItem").checkSender( commandContext -> commandContext.getSender() instanceof NetPlayer);
+        JavaCommandBuilder<CommandSender, NamedCommandNode<CommandSender>> giveItem = JavaUtils.<CommandSender>literal("giveItem").checkSender(commandContext -> commandContext.getSender() instanceof NetPlayer);
 
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> statusenum = JavaUtils.argument(
                 new ConstrainedArgument<>("statusenum",
@@ -43,7 +42,17 @@ public class MissileWarsCommand extends Command<CommandSender> {
         JavaCommandBuilder<CommandSender, ArgumentCommandNode<CommandSender>> giveItems = JavaUtils.argument(
                 new ConstrainedArgument<CommandSender>("giveitems", netPlayerCommandContext -> {
                     String[] ret = new String[MissileWars.getItemManager().getItems().size()];
-                    return Arrays.stream(MissileWars.getItemManager().toArray()).map(Item::getID).toArray(String[]::new);
+                    // return Arrays.stream(MissileWars.getItemManager().toArray()).map(Item::getID).toArray(String[]::new);
+                    int i = 0;
+                    MissileWars.getItemManager().getItems().forEach(item -> System.out.println("item.getID() = " + item.getID()));
+                    for (Item item : MissileWars.getItemManager().getItems()) {
+                        if (ret[i] == null)
+                            ret[i] = item.getID();
+                        else
+                            i++;
+                    }
+                    System.out.println("Arrays.toString(ret) = " + Arrays.toString(ret));
+                    return ret;
                 }));
         giveItem.then(giveItems.build());
         /*
@@ -88,11 +97,11 @@ public class MissileWarsCommand extends Command<CommandSender> {
             }
         });
 
-        giveItems.execute( commandContext -> {
-           String arg =  commandContext.get("giveitems", String.class);
-           NetPlayer netPlayer = (NetPlayer) commandContext.getSender();
-            MissileWars.getItemManager().getItems().forEach( item -> {
-                if(item.getID().equals(arg)) {
+        giveItems.execute(commandContext -> {
+            String arg = commandContext.get("giveitems", String.class);
+            NetPlayer netPlayer = (NetPlayer) commandContext.getSender();
+            MissileWars.getItemManager().getItems().forEach(item -> {
+                if (item.getID().equals(arg)) {
                     MissileWars.getItemManager().giveItem(item, Bukkit.getPlayer(netPlayer.getUniqueId()));
                 }
             });

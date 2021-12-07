@@ -26,6 +26,7 @@ public interface Item extends Identifiable {
     default ItemStack toStack() {
         ItemStack itemStack = new ItemStack(getMaterial());
         itemStack.lore(getLore());
+        itemStack.setAmount(getAmount());
         if (itemStack.hasItemMeta()) {
             ItemMeta meta = itemStack.getItemMeta();
             meta.displayName(getName());
@@ -54,7 +55,7 @@ public interface Item extends Identifiable {
     }
 
     default String getLegacyName() {
-        return LegacyComponentSerializer.legacyAmpersand().serialize(getName());
+        return LegacyComponentSerializer.legacyAmpersand().serialize(Core.translate(getName()));
     }
 
     Material getMaterial();
