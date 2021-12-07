@@ -12,6 +12,9 @@ public class Translations {
 
     public static void run() {
 
+        Core.registerTranslation("mcimpact.message.command.notexisting", "<gradient:#ff0019:#380006><bold>MCImpact</bold><gold> ➜ <red>Command <yellow>{0} <red>does not exist!");
+        manager.registerTranslation("mcimpact.message.command.notexisting", "<gradient:#ff0019:#380006><bold>MCImpact</bold><gold> ➜ <red>Befehl <yellow>{0} <red>existiert nicht!", Locale.GERMAN);
+
         Core.registerTranslation(KEY + "message.movement.playerjoin", "<system#prefix><error#accent>{0} <system#color>joined the game!");
         Core.registerTranslation(KEY + "message.debug", "<system#prefix> [DEBUG] <system#color>{0}");
         Core.registerTranslation(KEY + "message.movement.adminmodejoin", "<system#prefix><system#color>You tried to join a game with AdminMode.");
