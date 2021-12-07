@@ -52,8 +52,10 @@ public interface Item extends Identifiable {
         getLore().forEach(component -> arrayList.add(Core.translate(component,locale)));
         return arrayList;
     }
-    
 
+    default String getLegacyName() {
+        return LegacyComponentSerializer.legacyAmpersand().serialize(getName());
+    }
 
     Material getMaterial();
 
@@ -67,8 +69,6 @@ public interface Item extends Identifiable {
 
     void appendLore(Component component);
 
-    default String getLegacyName() {
-        return LegacyComponentSerializer.legacyAmpersand().serialize(getName());
-    }
+
 
 }
