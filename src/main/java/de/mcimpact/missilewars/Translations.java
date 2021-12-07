@@ -79,12 +79,12 @@ public class Translations {
         Core.registerTranslation(KEY + "motd.paused", "<bold><gradient:#8a2527:#ff0004> MissileWars </bold><gray>|</gray> <dark_red>MissileWars is not responding...");
 
         Core.registerTranslation(KEY + "item.fireball.name", "<red>FIREBALL");
-        Core.registerTranslation(KEY + "item.fireball.lore", "<gray>Throw it like its hot!");
+        Core.registerTranslation(KEY + "item.fireball.lore.0", "<gray>Throw it like its hot!");
 
         Core.registerTranslation(KEY + "item.bommels.name", "<blue>Bommels Head");
-        Core.registerTranslation(KEY + "item.bommels.lore", "<gray>I <3 Joana!");
-        manager.registerTranslation(KEY + "item.bommels.name", "<cyan>Bommels Kopf", Locale.GERMAN);
-        manager.registerTranslation(KEY + "item.bommels.lore", "<gray>Ich <3 Joana!", Locale.GERMAN);
+        Core.registerTranslation(KEY + "item.bommels.lore.0", "<gray>I <3 Joana!");
+        manager.registerTranslation(KEY + "item.bommels.name", "<blue>Bommels Kopf", Locale.GERMAN);
+        manager.registerTranslation(KEY + "item.bommels.lore.0", "<gray>Ich <3 Joana!", Locale.GERMAN);
 
 
         Core.registerTranslation(KEY + "item.buzer.msg", "<system#preifx><system#color>You received the <system#accent>Absorption<system#color> Effect!");
