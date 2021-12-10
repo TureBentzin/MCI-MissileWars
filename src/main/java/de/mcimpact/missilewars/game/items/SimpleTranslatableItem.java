@@ -38,6 +38,7 @@ public class SimpleTranslatableItem extends SimpleItem {
     public static List<Component> getLore(String key) {
         List<Component> components = new ArrayList<>();
         String loreKey = key + ".lore";
+        
         int lore = 0;
         while (true) {
             if (Core.getTranslatableComponent(loreKey + "." + lore) != null) {
