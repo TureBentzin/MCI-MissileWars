@@ -53,6 +53,7 @@ public abstract class Timer implements Runnable {
             try {
                 if (value < 1) {
                     finish();
+                    running = false;
                     return;
                 }
                 Thread.sleep(1000);
