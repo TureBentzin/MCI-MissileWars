@@ -9,9 +9,11 @@ public final class ShopManager implements Listener {
 
     public ShopManager() {
 
+        capital = new Pair<>(10,10); // 10 as default value in the Accounts of the Teams
     }
 
     private Pair<Shop> shopPair;
+    private Pair<Integer> capital;
 
 
     @EventHandler
