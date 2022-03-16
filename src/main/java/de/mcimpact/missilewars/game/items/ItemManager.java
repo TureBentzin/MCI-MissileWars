@@ -14,6 +14,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.checkerframework.checker.initialization.qual.UnknownInitialization;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
@@ -47,7 +48,7 @@ public final class ItemManager {
         return b;
     }
 
-    public Item[] toArray() {
+    public Item @NotNull [] toArray() {
         Item[] items = new Item[getItems().size()];
         int i = 0;
 
@@ -142,6 +143,8 @@ public final class ItemManager {
 
         //Random
 
+        //FIXME: I dont know if this does work or not? So it seems like it would do but it doesnt make sense, right?!
+
         double all = localReceivableItems.stream().mapToDouble(ReceivableItem::getPercentage).sum();
         double r = Math.random() * all;
 
@@ -199,7 +202,7 @@ public final class ItemManager {
                 for (UUID uuid : team.getUuids()) {
                     Player player = Bukkit.getPlayer(uuid);
                     player.setLevel(value);
-                    player.setExp(value / initialValue);
+                    player.setExp(value / initialValue); //FIXME was zum fick?
                 }
             else
                 abort();
