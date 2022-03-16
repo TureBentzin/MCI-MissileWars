@@ -163,6 +163,7 @@ public final class MissileWars extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new UtilityEvent(), this);
 
         Bukkit.getPluginManager().registerEvents(MissileWars.GAME, this); //register internal GameEvents
+        Bukkit.getPluginManager().registerEvents(MissileWars.getShopManager() , this); //register internal ShopEvents
 
     }
 
