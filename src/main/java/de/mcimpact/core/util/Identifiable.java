@@ -13,10 +13,10 @@ public interface Identifiable {
 
 
     static String generateID(String s) {
-        s.replace(" ", "_");
+        s = s.replace(" ", "_");
         for (char c : s.toCharArray()) {
             if(!ALLOWED.contains(c + ""))
-                s.replace(c + "", "");
+               s =  s.replace(c + "", "");
         }
         return s;
     }
