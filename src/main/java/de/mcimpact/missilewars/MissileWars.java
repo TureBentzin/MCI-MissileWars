@@ -11,6 +11,7 @@ import de.mcimpact.missilewars.commands.bukkit.TasksCommand;
 import de.mcimpact.missilewars.game.GameStatus;
 import de.mcimpact.missilewars.game.MissileWarsGame;
 import de.mcimpact.missilewars.game.items.ItemManager;
+import de.mcimpact.missilewars.game.items.shop.ShopManager;
 import de.mcimpact.missilewars.game.world.LevelManager;
 import de.mcimpact.missilewars.listeners.*;
 import de.mcimpact.missilewars.lobbyphase.LobbyPhase;
@@ -38,6 +39,12 @@ public final class MissileWars extends JavaPlugin {
     private static MultiverseWorld lobby;
 
     private static final ItemManager itemManager = ItemManager.getInstance();
+    private static final ShopManager shopManager = new ShopManager();
+
+    @NotNull
+    public static ShopManager getShopManager() {
+        return shopManager;
+    }
 
     @NotNull
     public static ItemManager getItemManager() {
