@@ -26,7 +26,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-public class MissileWarsGame extends Game implements Listener {
+public final class MissileWarsGame extends Game implements Listener {
 
     public static MissileWarsGame instance = new MissileWarsGame();
     /**
