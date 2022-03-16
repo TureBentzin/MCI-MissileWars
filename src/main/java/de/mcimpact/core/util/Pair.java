@@ -52,7 +52,7 @@ public class Pair<E> implements Serializable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected Object clone() {
         return new Pair<E>(first, second);
     }
 
