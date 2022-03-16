@@ -20,6 +20,10 @@ public final class ShopManager implements Listener {
             interactEvent.setCancelled(true);
             shopPair.getFirst().open(interactEvent.getPlayer());
         }
+        if(shopPair.getSecond().getKeeper().equals(interactEvent.getRightClicked())) {
+            interactEvent.setCancelled(true);
+            shopPair.getSecond().open(interactEvent.getPlayer());
+        }
     }
 
 
