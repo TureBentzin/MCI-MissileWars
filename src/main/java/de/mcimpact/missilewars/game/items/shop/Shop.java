@@ -11,6 +11,15 @@ public class Shop {
     private Entity keeper;
     private Selector shop;
 
+    public Shop(Entity keeper, Selector shop) {
+        this.keeper = keeper;
+        this.shop = shop;
+    }
+
+    public Shop() {
+        // need way to find the Team - color is the backplane...
+    }
+
     public Entity getKeeper() {
         return keeper;
     }
