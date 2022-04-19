@@ -8,7 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class ItemFireball extends SimpleTranslatableItem implements InteractableItem, BuyableItem, ReceivableItem {
+public class ItemFireball extends SimpleTranslatableItem implements InteractableItem, BuyableItem, ReceivableItem
+{
 
     public ItemFireball() {
         super(Material.FIRE_CHARGE, "missilewars.item.fireball", 1);
