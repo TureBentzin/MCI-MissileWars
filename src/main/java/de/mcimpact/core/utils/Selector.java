@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Selector {
@@ -141,7 +142,7 @@ public class Selector {
         gui.show(player);
     }
 
-    protected void handle(SelectorEntry entry, int entryindex) {
+    protected void handle(SelectorEntry entry, int entryIndex) {
 
     }
 
@@ -186,48 +187,29 @@ public class Selector {
             if (closeinv) {
                 player.closeInventory();
             }
-            if (getNumber(entry) == 1) {
-                handle1(entry);
-                handle(entry, 1);
+            int i = getNumber(entry);
+            if(i > 0 && i < 10) {
+                handle(entry,i);
+                switch (getNumber(entry)) {
+                    case 1 : handle1(entry);
+                    case 2 : handle2(entry);
+                    case 3 : handle3(entry);
+                    case 4 : handle4(entry);
+                    case 5 : handle5(entry);
+                    case 6 : handle6(entry);
+                    case 7 : handle7(entry);
+                    case 8 : handle8(entry);
+                    case 9 : handle8(entry);
+                    default: throw new InputMismatchException("The EntrySlot is not natural! { 1 - 9 }");
+                }
             }
-            if (getNumber(entry) == 2) {
-                handle2(entry);
-                handle(entry, 2);
-            }
-            if (getNumber(entry) == 3) {
-                handle3(entry);
-                handle(entry, 3);
-            }
-            if (getNumber(entry) == 4) {
-                handle4(entry);
-                handle(entry, 4);
-            }
-            if (getNumber(entry) == 5) {
-                handle5(entry);
-                handle(entry, 5);
-            }
-            if (getNumber(entry) == 6) {
-                handle6(entry);
-                handle(entry, 6);
-            }
-            if (getNumber(entry) == 7) {
-                handle7(entry);
-                handle(entry, 7);
-            }
-            if (getNumber(entry) == 8) {
-                handle8(entry);
-                handle(entry, 8);
-            }
-            if (getNumber(entry) == 9) {
-                handle9(entry);
-                handle(entry, 9);
-            }
+
         });
     }
 
     public int getNumber(SelectorEntry entry) {
         if (entries == null) {
-            throw new NullPointerException("No SelectorEntries");
+            throw new NullPointerException("No SelectorEntries!");
         }
         int number = 1;
         for (SelectorEntry listentry : entries) {
